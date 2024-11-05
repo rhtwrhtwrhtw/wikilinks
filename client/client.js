@@ -3,6 +3,7 @@ class ClientConnection {
     this.ws = null;
     this.roomID = null;
     this.playerID = null;
+    this.opponentID = null;
     this.isHost = false;
     this.status = 'created';
     this.gamestate = {
@@ -18,24 +19,15 @@ class ClientConnection {
   }
 
   connect() {
-    this.ws = new WebSocket(`ws://localhost:9999?first=true&roomID=`);
-    this.status = 'connected';
+    const params = new URLSearchParams(window.location.search);
+    if (!params.get('first')) params.set('first', 'true');
+    if (!params.get('roomID')) params.set('roomID', '');
+    window.history.replaceState({}, '', `${new URL(window.location.href).pathname}?${params.toString()}`);
 
-    const params = new URLSearchParams(window.location.params);
-    this.isHost = params.get('first') === 'true';
+    const isHost = params.get('first') === 'true';
+    const roomID = params.get('roomID');
 
-    if (this.isHost) {
-      this.ws.onopen = () => {
-        this.ws.send(JSON.stringify({
-          type: 'host_connection',
-          data: 'host is connected'
-        }));
-      };
-
-
-    } else {
-
-    }
+    this.ws = new WebSocket(`http://localhost:9999?first=${isHost}&roomID=${roomID}`);
 
     this.ws.onmessage = (event) => {
       const message = JSON.parse(event.data);
@@ -56,23 +48,33 @@ class ClientConnection {
           document.querySelector('.getlink').appendChild(linkstring);
           document.querySelector('.getlink').appendChild(copybutton);
           break;
+        case 'host_joined_room':
+          this.roomID = message.data.roomID;
+          this.playerID = message.data.hostID;
+          break;
+        case 'guest_joined_room':
+          this.opponentID = message.data.guestID;
+          break;
+        default:
+          console.log(`Unknown message, type: ${message.type}`);
       }
     };
   }
 }
 
-
-
+const list = document.getElementById('lang');
 const button = document.getElementById('linkbutton');
 
-button.addEventListener('click', () => {
+button.addEventListener('click', function passLinkOnce() {
   clientgameroom.ws.send(JSON.stringify({
     type: 'generate_link',
-    data: {} // here I can pass the config file 
+    data: {lang: list.value} 
   }), 'host');
-})
+ // button.removeEventListener('click', passLinkOnce);
+});
 
 let clientgameroom;
 window.addEventListener('DOMContentLoaded', () => {
   clientgameroom = new ClientConnection();
+  setTimeout(() => console.log(clientgameroom), 2000);
 });

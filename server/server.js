@@ -162,7 +162,7 @@ wss.on('connection', (connection, request) => {
         roomID = passedRoomID;
     }
     const room = gameRooms.get(roomID);
-    const link = `ws://localhost:${port}?first=false&roomID=${roomID}`;
+    const link = `http://localhost:${port}?first=false&roomID=${roomID}`;
 
     if (!room) {
         connection.close(1008, 'wrong room code');
@@ -195,9 +195,8 @@ wss.on('connection', (connection, request) => {
             }));
 
             console.log(`Guest ${uid} connected to room ${roomID}, starting the game`);
+            // need to actually start the game, mind the closing
 
-            room.broadcast("game_starts", {});
-            room.status = "playing";
         }
     }
 
@@ -222,7 +221,9 @@ wss.on('connection', (connection, request) => {
                     .then(() => console.log(`next article for host fetched succesfully`));
                 break;
             case 'generate_link':
+                room.gamestate.lang = message.data.lang;
                 room.broadcast('gamelink', { link: link }, 'host');
+                console.log(room);
                 break;
             default:
                 console.log(`Unknown message, type: ${message.type}`);
@@ -230,7 +231,7 @@ wss.on('connection', (connection, request) => {
     });
 
     connection.on('close', () => {
-        if (!room.guestConnection) {
+        if (room.status === 'pending') {
             console.log('host left before starting the game');
             gameRooms.delete(roomID);
             createRooms(1);
