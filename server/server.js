@@ -32,10 +32,13 @@ const httppserver = http.createServer((request, response) => {
             response.writeHead(404);
             response.end();
         } else {
-            console.log(`serving ${file} to ${request.socket.remoteAddress}`);
+            //console.log(`serving ${file} to ${request.socket.remoteAddress}`);
             response.setHeader("X-Content-Type-Options", "nosniff");
             switch (trimLink) {
                 case 'index.html':
+                    response.writeHead(200, { "Content-type": "text/html" });
+                    break;
+                case 'game.html':
                     response.writeHead(200, { "Content-type": "text/html" });
                     break;
                 case 'styles.css':
@@ -83,7 +86,7 @@ class Gameroom {
                 console.log(`host ${this.hostID} of room ${this.roomID} is not open`);
             }
         } else if (toWhom === null) {
-            console.log('no host to receive message')
+            console.log(`no host to receive message ${type}`);
         };
 
         if (this.guestConnection && toWhom !== 'host') {
@@ -93,7 +96,7 @@ class Gameroom {
                 console.log(`guest ${this.guestID} of room ${this.roomID} is not open`);
             }
         } else if (toWhom === null) {
-            console.log('no guest to receive message')
+            console.log(`no guest to receive message ${type}`);
         };
     }
 
@@ -156,13 +159,13 @@ wss.on('connection', (connection, request) => {
 
     const passedRoomID = url.parse(urlinstance, true).query.roomID;
     let roomID = null;
-    if (passedRoomID === '') {
+    if (passedRoomID == '') {
         roomID = findEmptyRoomID(gameRooms);
     } else {
         roomID = passedRoomID;
     }
     const room = gameRooms.get(roomID);
-    const link = `http://localhost:${port}?first=false&roomID=${roomID}`;
+    const link = `http://localhost:${port}/game.html?first=false&roomID=${roomID}`;
 
     if (!room) {
         connection.close(1008, 'wrong room code');
@@ -175,11 +178,8 @@ wss.on('connection', (connection, request) => {
             room.hostID = uid;
             room.hostConnection = connection;
 
-            connection.send(JSON.stringify({
-                type: "host_joined_room",
-                data: room
-            }));
-        }
+            room.broadcast("host_joined_room", room);
+        } else console.log('no room');
 
     } else {
         const roomID = url.parse(urlinstance, true).query.roomID;
@@ -189,31 +189,31 @@ wss.on('connection', (connection, request) => {
             room.guestID = uid;
             room.guestConnection = connection;
 
-            connection.send(JSON.stringify({
-                type: "guest_joined_room",
-                data: room
-            }));
+            room.broadcast("guest_joined_room", room);
 
             console.log(`Guest ${uid} connected to room ${roomID}, starting the game`);
-            // need to actually start the game, mind the closing
+            //mind the closing
 
-        }
+            room.broadcast('game_starts', {});
+            handleGameStart(room).then(
+                () => console.log(`game initialized, initial state: \n ${room.gamestate}`),
+                () => console.log('game init failed'));
+            room.broadcast('share_gamestate', room.gamestate);
+
+        } else console.log('no room');
     }
 
     connection.on('message', (message) => {
         message = JSON.parse(message.toString());
-        console.log(`received message ${message} from ${uid} in room ${room.roomID}`);
+        console.log(`received message ${message.type} from ${uid} in room ${room.roomID}`);
 
         switch (message.type) {
             case 'printrooms':
                 console.log(gameRooms);
                 break;
 
-            case 'game_starts':
-                console.log('firing up the game');
-                handleGameStart(room).then(
-                    () => console.log(`game initialized, initial state: \n ${room.gamestate}`),
-                    () => console.log('game init failed'));
+            case '':
+
                 break;
             case 'next_move':
                 const article = message.data.name;
@@ -223,7 +223,6 @@ wss.on('connection', (connection, request) => {
             case 'generate_link':
                 room.gamestate.lang = message.data.lang;
                 room.broadcast('gamelink', { link: link }, 'host');
-                console.log(room);
                 break;
             default:
                 console.log(`Unknown message, type: ${message.type}`);
@@ -247,6 +246,10 @@ wss.on('connection', (connection, request) => {
             console.log(`ws://localhost:${port}?first=${uid === room.hostID}&roomID=${roomID}`);
         }
     })
+
+    connection.onerror = (error) => {
+        console.error('WebSocket error:', error);
+    };
 })
 
 httppserver.listen(port, () => {

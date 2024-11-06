@@ -4,34 +4,30 @@ class ClientConnection {
     this.roomID = null;
     this.playerID = null;
     this.opponentID = null;
-    this.isHost = false;
+    this.isHost = 'ww';
     this.status = 'created';
-    this.gamestate = {
-      lang: null,
-      hostLink: null,
-      guestLink: null,
-      hostArray: [],
-      guestArray: [],
-      isReady: false
-    };
+    this.gamestate = {};
 
     this.connect();
   }
 
   connect() {
     const params = new URLSearchParams(window.location.search);
-    if (!params.get('first')) params.set('first', 'true');
-    if (!params.get('roomID')) params.set('roomID', '');
+    const path = window.location.pathname;
+    console.log(path);
+    if (!params.has('first')) params.set('first', 'true');
+    if (!params.has('roomID')) params.set('roomID', '');
     window.history.replaceState({}, '', `${new URL(window.location.href).pathname}?${params.toString()}`);
 
     const isHost = params.get('first') === 'true';
     const roomID = params.get('roomID');
 
-    this.ws = new WebSocket(`http://localhost:9999?first=${isHost}&roomID=${roomID}`);
+    this.ws = new WebSocket(`http://localhost:9999${path}?first=${isHost}&roomID=${roomID}`);
+    this.isHost = isHost;
 
     this.ws.onmessage = (event) => {
       const message = JSON.parse(event.data);
-      console.log('Got message:', message);
+      console.log('Got message:', message.type);
 
       switch (message.type) {
         case 'gamelink':
@@ -55,9 +51,23 @@ class ClientConnection {
         case 'guest_joined_room':
           this.opponentID = message.data.guestID;
           break;
+        case 'game_starts':
+          console.log('game is starting');
+          if (this.isHost) {
+            console.log('trigger')
+            window.location.href = `/game.html?first=true&roomID=${this.roomID}`;
+          }
+          break;
+        case 'share_gamestate':
+          this.gamestate = data;
+          break;
         default:
           console.log(`Unknown message, type: ${message.type}`);
       }
+    };
+
+    this.ws.onerror = (error) => {
+      console.error('WebSocket error:', error);
     };
   }
 }
@@ -68,13 +78,13 @@ const button = document.getElementById('linkbutton');
 button.addEventListener('click', function passLinkOnce() {
   clientgameroom.ws.send(JSON.stringify({
     type: 'generate_link',
-    data: {lang: list.value} 
+    data: { lang: list.value }
   }), 'host');
- // button.removeEventListener('click', passLinkOnce);
+  // button.removeEventListener('click', passLinkOnce);
 });
 
 let clientgameroom;
 window.addEventListener('DOMContentLoaded', () => {
   clientgameroom = new ClientConnection();
-  setTimeout(() => console.log(clientgameroom), 2000);
+  setTimeout(() => console.log(clientgameroom), 7000);
 });
