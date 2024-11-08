@@ -155,6 +155,7 @@ function findRoomByUID(uid) {
 }
 
 wss.on('connection', (connection, request) => {
+    const uid = uuid().slice(0, 8);
     const urlinstance = request.url;
     const type = url.parse(urlinstance, true).query.type;
 
@@ -170,11 +171,14 @@ wss.on('connection', (connection, request) => {
             console.log(`user has entered the lobby`);
             break;
         case 'host':
-            console.log(`host has joined room ${roomID}`);
+            console.log(`host ${uid} has joined room ${roomID}`);
+            room.hostID = uid; 
+            room.hostConnection = connection; 
             break;
         case 'guest':
             console.log(`guest has joined room ${roomID}`);
-            room
+            room.guestID = uid; 
+            room.guestConnection = connection;
             break;
         default:
             console.log('no type provided');
