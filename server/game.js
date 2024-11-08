@@ -1,6 +1,6 @@
 class Gamestate {
-    constructor(lang = 'ru') {
-        this.lang = lang;
+    constructor() {
+        this.lang = null;
         this.hostLink = null;
         this.guestLink = null;
         this.hostArray = [];

@@ -12,54 +12,31 @@ class ClientConnection {
   }
 
   connect() {
-    const params = new URLSearchParams(window.location.search);
-    const path = window.location.pathname;
-    console.log(path);
-    if (!params.has('first')) params.set('first', 'true');
-    if (!params.has('roomID')) params.set('roomID', '');
-    window.history.replaceState({}, '', `${new URL(window.location.href).pathname}?${params.toString()}`);
-
-    const isHost = params.get('first') === 'true';
-    const roomID = params.get('roomID');
-
-    this.ws = new WebSocket(`http://localhost:9999${path}?first=${isHost}&roomID=${roomID}`);
-    this.isHost = isHost;
+    console.log('trigger')
+    const connectionurl = window.location.href; 
+    console.log(connectionurl);
+    const params = new Map(connectionurl.split('?')[1].split('&').map(string => string.split('=')));
+    console.log(params)
+    this.isHost = params.get('type') === 'host'; 
+    this.roomID = params.get('roomID');
+    
+    this.ws = new WebSocket(connectionurl);
+    
 
     this.ws.onmessage = (event) => {
       const message = JSON.parse(event.data);
       console.log('Got message:', message.type);
 
       switch (message.type) {
-        case 'gamelink':
-          const linkstring = document.createElement('p');
-          linkstring.textContent = message.data.link;
-
-          const copybutton = document.createElement('button');
-          copybutton.type = "button";
-          copybutton.textContent = "Copy";
-          copybutton.onclick = () => {
-            navigator.clipboard.writeText(message.data.link);
-          }
-
-          document.querySelector('.getlink').appendChild(linkstring);
-          document.querySelector('.getlink').appendChild(copybutton);
-          break;
+       
         case 'host_joined_room':
-          this.roomID = message.data.roomID;
-          this.playerID = message.data.hostID;
+    
           break;
         case 'guest_joined_room':
-          this.opponentID = message.data.guestID;
-          break;
-        case 'game_starts':
-          console.log('game is starting');
-          if (this.isHost) {
-            console.log('trigger')
-            window.location.href = `/game.html?first=true&roomID=${this.roomID}`;
-          }
+          
           break;
         case 'share_gamestate':
-          this.gamestate = data;
+          
           break;
         default:
           console.log(`Unknown message, type: ${message.type}`);
@@ -72,19 +49,9 @@ class ClientConnection {
   }
 }
 
-const list = document.getElementById('lang');
-const button = document.getElementById('linkbutton');
-
-button.addEventListener('click', function passLinkOnce() {
-  clientgameroom.ws.send(JSON.stringify({
-    type: 'generate_link',
-    data: { lang: list.value }
-  }), 'host');
-  // button.removeEventListener('click', passLinkOnce);
-});
-
-let clientgameroom;
+let connection;
 window.addEventListener('DOMContentLoaded', () => {
-  clientgameroom = new ClientConnection();
-  setTimeout(() => console.log(clientgameroom), 7000);
+  console.log('loaded');
+  connection = new ClientConnection();
+  console.log(connection)
 });

@@ -36,17 +36,18 @@ const httppserver = http.createServer((request, response) => {
             response.setHeader("X-Content-Type-Options", "nosniff");
             switch (trimLink) {
                 case 'index.html':
-                    response.writeHead(200, { "Content-type": "text/html" });
-                    break;
                 case 'game.html':
                     response.writeHead(200, { "Content-type": "text/html" });
+                    break;
+                case 'client.js':
+                case 'lobby.js':
+                    response.writeHead(200, { "Content-type": "application/javascript" });
                     break;
                 case 'styles.css':
                     response.writeHead(200, { "Content-type": "text/css" });
                     break;
-                case 'client.js':
-                    response.writeHead(200, { "Content-type": "application/javascript" });
-                    break;
+                case 'W.png':
+                    response.writeHead(200, { "Content-Type": "image/png" });
             }
             response.end(content)
         }
@@ -70,7 +71,10 @@ class Gameroom {
         this.hostConnection = null;
         this.guestConnection = null;
         this.status = 'pending';
-        this.gamestate = new Gamestate(); //need to pass lang from somewhere
+        this.config = {
+            lang: null
+        }
+        this.gamestate = new Gamestate(this.config.lang); 
     }
 
     broadcast(type, data = {}, toWhom = null) { //
@@ -118,8 +122,8 @@ function createRooms(n = nOfRooms) {
     console.log(`created ${nOfRooms} rooms`);
 }
 
-function findEmptyRoomID(rooms) {
-    const cpRooms = Array.from(rooms);
+function findEmptyRoomID() {
+    const cpRooms = Array.from(gameRooms);
     let i = 0;
     while (i < nOfRooms) {
         if (cpRooms[0][1].isEmpty()) {
@@ -152,60 +156,34 @@ function findRoomByUID(uid) {
 
 wss.on('connection', (connection, request) => {
     const urlinstance = request.url;
-    const uid = uuid().slice(0, 8);
-    const first = url.parse(urlinstance, true).query.first;
-    const isFirst = first === `true`;
+    const type = url.parse(urlinstance, true).query.type;
 
+    console.log(urlinstance, type);
 
-    const passedRoomID = url.parse(urlinstance, true).query.roomID;
-    let roomID = null;
-    if (passedRoomID == '') {
-        roomID = findEmptyRoomID(gameRooms);
-    } else {
-        roomID = passedRoomID;
-    }
-    const room = gameRooms.get(roomID);
-    const link = `http://localhost:${port}/game.html?first=false&roomID=${roomID}`;
+    const roomID = findEmptyRoomID();
+    const room = gameRooms.get(roomID); 
 
-    if (!room) {
-        connection.close(1008, 'wrong room code');
-        console.log(`there is no room with id ${roomID}, GET OUT!`);
-        return;
-    }
+    link = `http://localhost:9999/game.html?type=guest&roomID=${roomID}`;
 
-    if (isFirst) {
-        if (room) {  //there is no room if all of them are full
-            room.hostID = uid;
-            room.hostConnection = connection;
-
-            room.broadcast("host_joined_room", room);
-        } else console.log('no room');
-
-    } else {
-        const roomID = url.parse(urlinstance, true).query.roomID;
-        const room = gameRooms.get(roomID);
-
-        if (room) {  //there is no room if all of them are full
-            room.guestID = uid;
-            room.guestConnection = connection;
-
-            room.broadcast("guest_joined_room", room);
-
-            console.log(`Guest ${uid} connected to room ${roomID}, starting the game`);
-            //mind the closing
-
-            room.broadcast('game_starts', {});
-            handleGameStart(room).then(
-                () => console.log(`game initialized, initial state: \n ${room.gamestate}`),
-                () => console.log('game init failed'));
-            room.broadcast('share_gamestate', room.gamestate);
-
-        } else console.log('no room');
+    switch (type) {
+        case 'lobby':
+            console.log(`user has entered the lobby`);
+            break;
+        case 'host':
+            console.log(`host has joined room ${roomID}`);
+            break;
+        case 'guest':
+            console.log(`guest has joined room ${roomID}`);
+            room
+            break;
+        default:
+            console.log('no type provided');
+            break;
     }
 
     connection.on('message', (message) => {
         message = JSON.parse(message.toString());
-        console.log(`received message ${message.type} from ${uid} in room ${room.roomID}`);
+        console.log(`received message ${message.type}`);
 
         switch (message.type) {
             case 'printrooms':
@@ -221,8 +199,11 @@ wss.on('connection', (connection, request) => {
                     .then(() => console.log(`next article for host fetched succesfully`));
                 break;
             case 'generate_link':
-                room.gamestate.lang = message.data.lang;
-                room.broadcast('gamelink', { link: link }, 'host');
+                room.config = {
+                    ...room.config,
+                    ...message.data
+                }
+                connection.send(JSON.stringify({type: 'gamelink', data: link}));
                 break;
             default:
                 console.log(`Unknown message, type: ${message.type}`);
@@ -230,7 +211,7 @@ wss.on('connection', (connection, request) => {
     });
 
     connection.on('close', () => {
-        if (room.status === 'pending') {
+        /*if (room.status === 'pending') {
             console.log('host left before starting the game');
             gameRooms.delete(roomID);
             createRooms(1);
@@ -244,7 +225,7 @@ wss.on('connection', (connection, request) => {
         } else {
             console.log(`user ${uid} disconnected from room: ${roomID}, reconnect via:`);
             console.log(`ws://localhost:${port}?first=${uid === room.hostID}&roomID=${roomID}`);
-        }
+        }*/
     })
 
     connection.onerror = (error) => {
