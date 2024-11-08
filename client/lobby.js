@@ -8,6 +8,8 @@ console.log(url);
 window.history.replaceState({}, '', url);
 ws = new WebSocket(url);
 
+let roomID; 
+
 ws.onmessage = (event) => {
     const message = JSON.parse(event.data);
     console.log(`received message ${message.type}`);
@@ -16,6 +18,7 @@ ws.onmessage = (event) => {
         case 'gamelink':
             const linkstring = document.createElement('p');
             linkstring.textContent = message.data;
+            roomID = message.data.split('=')[2];
 
             const copybutton = document.createElement('button');
             copybutton.type = "button";
@@ -29,7 +32,7 @@ ws.onmessage = (event) => {
             break;
         case 'game_starts':
             console.log('game is starting');
-            window.location.href = `/game.html?type=host&roomID=${this.roomID}`;
+            window.location.href = `/game.html?type=host&roomID=${roomID}`;
             break;
     }
 }

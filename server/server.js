@@ -70,6 +70,7 @@ class Gameroom {
         this.guestID = null;
         this.hostConnection = null;
         this.guestConnection = null;
+        this.lobby = null;
         this.status = 'pending';
         this.config = {
             lang: null
@@ -159,16 +160,21 @@ wss.on('connection', (connection, request) => {
     const urlinstance = request.url;
     const type = url.parse(urlinstance, true).query.type;
 
-    console.log(urlinstance, type);
-
     const roomID = findEmptyRoomID();
     const room = gameRooms.get(roomID); 
+
+    if (!room) {
+        connection.close(1008, 'wrong room code');
+        console.log(`there is no room with id ${roomID}, GET OUT!`);
+        return;
+    }
 
     link = `http://localhost:9999/game.html?type=guest&roomID=${roomID}`;
 
     switch (type) {
         case 'lobby':
             console.log(`user has entered the lobby`);
+            room.lobby = connection;
             break;
         case 'host':
             console.log(`host ${uid} has joined room ${roomID}`);
@@ -179,6 +185,9 @@ wss.on('connection', (connection, request) => {
             console.log(`guest has joined room ${roomID}`);
             room.guestID = uid; 
             room.guestConnection = connection;
+
+            room.lobby.send(JSON.stringify({type: 'game_starts', data: {}}));
+            
             break;
         default:
             console.log('no type provided');
