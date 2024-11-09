@@ -34,8 +34,8 @@ class ClientConnection {
 
         switch (message.type) {
 
-          case 'host_joined_room':
-
+          case 'initial_gamestate':
+            this.gamestate = message.data;
             break;
           case 'guest_joined_room':
 
@@ -60,4 +60,5 @@ window.addEventListener('DOMContentLoaded', () => {
   console.log('loaded');
   connection = new ClientConnection();
   console.log(connection)
+  setTimeout(() => console.log(connection), 10000);
 });

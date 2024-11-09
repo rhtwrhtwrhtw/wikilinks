@@ -9,7 +9,7 @@ class Gamestate {
     }
 
     async init(startForHost = null, startForGuest = null) {
-        console.log("Init called with:", startForHost, startForGuest);
+        console.log(`Init called with lang ${this.lang}, starts:`, startForHost, startForGuest);
         try {
             this.hostLink = (startForHost != null) ? await getByName(startForHost, this.lang) : await getAGoodOne(this.lang);
             this.guestLink = (startForGuest != null) ? await getByName(startForGuest, this.lang) : await getAGoodOne(this.lang);
@@ -84,6 +84,7 @@ async function randomArticles(lang, n, linkN) {
 
 async function getAGoodOne(lang, n = 7, linkN = 500) {
     let articles = []
+    let errorcount = 0;
     for (; ;) {
         try {
             articles = await randomArticles(lang, n, linkN);
@@ -93,7 +94,9 @@ async function getAGoodOne(lang, n = 7, linkN = 500) {
                 console.error(`non typerror: ${message}`);
                 break;
             }
-            console.warn(`TypeError, retry`);
+            console.warn(`TypeError: ${message}, retry`);
+            errorcount++; 
+            if (errorcount >= 5) break;
         }
     }
     articles.filter(article => article.linksLength !== 0);

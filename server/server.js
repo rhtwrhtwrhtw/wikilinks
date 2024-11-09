@@ -75,7 +75,7 @@ class Gameroom {
         this.config = {
             lang: null
         }
-        this.gamestate = new Gamestate(this.config.lang);
+        this.gamestate = {};
     }
 
     broadcast(type, data = {}, toWhom = null) { //
@@ -205,6 +205,10 @@ wss.on('connection', (connection, request) => {
 
             case 'host_transfer':
                 room.status = 'playing';
+                handleGameStart(room).then(
+                    () => console.log(`game initialized, initial state: \n ${room.gamestate}`)
+                    .then(room => room.broadcast('initial_state', room.gamestate)),
+                    () => console.log('game init failed'));
                 break;
             case 'next_move':
                 const article = message.data.name;
@@ -216,6 +220,7 @@ wss.on('connection', (connection, request) => {
                     ...room.config,
                     ...message.data
                 }
+                room.gamestate = new Gamestate(room.config.lang)
                 connection.send(JSON.stringify({ type: 'gamelink', data: link }));
                 break;
             default:
