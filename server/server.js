@@ -72,9 +72,6 @@ class Gameroom {
         this.guestConnection = null;
         this.lobby = null;
         this.status = 'pending';
-        this.config = {
-            lang: null
-        }
         this.gamestate = {};
     }
 
@@ -141,9 +138,9 @@ function findEmptyRoomID() {
 async function handleGameStart(room) {
     try {
         await room.gamestate.init();
-        room.broadcast('game_initialized');
     } catch (error) {
         console.error('Failed to initialize game:', error);
+        throw error;
     }
 }
 
@@ -181,11 +178,13 @@ wss.on('connection', (connection, request) => {
             console.log(`host ${uid} has joined room ${roomID}`);
             room.hostID = uid;
             room.hostConnection = connection;
+            connection.send(JSON.stringify({type: 'set_uid', data: uid}));
             break;
         case 'guest':
             console.log(`guest ${uid} has joined room ${roomID}`);
             room.guestID = uid;
             room.guestConnection = connection;
+            connection.send(JSON.stringify({type: 'set_uid', data: uid}));
 
             room.lobby.send(JSON.stringify({ type: 'game_starts', data: {} }));
             break;
@@ -206,9 +205,12 @@ wss.on('connection', (connection, request) => {
             case 'host_transfer':
                 room.status = 'playing';
                 handleGameStart(room).then(
-                    () => console.log(`game initialized, initial state: \n ${room.gamestate}`)
-                    .then(room => room.broadcast('initial_state', room.gamestate)),
-                    () => console.log('game init failed'));
+                    () => {
+                        console.log(`game initialized, initial links:`);
+                        console.log(`host: ${room.gamestate.hostLink.title}`);
+                        console.log(`guest: ${room.gamestate.guestLink.title}`);
+                        room.broadcast('initial_gamestate', room.gamestate);
+                    });
                 break;
             case 'next_move':
                 const article = message.data.name;
@@ -216,11 +218,7 @@ wss.on('connection', (connection, request) => {
                     .then(() => console.log(`next article for host fetched succesfully`));
                 break;
             case 'generate_link':
-                room.config = {
-                    ...room.config,
-                    ...message.data
-                }
-                room.gamestate = new Gamestate(room.config.lang)
+                room.gamestate = new Gamestate(message.data.lang)
                 connection.send(JSON.stringify({ type: 'gamelink', data: link }));
                 break;
             default:

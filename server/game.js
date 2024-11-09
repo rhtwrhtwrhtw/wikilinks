@@ -1,6 +1,6 @@
 class Gamestate {
-    constructor() {
-        this.lang = null;
+    constructor(lang) {
+        this.lang = lang;
         this.hostLink = null;
         this.guestLink = null;
         this.hostArray = [];
@@ -94,9 +94,9 @@ async function getAGoodOne(lang, n = 7, linkN = 500) {
                 console.error(`non typerror: ${message}`);
                 break;
             }
-            console.warn(`TypeError: ${message}, retry`);
+            console.warn(`TypeError in getAGoodOne: ${message}, retry`);
             errorcount++; 
-            if (errorcount >= 5) break;
+            if (errorcount >= 10) throw new Error('getAGoodOne failed');
         }
     }
     articles.filter(article => article.linksLength !== 0);

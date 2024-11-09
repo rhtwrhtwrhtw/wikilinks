@@ -3,7 +3,6 @@ class ClientConnection {
     this.ws = null;
     this.roomID = null;
     this.playerID = null;
-    this.opponentID = null;
     this.isHost = 'ww';
     this.status = 'created';
     this.gamestate = {};
@@ -37,8 +36,8 @@ class ClientConnection {
           case 'initial_gamestate':
             this.gamestate = message.data;
             break;
-          case 'guest_joined_room':
-
+          case 'set_uid':
+            this.playerID = message.data;
             break;
           case 'share_gamestate':
 
