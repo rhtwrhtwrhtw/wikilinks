@@ -8,7 +8,7 @@ console.log(url);
 window.history.replaceState({}, '', url);
 ws = new WebSocket(url);
 
-let roomID; 
+let roomID;
 
 ws.onmessage = (event) => {
     const message = JSON.parse(event.data);
@@ -19,6 +19,7 @@ ws.onmessage = (event) => {
             const linkstring = document.createElement('p');
             linkstring.textContent = message.data;
             roomID = message.data.split('=')[2];
+            console.log(roomID);
 
             const copybutton = document.createElement('button');
             copybutton.type = "button";

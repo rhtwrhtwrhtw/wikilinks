@@ -23,7 +23,7 @@ const httppserver = http.createServer((request, response) => {
         trimLink = 'index.html';
     }
 
-    console.log(`${request.socket.remoteAddress} requested file ${trimLink}`);
+    //console.log(`${request.socket.remoteAddress} requested file ${trimLink}`);
 
     const file = path.join(__dirname, '..', 'client', trimLink);
     fs.readFile(file, (error, content) => {
@@ -75,7 +75,7 @@ class Gameroom {
         this.config = {
             lang: null
         }
-        this.gamestate = new Gamestate(this.config.lang); 
+        this.gamestate = new Gamestate(this.config.lang);
     }
 
     broadcast(type, data = {}, toWhom = null) { //
@@ -159,9 +159,10 @@ wss.on('connection', (connection, request) => {
     const uid = uuid().slice(0, 8);
     const urlinstance = request.url;
     const type = url.parse(urlinstance, true).query.type;
+    let roomID = url.parse(urlinstance, true).query.roomID;
 
-    const roomID = findEmptyRoomID();
-    const room = gameRooms.get(roomID); 
+    if (!roomID) roomID = findEmptyRoomID();
+    const room = gameRooms.get(roomID);
 
     if (!room) {
         connection.close(1008, 'wrong room code');
@@ -173,21 +174,20 @@ wss.on('connection', (connection, request) => {
 
     switch (type) {
         case 'lobby':
-            console.log(`user has entered the lobby`);
+            console.log(`user ${uid} has entered the lobby, preparing room ${roomID}`);
             room.lobby = connection;
             break;
         case 'host':
             console.log(`host ${uid} has joined room ${roomID}`);
-            room.hostID = uid; 
-            room.hostConnection = connection; 
+            room.hostID = uid;
+            room.hostConnection = connection;
             break;
         case 'guest':
-            console.log(`guest has joined room ${roomID}`);
-            room.guestID = uid; 
+            console.log(`guest ${uid} has joined room ${roomID}`);
+            room.guestID = uid;
             room.guestConnection = connection;
 
-            room.lobby.send(JSON.stringify({type: 'game_starts', data: {}}));
-            
+            room.lobby.send(JSON.stringify({ type: 'game_starts', data: {} }));
             break;
         default:
             console.log('no type provided');
@@ -203,8 +203,8 @@ wss.on('connection', (connection, request) => {
                 console.log(gameRooms);
                 break;
 
-            case '':
-
+            case 'host_transfer':
+                room.status = 'playing';
                 break;
             case 'next_move':
                 const article = message.data.name;
@@ -216,7 +216,7 @@ wss.on('connection', (connection, request) => {
                     ...room.config,
                     ...message.data
                 }
-                connection.send(JSON.stringify({type: 'gamelink', data: link}));
+                connection.send(JSON.stringify({ type: 'gamelink', data: link }));
                 break;
             default:
                 console.log(`Unknown message, type: ${message.type}`);
@@ -224,21 +224,34 @@ wss.on('connection', (connection, request) => {
     });
 
     connection.on('close', () => {
-        /*if (room.status === 'pending') {
-            console.log('host left before starting the game');
-            gameRooms.delete(roomID);
-            createRooms(1);
-            return;
+        switch (type) {
+            case 'lobby':
+                if (room.guestConnection === null) {
+                    console.log(`host ${uid} left the lobby for room ${roomID} before starting the game`);
+                    gameRooms.delete(roomID);
+                    createRooms(1);
+                    return;
+                } else console.log(`lobby for room ${roomID} was discarded successfully`);
+                break;
+            case 'host':
+                console.log(`host ${room.hostID} disconnected from room ${roomID}`);
+                if (room.hostConnection.readyState === WebSocket.CLOSED &&
+                    room.guestConnection.readyState === WebSocket.CLOSED) {
+                    console.log(`room ${roomID} is empty, cleaning up`);
+                    gameRooms.delete(roomID);
+                    createRooms(1);
+                }
+                break;
+            case 'guest':
+                console.log(`guest ${room.guestID} disconnected from room ${roomID}`);
+                if (room.hostConnection.readyState === WebSocket.CLOSED &&
+                    room.guestConnection.readyState === WebSocket.CLOSED) {
+                    console.log(`room ${roomID} is empty, cleaning up`);
+                    gameRooms.delete(roomID);
+                    createRooms(1);
+                }
+                break;
         }
-        if (room.hostConnection.readyState === WebSocket.CLOSED &&
-            room.guestConnection.readyState === WebSocket.CLOSED) {
-            console.log(`room ${roomID} is empty, cleaning up`);
-            gameRooms.delete(roomID);
-            createRooms(1);
-        } else {
-            console.log(`user ${uid} disconnected from room: ${roomID}, reconnect via:`);
-            console.log(`ws://localhost:${port}?first=${uid === room.hostID}&roomID=${roomID}`);
-        }*/
     })
 
     connection.onerror = (error) => {

@@ -12,40 +12,46 @@ class ClientConnection {
   }
 
   connect() {
-    console.log('trigger')
-    const connectionurl = window.location.href; 
-    console.log(connectionurl);
+    const connectionurl = window.location.href;
     const params = new Map(connectionurl.split('?')[1].split('&').map(string => string.split('=')));
     console.log(params)
-    this.isHost = params.get('type') === 'host'; 
+    this.isHost = params.get('type') === 'host';
     this.roomID = params.get('roomID');
-    
+
     this.ws = new WebSocket(connectionurl);
-    
 
-    this.ws.onmessage = (event) => {
-      const message = JSON.parse(event.data);
-      console.log('Got message:', message.type);
+    this.ws.onopen = (event) => {
+      if (this.isHost) {
+        this.ws.send(JSON.stringify({
+          type: 'host_transfer',
+          data: {}
+        }));
+      };
 
-      switch (message.type) {
-       
-        case 'host_joined_room':
-    
-          break;
-        case 'guest_joined_room':
-          
-          break;
-        case 'share_gamestate':
-          
-          break;
-        default:
-          console.log(`Unknown message, type: ${message.type}`);
-      }
-    };
+      this.ws.onmessage = (event) => {
+        const message = JSON.parse(event.data);
+        console.log('Got message:', message.type);
 
-    this.ws.onerror = (error) => {
-      console.error('WebSocket error:', error);
-    };
+        switch (message.type) {
+
+          case 'host_joined_room':
+
+            break;
+          case 'guest_joined_room':
+
+            break;
+          case 'share_gamestate':
+
+            break;
+          default:
+            console.log(`Unknown message, type: ${message.type}`);
+        }
+      };
+
+      this.ws.onerror = (error) => {
+        console.error('WebSocket error:', error);
+      };
+    }
   }
 }
 
