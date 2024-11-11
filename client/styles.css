@@ -1,0 +1,12 @@
+.game {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+}
+
+/* todo: 
+make the server serve the same state for the same room, with turncount
+arranging items
+making turns
+add an event listener to make turns by clicking
+reconnecting 

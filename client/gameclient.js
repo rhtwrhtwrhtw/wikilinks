@@ -13,7 +13,6 @@ class ClientConnection {
   connect() {
     const connectionurl = window.location.href;
     const params = new Map(connectionurl.split('?')[1].split('&').map(string => string.split('=')));
-    console.log(params)
     this.isHost = params.get('type') === 'host';
     this.roomID = params.get('roomID');
 
@@ -35,6 +34,7 @@ class ClientConnection {
 
           case 'initial_gamestate':
             this.gamestate = message.data;
+            this.displayState()
             break;
           case 'set_uid':
             this.playerID = message.data;
@@ -52,12 +52,46 @@ class ClientConnection {
       };
     }
   }
+
+  displayState() {
+    console.log('displaying');
+    const gamediv = document.getElementById('game'); 
+    gamediv.innerHTML = ''; 
+
+    const your = document.createElement('p'); 
+    const list = document.createElement('ul'); 
+    const opp = document.createElement('ol'); 
+
+    your.textContent = 'Your article is: ' + 
+    (this.isHost ? this.gamestate.hostLink.title : this.gamestate.guestLink.title);
+
+    list.textContent = 'You can choose from: '
+    const yourArray = this.isHost ? this.gamestate.hostLink.links : this.gamestate.guestLink.links;
+    for (let link of yourArray) { 
+      const item = document.createElement('li'); 
+      item.textContent = link.title; 
+      list.appendChild(item);
+    }
+
+    opp.textContent = "Your opponent's path: "
+    const opponentArray = this.isHost ? this.gamestate.guestArray : this.gamestate.hostArray;
+    for (let link of opponentArray) { 
+      const item = document.createElement('li'); 
+      item.textContent = link.title; 
+      opp.appendChild(item);
+    }
+
+
+    gamediv.appendChild(your);
+    gamediv.appendChild(list);
+    gamediv.appendChild(opp);
+  }
 }
+
 
 let connection;
 window.addEventListener('DOMContentLoaded', () => {
   console.log('loaded');
   connection = new ClientConnection();
-  console.log(connection)
   setTimeout(() => console.log(connection), 10000);
 });

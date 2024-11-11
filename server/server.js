@@ -39,7 +39,7 @@ const httppserver = http.createServer((request, response) => {
                 case 'game.html':
                     response.writeHead(200, { "Content-type": "text/html" });
                     break;
-                case 'client.js':
+                case 'gameclient.js':
                 case 'lobby.js':
                     response.writeHead(200, { "Content-type": "application/javascript" });
                     break;
@@ -59,7 +59,7 @@ const httppserver = http.createServer((request, response) => {
 
 const wss = new WebSocketServer({ server: httppserver });
 const port = process.env.PORT || 9999;
-const nOfRooms = 1;
+const nOfRooms = 100;
 
 const gameRooms = new Map();
 
@@ -210,7 +210,7 @@ wss.on('connection', (connection, request) => {
                         console.log(`host: ${room.gamestate.hostLink.title}`);
                         console.log(`guest: ${room.gamestate.guestLink.title}`);
                         room.broadcast('initial_gamestate', room.gamestate);
-                    });
+                    }); // things can break here and I probably need a better way of handling it
                 break;
             case 'next_move':
                 const article = message.data.name;

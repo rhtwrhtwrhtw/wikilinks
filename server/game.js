@@ -96,7 +96,7 @@ async function getAGoodOne(lang, n = 7, linkN = 500) {
             }
             console.warn(`TypeError in getAGoodOne: ${message}, retry`);
             errorcount++; 
-            if (errorcount >= 10) throw new Error('getAGoodOne failed');
+            if (errorcount >= 20) throw new Error('getAGoodOne failed');
         }
     }
     articles.filter(article => article.linksLength !== 0);
