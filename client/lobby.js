@@ -18,7 +18,7 @@ ws.onmessage = (event) => {
         case 'gamelink':
             const linkstring = document.createElement('p');
             linkstring.textContent = message.data;
-            roomID = message.data.split('=')[2];
+            roomID = message.data.split('=')[3];
             console.log(roomID);
 
             const copybutton = document.createElement('button');

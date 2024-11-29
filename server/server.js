@@ -153,10 +153,12 @@ function findRoomByUID(uid) {
 }
 
 wss.on('connection', (connection, request) => {
-    const uid = uuid().slice(0, 8);
     const urlinstance = request.url;
+    let uid = url.parse(urlinstance, true).query.uid; // gde 
     const type = url.parse(urlinstance, true).query.type;
     let roomID = url.parse(urlinstance, true).query.roomID;
+
+    if (!uid) uid = uuid().slice(0, 8);
 
     if (!roomID) roomID = findEmptyRoomID();
     const room = gameRooms.get(roomID);
@@ -167,7 +169,7 @@ wss.on('connection', (connection, request) => {
         return;
     }
 
-    link = `http://localhost:9999/game.html?type=guest&roomID=${roomID}`;
+    link = `http://localhost:9999/game.html?type=guest&uid=${uid}&roomID=${roomID}`; // roomID shold be last
 
     switch (type) {
         case 'lobby':
@@ -175,18 +177,38 @@ wss.on('connection', (connection, request) => {
             room.lobby = connection;
             break;
         case 'host':
+            if (room.hostID !== uid) {
+                connection.close(1008, `room ${roomID} already has a host ${room.hostID}`);
+                return;
+            }
+
+            if (room.status = 'playing') {
+                console.log(`host ${uid} has reconnected to room ${roomID}`);
+                connection.send(JSON.stringify({ type: 'restore_gamestate', data: room.gamestate }));
+            }
+
             console.log(`host ${uid} has joined room ${roomID}`);
             room.hostID = uid;
             room.hostConnection = connection;
-            connection.send(JSON.stringify({type: 'set_uid', data: uid}));
+            connection.send(JSON.stringify({ type: 'set_uid', data: uid }));
             break;
         case 'guest':
-            console.log(`guest ${uid} has joined room ${roomID}`);
-            room.guestID = uid;
-            room.guestConnection = connection;
-            connection.send(JSON.stringify({type: 'set_uid', data: uid}));
+            if (room.guestID !== uid) {
+                connection.close(1008, `room ${roomID} already has a guest ${room.guestID}`);
+                return;
+            }
 
-            room.lobby.send(JSON.stringify({ type: 'game_starts', data: {} }));
+            if (room.status = 'playing') {
+                console.log(`guest ${uid} has reconnected to room ${roomID}`);
+                connection.send(JSON.stringify({ type: 'restore_gamestate', data: room.gamestate }));
+            } else {
+                console.log(`guest ${uid} has joined room ${roomID}`);
+                room.guestID = uid;
+                room.guestConnection = connection;
+                connection.send(JSON.stringify({ type: 'set_uid', data: uid }));
+
+                room.lobby.send(JSON.stringify({ type: 'game_starts', data: {} }));
+            }
             break;
         default:
             console.log('no type provided');

@@ -15,10 +15,13 @@ class ClientConnection {
     const params = new Map(connectionurl.split('?')[1].split('&').map(string => string.split('=')));
     this.isHost = params.get('type') === 'host';
     this.roomID = params.get('roomID');
+    this.uid = params.get('uid');
 
+    console.log(connectionurl)
     this.ws = new WebSocket(connectionurl);
 
     this.ws.onopen = (event) => {
+      console.log('onopen trigger');
       if (this.isHost) {
         this.ws.send(JSON.stringify({
           type: 'host_transfer',
