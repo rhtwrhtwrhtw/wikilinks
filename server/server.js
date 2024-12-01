@@ -154,7 +154,7 @@ function findRoomByUID(uid) {
 
 wss.on('connection', (connection, request) => {
     const urlinstance = request.url;
-    let uid = url.parse(urlinstance, true).query.uid; // gde 
+    let uid = url.parse(urlinstance, true).query.uid;
     const type = url.parse(urlinstance, true).query.type;
     let roomID = url.parse(urlinstance, true).query.roomID;
 
@@ -169,22 +169,17 @@ wss.on('connection', (connection, request) => {
         return;
     }
 
-    link = `http://localhost:9999/game.html?type=guest&uid=${uid}&roomID=${roomID}`; // roomID shold be last
-
     switch (type) {
         case 'lobby':
             console.log(`user ${uid} has entered the lobby, preparing room ${roomID}`);
             room.lobby = connection;
             break;
         case 'host':
-            if (room.hostID !== uid) {
-                connection.close(1008, `room ${roomID} already has a host ${room.hostID}`);
-                return;
-            }
-
-            if (room.status = 'playing') {
+            if (room.status === 'playing') {
                 console.log(`host ${uid} has reconnected to room ${roomID}`);
+                room.hostConnection = connection;
                 connection.send(JSON.stringify({ type: 'restore_gamestate', data: room.gamestate }));
+                break;
             }
 
             console.log(`host ${uid} has joined room ${roomID}`);
@@ -193,22 +188,18 @@ wss.on('connection', (connection, request) => {
             connection.send(JSON.stringify({ type: 'set_uid', data: uid }));
             break;
         case 'guest':
-            if (room.guestID !== uid) {
-                connection.close(1008, `room ${roomID} already has a guest ${room.guestID}`);
-                return;
-            }
-
-            if (room.status = 'playing') {
+            if (room.status === 'playing') {
                 console.log(`guest ${uid} has reconnected to room ${roomID}`);
-                connection.send(JSON.stringify({ type: 'restore_gamestate', data: room.gamestate }));
-            } else {
-                console.log(`guest ${uid} has joined room ${roomID}`);
-                room.guestID = uid;
                 room.guestConnection = connection;
-                connection.send(JSON.stringify({ type: 'set_uid', data: uid }));
-
-                room.lobby.send(JSON.stringify({ type: 'game_starts', data: {} }));
+                connection.send(JSON.stringify({ type: 'restore_gamestate', data: room.gamestate }));
+                break;
             }
+
+            console.log(`guest ${uid} has joined room ${roomID}`);
+            room.guestID = uid;
+            room.guestConnection = connection;
+            connection.send(JSON.stringify({ type: 'set_uid', data: uid }));
+            room.lobby.send(JSON.stringify({ type: 'game_starts', data: {} }));
             break;
         default:
             console.log('no type provided');
@@ -225,14 +216,18 @@ wss.on('connection', (connection, request) => {
                 break;
 
             case 'host_transfer':
-                room.status = 'playing';
-                handleGameStart(room).then(
-                    () => {
-                        console.log(`game initialized, initial links:`);
-                        console.log(`host: ${room.gamestate.hostLink.title}`);
-                        console.log(`guest: ${room.gamestate.guestLink.title}`);
-                        room.broadcast('initial_gamestate', room.gamestate);
-                    }); // things can break here and I probably need a better way of handling it
+                if (room.status === 'pending') {
+                    handleGameStart(room).then(
+                        () => {
+                            console.log(`game initialized, initial links:`);
+                            console.log(`host: ${room.gamestate.hostLink.title}`);
+                            console.log(`guest: ${room.gamestate.guestLink.title}`);
+                            room.broadcast('initial_gamestate', room.gamestate);
+                            room.status = 'playing';
+                        }); // things can break here and I probably need a better way of handling it
+                } else {
+                    console.log('no transfer needed, reconnection'); 
+                }
                 break;
             case 'next_move':
                 const article = message.data.name;
@@ -240,8 +235,11 @@ wss.on('connection', (connection, request) => {
                     .then(() => console.log(`next article for host fetched succesfully`));
                 break;
             case 'generate_link':
+                const guestuid = uuid().slice(0, 8);
+                const hostuid = uid;
+                const link = `http://localhost:9999/game.html?type=guest&uid=${guestuid}&roomID=${roomID}`; // roomID shold be last
                 room.gamestate = new Gamestate(message.data.lang)
-                connection.send(JSON.stringify({ type: 'gamelink', data: link }));
+                connection.send(JSON.stringify({ type: 'gamelink', data: { link: link, hostuid: hostuid } }));
                 break;
             default:
                 console.log(`Unknown message, type: ${message.type}`);

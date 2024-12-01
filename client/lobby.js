@@ -9,23 +9,25 @@ window.history.replaceState({}, '', url);
 ws = new WebSocket(url);
 
 let roomID;
+let hostuid;
 
 ws.onmessage = (event) => {
     const message = JSON.parse(event.data);
     console.log(`received message ${message.type}`);
+    console.log(message.data)
 
     switch (message.type) {
         case 'gamelink':
             const linkstring = document.createElement('p');
-            linkstring.textContent = message.data;
-            roomID = message.data.split('=')[3];
-            console.log(roomID);
+            linkstring.textContent = message.data.link;
+            roomID = message.data.link.split('=')[3]; //this is why roomID is last in links
+            hostuid = message.data.hostuid; 
 
             const copybutton = document.createElement('button');
             copybutton.type = "button";
             copybutton.textContent = "Copy";
             copybutton.onclick = () => {
-                navigator.clipboard.writeText(message.data);
+                navigator.clipboard.writeText(message.data.link);
             }
 
             document.querySelector('.getlink').appendChild(linkstring);
@@ -33,7 +35,7 @@ ws.onmessage = (event) => {
             break;
         case 'game_starts':
             console.log('game is starting');
-            window.location.href = `/game.html?type=host&roomID=${roomID}`;
+            window.location.href = `/game.html?type=host&uid=${hostuid}&roomID=${roomID}`;
             break;
     }
 }

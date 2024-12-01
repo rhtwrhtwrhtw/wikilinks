@@ -3,7 +3,7 @@ class ClientConnection {
     this.ws = null;
     this.roomID = null;
     this.playerID = null;
-    this.isHost = 'ww';
+    this.isHost = null;
     this.status = 'created';
     this.gamestate = {};
 
@@ -17,70 +17,71 @@ class ClientConnection {
     this.roomID = params.get('roomID');
     this.uid = params.get('uid');
 
-    console.log(connectionurl)
     this.ws = new WebSocket(connectionurl);
 
     this.ws.onopen = (event) => {
-      console.log('onopen trigger');
-      if (this.isHost) {
+      if (!this.isHost) {
         this.ws.send(JSON.stringify({
           type: 'host_transfer',
           data: {}
         }));
       };
-
-      this.ws.onmessage = (event) => {
-        const message = JSON.parse(event.data);
-        console.log('Got message:', message.type);
-
-        switch (message.type) {
-
-          case 'initial_gamestate':
-            this.gamestate = message.data;
-            this.displayState()
-            break;
-          case 'set_uid':
-            this.playerID = message.data;
-            break;
-          case 'share_gamestate':
-
-            break;
-          default:
-            console.log(`Unknown message, type: ${message.type}`);
-        }
-      };
-
-      this.ws.onerror = (error) => {
-        console.error('WebSocket error:', error);
-      };
     }
+
+    this.ws.onmessage = (event) => {
+      const message = JSON.parse(event.data);
+      console.log('Got message:', message.type);
+
+      switch (message.type) {
+
+        case 'initial_gamestate':
+          this.gamestate = message.data;
+          this.displayState();
+          break;
+        case 'set_uid':
+          this.playerID = message.data;
+          break;
+        
+        case 'restore_gamestate':
+          this.gamestate = message.data;
+          this.displayState();
+          break;
+        default:
+          console.log(`Unknown message, type: ${message.type}`);
+      }
+    };
+
+    this.ws.onerror = (error) => {
+      console.error('WebSocket error:', error);
+    };
   }
+
 
   displayState() {
     console.log('displaying');
-    const gamediv = document.getElementById('game'); 
-    gamediv.innerHTML = ''; 
+    const gamediv = document.getElementById('game');
+    gamediv.innerHTML = '';
 
-    const your = document.createElement('p'); 
-    const list = document.createElement('ul'); 
-    const opp = document.createElement('ol'); 
+    const your = document.createElement('p');
+    const list = document.createElement('ul');
+    const opp = document.createElement('ol');
 
-    your.textContent = 'Your article is: ' + 
-    (this.isHost ? this.gamestate.hostLink.title : this.gamestate.guestLink.title);
+    your.textContent = 'Your article is: ' +
+      (this.isHost ? this.gamestate.hostLink.title : this.gamestate.guestLink.title);
 
     list.textContent = 'You can choose from: '
     const yourArray = this.isHost ? this.gamestate.hostLink.links : this.gamestate.guestLink.links;
-    for (let link of yourArray) { 
-      const item = document.createElement('li'); 
-      item.textContent = link.title; 
+    for (let link of yourArray) {
+      const item = document.createElement('li');
+      item.textContent = link.title;
       list.appendChild(item);
     }
 
     opp.textContent = "Your opponent's path: "
     const opponentArray = this.isHost ? this.gamestate.guestArray : this.gamestate.hostArray;
-    for (let link of opponentArray) { 
-      const item = document.createElement('li'); 
-      item.textContent = link.title; 
+    for (let link of opponentArray) {
+      const item = document.createElement('li');
+      item.textContent = link.title;
       opp.appendChild(item);
     }
 
@@ -89,7 +90,7 @@ class ClientConnection {
     gamediv.appendChild(list);
     gamediv.appendChild(opp);
   }
-}
+};
 
 
 let connection;
