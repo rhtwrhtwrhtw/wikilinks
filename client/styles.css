@@ -1,12 +1,43 @@
-.game {
+body {
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#game {
     display: flex;
-    flex-direction: row;
-    align-items: start;
+    gap: 20px;
+}
+
+#mySide, #oppSide {
+    flex: 1;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+#gameControls, #current {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+
+#nextMoveButton {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#nextMoveButton:hover {
+    background-color: #45a049;
 }
 
 /* todo: 
-make the server serve the same state for the same room, with turncount
 arranging items
 making turns
-add an event listener to make turns by clicking
-reconnecting 
+winning

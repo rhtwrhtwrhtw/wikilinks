@@ -2,10 +2,11 @@ class ClientConnection {
   constructor() {
     this.ws = null;
     this.roomID = null;
-    this.playerID = null;
+    this.uid = null;
     this.isHost = null;
-    this.status = 'created';
+
     this.gamestate = {};
+    this.currentChoice = null; 
 
     this.connect();
   }
@@ -41,7 +42,6 @@ class ClientConnection {
         case 'set_uid':
           this.playerID = message.data;
           break;
-        
         case 'restore_gamestate':
           this.gamestate = message.data;
           this.displayState();
@@ -58,9 +58,12 @@ class ClientConnection {
 
 
   displayState() {
-    console.log('displaying');
-    const gamediv = document.getElementById('game');
-    gamediv.innerHTML = '';
+    const current = document.getElementById('current');
+    const mySide = document.getElementById('mySide');
+    const oppSide = document.getElementById('oppSide');
+    mySide.innerHTML = '';
+    oppSide.innerHTML = '';
+    
 
     const your = document.createElement('p');
     const list = document.createElement('ul');
@@ -74,6 +77,10 @@ class ClientConnection {
     for (let link of yourArray) {
       const item = document.createElement('li');
       item.textContent = link.title;
+      item.addEventListener('click', () => {
+        current.textContent = item.textContent;
+        this.currentChoice = item.textContent; 
+      });        
       list.appendChild(item);
     }
 
@@ -86,9 +93,9 @@ class ClientConnection {
     }
 
 
-    gamediv.appendChild(your);
-    gamediv.appendChild(list);
-    gamediv.appendChild(opp);
+    mySide.appendChild(your);
+    mySide.appendChild(list);
+    oppSide.appendChild(opp);
   }
 };
 
