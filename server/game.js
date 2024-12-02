@@ -5,6 +5,8 @@ class Gamestate {
         this.guestLink = null;
         this.hostArray = [];
         this.guestArray = [];
+        this.hostNext = null;
+        this.guestNext = null; 
         this.isReady = false;
     }
 
@@ -22,13 +24,14 @@ class Gamestate {
         }
     }
 
-    async getNext(host, choice) {
+    async getNext(isHost) {
         while (true) {
             try {
                 if (!this.isReady) {
                     throw new Error("Game not initialized yet!");
                 }
 
+                const choice = isHost ? this.hostNext : this.guestNext; 
                 const request = `https://${this.lang}.wikipedia.org/w/api.php?action=query&format=json&prop=links&list=&titles=${encodeURIComponent(choice)}&formatversion=2&pllimit=500`;
                 const response = await fetch(request, { timeout: 30000 });
                 if (!response.ok) {
@@ -37,7 +40,7 @@ class Gamestate {
                 const data = await response.json();
                 const article = data.query.pages[0];
 
-                if (host) {
+                if (isHost) {
                     this.hostArray.push(article);
                     this.hostLink = article;
                 } else {
@@ -51,15 +54,6 @@ class Gamestate {
             }
         }
     }
-
-    checkForMatch() {
-        return this.hostLink.title === this.guestLink.title;
-    }
-
-    async test() {
-        setTimeout(() => console.log('the thing worked'), 3000);
-    }
-
 }
 
 async function randomArticles(lang, n, linkN) {

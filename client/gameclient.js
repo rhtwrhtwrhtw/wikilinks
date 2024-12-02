@@ -6,9 +6,10 @@ class ClientConnection {
     this.isHost = null;
 
     this.gamestate = {};
-    this.currentChoice = null; 
+    this.currentChoice = null;
 
     this.connect();
+    this.buttonReload();
   }
 
   connect() {
@@ -46,6 +47,9 @@ class ClientConnection {
           this.gamestate = message.data;
           this.displayState();
           break;
+        case 'victory':
+          alert('You have met on the same article! You won!');
+          break; 
         default:
           console.log(`Unknown message, type: ${message.type}`);
       }
@@ -63,7 +67,6 @@ class ClientConnection {
     const oppSide = document.getElementById('oppSide');
     mySide.innerHTML = '';
     oppSide.innerHTML = '';
-    
 
     const your = document.createElement('p');
     const list = document.createElement('ul');
@@ -79,8 +82,8 @@ class ClientConnection {
       item.textContent = link.title;
       item.addEventListener('click', () => {
         current.textContent = item.textContent;
-        this.currentChoice = item.textContent; 
-      });        
+        this.currentChoice = item.textContent;
+      });
       list.appendChild(item);
     }
 
@@ -97,8 +100,27 @@ class ClientConnection {
     mySide.appendChild(list);
     oppSide.appendChild(opp);
   }
-};
 
+  buttonReload() {
+    const ready = document.getElementById('nextMoveButton');
+    ready.style.backgroundColor = '#4CAF50';
+
+    const handleClick = (event) => {
+      if (this.currentChoice !== null) {
+        ready.style.backgroundColor = '#f56969';
+        this.ws.send(JSON.stringify({
+          type: this.isHost ? 'host_choice' : 'guest_choice',
+          data: this.currentChoice
+        }));
+        ready.removeEventListener('click', handleClick);
+      } else {
+        event.preventDefault();
+      }
+    }
+
+    ready.addEventListener('click', handleClick);
+  }
+}
 
 let connection;
 window.addEventListener('DOMContentLoaded', () => {

@@ -117,7 +117,7 @@ function createRooms(n = nOfRooms) {
         let room = new Gameroom(roomID);
         gameRooms.set(roomID, room);
     }
-    console.log(`created ${nOfRooms} rooms`);
+    console.log(`created ${n} rooms`);
 }
 
 function findEmptyRoomID() {
@@ -241,6 +241,49 @@ wss.on('connection', (connection, request) => {
                 room.gamestate = new Gamestate(message.data.lang)
                 connection.send(JSON.stringify({ type: 'gamelink', data: { link: link, hostuid: hostuid } }));
                 break;
+            case 'host_choice': 
+                console.log(`host just chose ${message.data}`);
+                room.gamestate.hostNext = message.data; 
+                if (room.gamestate.guestNext !== null) {
+                    if (room.gamestate.hostNext === room.gamestate.guestNext) {
+                        console.log('victory!!!');
+                        room.broadcast('victory'); 
+                        break;
+                    }
+                    
+                    console.log('running next move');
+                    Promise.all([
+                        room.gamestate.getNext(true),  // for host
+                        room.gamestate.getNext(false)  // for guest
+                      ]).then(() => {
+                        room.broadcast('restore_gamstate', room.gamestate);
+                        room.gamestate.guestNext = null;
+                        room.gamestate.hostNext = null; 
+                      });
+                    
+                }
+                break;
+            case 'guest_choice':
+                console.log(`guest just chose ${message.data}`);
+                room.gamestate.guestNext = message.data; 
+                if (room.gamestate.hostNext !== null) {
+                    if (room.gamestate.hostNext === room.gamestate.guestNext) {
+                        console.log('victory!!!');
+                        room.broadcast('victory'); 
+                        break;
+                    }
+
+                    console.log('running next move');
+                    Promise.all([
+                        room.gamestate.getNext(true),  // for host
+                        room.gamestate.getNext(false)  // for guest
+                      ]).then(() => {
+                        room.broadcast('restore_gamstate', room.gamestate);
+                        room.gamestate.guestNext = null;
+                        room.gamestate.hostNext = null; 
+                      });
+                }
+                break; 
             default:
                 console.log(`Unknown message, type: ${message.type}`);
         }
