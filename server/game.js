@@ -6,7 +6,7 @@ class Gamestate {
         this.hostArray = [];
         this.guestArray = [];
         this.hostNext = null;
-        this.guestNext = null; 
+        this.guestNext = null;
         this.isReady = false;
     }
 
@@ -17,7 +17,7 @@ class Gamestate {
             this.guestLink = (startForGuest != null) ? await getByName(startForGuest, this.lang) : await getAGoodOne(this.lang);
             this.hostArray = [this.hostLink];
             this.guestArray = [this.guestLink];
-            
+
             this.isReady = true;
         } catch (error) {
             console.error('Failed to initialize game state:', error);
@@ -31,7 +31,7 @@ class Gamestate {
                     throw new Error("Game not initialized yet!");
                 }
 
-                const choice = isHost ? this.hostNext : this.guestNext; 
+                const choice = isHost ? this.hostNext : this.guestNext;
                 const request = `https://${this.lang}.wikipedia.org/w/api.php?action=query&format=json&prop=links&list=&titles=${encodeURIComponent(choice)}&formatversion=2&pllimit=500`;
                 const response = await fetch(request, { timeout: 30000 });
                 if (!response.ok) {
@@ -89,7 +89,7 @@ async function getAGoodOne(lang, n = 7, linkN = 500) {
                 break;
             }
             console.warn(`TypeError in getAGoodOne: ${message}, retry`);
-            errorcount++; 
+            errorcount++;
             if (errorcount >= 20) throw new Error('getAGoodOne failed');
         }
     }
@@ -119,6 +119,29 @@ async function getByName(name, lang) {
     }
 }
 
+async function getCleanLinks(title, lang) {
+    while (true) {
+        try {
+            const request = `https://${lang}.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=${encodeURIComponent(title)}&formatversion=2&rvprop=content&rvslots=main&rvlimit=1`;
+            const response = await fetch(request, { timeout: 30000 });
+            const data = await response.json();
+
+            const text = data.query.pages[0].revisions[0].slots.main.content;
+            const linkregex = /\[\[[\w\s\d\|]+?\]\]/g;
+            linksarray = text.match(linkregex);
+            linksarray = linksarray
+                .map(title => title.replace(/\[\[|\]\]/g, ''))
+                .map(title => title.split('|')[0]);
+
+            return linksarray;
+        } catch (error) {
+            console.log(`getCleanLinks: ${error}`);
+            throw error;
+        }
+    }
+
+}
+
 async function createGame(lang, startForHost = null, startForGuest = null) {
     const game = new Gamestate(lang, startForHost, startForGuest);
     await game.init(startForHost, startForGuest);
@@ -141,8 +164,8 @@ async function runTest() {
         console.error('Error:', error);
     }
 }
- 
-(() => runTest()());
+
+getCleanLinks('England', 'en').then((text) => console.log(JSON.stringify(text, null, 2)));
 
 
 module.exports = {
