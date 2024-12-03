@@ -79,7 +79,7 @@ class ClientConnection {
     const yourArray = this.isHost ? this.gamestate.hostLink.links : this.gamestate.guestLink.links;
     for (let link of yourArray) {
       const item = document.createElement('li');
-      item.textContent = link.title;
+      item.textContent = link;
       item.addEventListener('click', () => {
         current.textContent = item.textContent;
         this.currentChoice = item.textContent;

@@ -18,6 +18,9 @@ class Gamestate {
             this.hostArray = [this.hostLink];
             this.guestArray = [this.guestLink];
 
+            this.hostLink.links = await getCleanLinks(this.hostLink.title, this.lang);
+            this.guestLink.links = await getCleanLinks(this.guestLink.title, this.lang);
+
             this.isReady = true;
         } catch (error) {
             console.error('Failed to initialize game state:', error);
@@ -33,7 +36,7 @@ class Gamestate {
 
                 const choice = isHost ? this.hostNext : this.guestNext;
                 const request = `https://${this.lang}.wikipedia.org/w/api.php?action=query&format=json&prop=links&list=&titles=${encodeURIComponent(choice)}&formatversion=2&pllimit=500`;
-                const response = await fetch(request, { timeout: 30000 });
+                const response = await fetch(request);
                 if (!response.ok) {
                     throw new Error(`failed to fetch ${choice}: ${response.status}`);
                 }
@@ -43,9 +46,11 @@ class Gamestate {
                 if (isHost) {
                     this.hostArray.push(article);
                     this.hostLink = article;
+                    this.hostLink.links = await getCleanLinks(this.hostLink.title, this.lang);
                 } else {
                     this.guestArray.push(article);
                     this.guestLink = article;
+                    this.guestLink.links = await getCleanLinks(this.guestLink.title, this.lang);
                 }
                 break;
             } catch (error) {
@@ -59,7 +64,7 @@ class Gamestate {
 async function randomArticles(lang, n, linkN) {
     try {
         const request = `https://${lang}.wikipedia.org/w/api.php?action=query&format=json&prop=info%7Clinks%7Clinkshere&generator=random&formatversion=2&pllimit=${linkN}&lhlimit=${linkN}&grnlimit=${n}&grnnamespace=0`;
-        const response = await fetch(request, { timeout: 30000 });
+        const response = await fetch(request, {timeout: 2500});
         if (!response.ok) {
             throw new Error(`failed to fetch random articles: ${response.status}`);
         }
@@ -103,7 +108,7 @@ async function getByName(name, lang) {
     while (true) {
         try {
             const request = `https://${lang}.wikipedia.org/w/api.php?action=query&format=json&prop=links&list=&titles=${encodeURIComponent(name)}&formatversion=2&pllimit=500`;
-            const response = await fetch(request, { timeout: 30000 });
+            const response = await fetch(request);
             if (!response.ok) {
                 throw new Error(`failed to fetch ${choice}: ${response.status}`);
             }
@@ -123,7 +128,7 @@ async function getCleanLinks(title, lang) {
     while (true) {
         try {
             const request = `https://${lang}.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=${encodeURIComponent(title)}&formatversion=2&rvprop=content&rvslots=main&rvlimit=1`;
-            const response = await fetch(request, { timeout: 30000 });
+            const response = await fetch(request);
             const data = await response.json();
 
             const text = data.query.pages[0].revisions[0].slots.main.content;
@@ -135,7 +140,7 @@ async function getCleanLinks(title, lang) {
 
             return linksarray;
         } catch (error) {
-            console.log(`getCleanLinks: ${error}`);
+            console.warn(`getCleanLinks: ${error}, retry`);
             throw error;
         }
     }
@@ -164,9 +169,6 @@ async function runTest() {
         console.error('Error:', error);
     }
 }
-
-getCleanLinks('England', 'en').then((text) => console.log(JSON.stringify(text, null, 2)));
-
 
 module.exports = {
     Gamestate,

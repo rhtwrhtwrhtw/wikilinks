@@ -256,7 +256,7 @@ wss.on('connection', (connection, request) => {
                         room.gamestate.getNext(true),  // for host
                         room.gamestate.getNext(false)  // for guest
                       ]).then(() => {
-                        room.broadcast('restore_gamstate', room.gamestate);
+                        room.broadcast('restore_gamestate', room.gamestate);
                         room.gamestate.guestNext = null;
                         room.gamestate.hostNext = null; 
                       });
@@ -278,7 +278,7 @@ wss.on('connection', (connection, request) => {
                         room.gamestate.getNext(true),  // for host
                         room.gamestate.getNext(false)  // for guest
                       ]).then(() => {
-                        room.broadcast('restore_gamstate', room.gamestate);
+                        room.broadcast('restore_gamestate', room.gamestate);
                         room.gamestate.guestNext = null;
                         room.gamestate.hostNext = null; 
                       });
