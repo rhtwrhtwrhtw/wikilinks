@@ -59,6 +59,7 @@ const httppserver = http.createServer((request, response) => {
 
 const wss = new WebSocketServer({ server: httppserver });
 const port = process.env.PORT || 9999;
+const HOSTNAME = 'https://wikitosql.nfshost.com/';
 const nOfRooms = 100;
 
 const gameRooms = new Map();
@@ -237,7 +238,7 @@ wss.on('connection', (connection, request) => {
             case 'generate_link':
                 const guestuid = uuid().slice(0, 8);
                 const hostuid = uid;
-                const link = `http://localhost:9999/game.html?type=guest&uid=${guestuid}&roomID=${roomID}`; // roomID shold be last
+                const link = `http://${HOSTNAME}/game.html?type=guest&uid=${guestuid}&roomID=${roomID}`; // roomID shold be last
                 room.gamestate = new Gamestate(message.data.lang)
                 connection.send(JSON.stringify({ type: 'gamelink', data: { link: link, hostuid: hostuid } }));
                 break;
