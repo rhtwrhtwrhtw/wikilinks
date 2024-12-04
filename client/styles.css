@@ -10,7 +10,7 @@ body {
     gap: 20px;
 }
 
-#mySide, #oppSide {
+#mySide, #oppSide, #myList {
     flex: 1;
     border: 1px solid #ddd;
     padding: 15px;

@@ -64,12 +64,15 @@ class ClientConnection {
   displayState() {
     const current = document.getElementById('current');
     const mySide = document.getElementById('mySide');
+    const myList = document.getElementById('myList');
     const oppSide = document.getElementById('oppSide');
     mySide.innerHTML = '';
+    myList.innerHTML = '';
     oppSide.innerHTML = '';
 
     const your = document.createElement('p');
     const list = document.createElement('ul');
+    const mypath = document.createElement('ol');
     const opp = document.createElement('ol');
 
     your.textContent = 'Your article is: ' +
@@ -87,6 +90,14 @@ class ClientConnection {
       list.appendChild(item);
     }
 
+    mypath.textContent = "Your path: "
+    const myArray = this.isHost ? this.gamestate.hostArray : this.gamestate.guestArray;
+    for (let link of myArray) {
+      const item = document.createElement('li');
+      item.textContent = link.title;
+      mypath.appendChild(item);
+    }
+
     opp.textContent = "Your opponent's path: "
     const opponentArray = this.isHost ? this.gamestate.guestArray : this.gamestate.hostArray;
     for (let link of opponentArray) {
@@ -98,6 +109,7 @@ class ClientConnection {
 
     mySide.appendChild(your);
     mySide.appendChild(list);
+    myList.appendChild(mypath); 
     oppSide.appendChild(opp);
   }
 

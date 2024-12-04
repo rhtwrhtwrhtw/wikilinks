@@ -64,7 +64,7 @@ class Gamestate {
 async function randomArticles(lang, n, linkN) {
     try {
         const request = `https://${lang}.wikipedia.org/w/api.php?action=query&format=json&prop=info%7Clinks%7Clinkshere&generator=random&formatversion=2&pllimit=${linkN}&lhlimit=${linkN}&grnlimit=${n}&grnnamespace=0`;
-        const response = await fetch(request, {timeout: 2500});
+        const response = await fetch(request, {timeout: 3000});
         if (!response.ok) {
             throw new Error(`failed to fetch random articles: ${response.status}`);
         }
@@ -81,7 +81,7 @@ async function randomArticles(lang, n, linkN) {
     }
 }
 
-async function getAGoodOne(lang, n = 7, linkN = 500) {
+async function getAGoodOne(lang, n = 8, linkN = 500) {
     let articles = []
     let errorcount = 0;
     for (; ;) {
