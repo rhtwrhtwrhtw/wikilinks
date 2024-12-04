@@ -1,4 +1,4 @@
-const address = 'localhost:9999';
+const address = 'wikitosql.nfshost.com';
 
 const params = new URLSearchParams(window.location.search);
 if (!params.has('type')) params.set('type', 'lobby');
