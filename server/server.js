@@ -23,7 +23,7 @@ const httppserver = http.createServer((request, response) => {
         trimLink = 'index.html';
     }
 
-    //console.log(`${request.socket.remoteAddress} requested file ${trimLink}`);
+    console.log(`${request.socket.remoteAddress} requested file ${trimLink}`);
 
     const file = path.join(__dirname, '..', 'client', trimLink);
     fs.readFile(file, (error, content) => {
@@ -59,7 +59,7 @@ const httppserver = http.createServer((request, response) => {
 
 const wss = new WebSocketServer({ server: httppserver });
 const port = process.env.PORT || 9999;
-const HOSTNAME = 'wikitosql.nfshost.com/';
+const HOSTNAME = 'wikitosql.nfshost.com';
 const nOfRooms = 100;
 
 const gameRooms = new Map();

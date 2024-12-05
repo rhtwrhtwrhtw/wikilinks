@@ -1,12 +1,13 @@
-const address = 'wikitosql.nfshost.com';
+const lever = true;
+const address = lever ? 'wikitosql.nfshost.com': 'localhost:9999';
 
 const params = new URLSearchParams(window.location.search);
 if (!params.has('type')) params.set('type', 'lobby');
 
-const url = 'https://' + address + '/?' + params.toString();
+const url = 'https://' + address + '?' + params.toString();
 console.log(url);
 window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
-ws = new WebSocket(url);
+ws = new WebSocket('ws://' + address + '?' + params.toString());
 
 let roomID;
 let hostuid;

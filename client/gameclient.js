@@ -19,7 +19,7 @@ class ClientConnection {
     this.roomID = params.get('roomID');
     this.uid = params.get('uid');
 
-    this.ws = new WebSocket(connectionurl);
+    this.ws = new WebSocket(connectionurl.replace('wss://', 'ws://'));
 
     this.ws.onopen = (event) => {
       if (!this.isHost) {
