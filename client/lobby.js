@@ -3,7 +3,7 @@ const address = 'wikitosql.nfshost.com';
 const params = new URLSearchParams(window.location.search);
 if (!params.has('type')) params.set('type', 'lobby');
 
-const url = 'http://' + address + '?' + params.toString();
+const url = 'https://' + address + '/?' + params.toString();
 console.log(url);
 window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
 ws = new WebSocket(url);
