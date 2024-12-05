@@ -5,7 +5,7 @@ if (!params.has('type')) params.set('type', 'lobby');
 
 const url = 'http://' + address + '?' + params.toString();
 console.log(url);
-window.history.replaceState({}, '', '/lobby');
+window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
 ws = new WebSocket(url);
 
 let roomID;
