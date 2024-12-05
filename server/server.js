@@ -1,4 +1,4 @@
-const http = require('http');
+const https = require('https');
 const url = require('url');
 const fs = require('fs');
 const path = require('path');
@@ -8,7 +8,7 @@ const { WebSocketServer, WebSocket } = require('ws');
 
 const { Gamestate, createGame } = require('./game.js');
 
-const httppserver = http.createServer((request, response) => {
+const httppserver = https.createServer((request, response) => {
     if (request.method != 'GET') {
         response.statusCode = 501;
         response.setHeader("Content-Type", "text/plain");
@@ -58,7 +58,7 @@ const httppserver = http.createServer((request, response) => {
 
 
 const wss = new WebSocketServer({ server: httppserver });
-const port = process.env.PORT || 9999;
+const port = process.env.PORT || 8089;
 const HOSTNAME = 'wikitosql.nfshost.com';
 const nOfRooms = 100;
 
