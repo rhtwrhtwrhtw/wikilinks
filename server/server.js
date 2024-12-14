@@ -57,7 +57,11 @@ const httppserver = http.createServer((request, response) => {
 
 
 
-const wss = new WebSocketServer({ server: httppserver });
+const wss = new WebSocketServer({
+    server: httpserver,
+    clientTracking: true,
+    verifyClient: false
+});
 const port = process.env.PORT || 9999;
 const HOSTNAME = 'wikitouch.click';
 const nOfRooms = 100;
@@ -227,7 +231,7 @@ wss.on('connection', (connection, request) => {
                             room.status = 'playing';
                         }); // things can break here and I probably need a better way of handling it
                 } else {
-                    console.log('no transfer needed, reconnection'); 
+                    console.log('no transfer needed, reconnection');
                 }
                 break;
             case 'next_move':
@@ -242,35 +246,13 @@ wss.on('connection', (connection, request) => {
                 room.gamestate = new Gamestate(message.data.lang)
                 connection.send(JSON.stringify({ type: 'gamelink', data: { link: link, hostuid: hostuid } }));
                 break;
-            case 'host_choice': 
+            case 'host_choice':
                 console.log(`host just chose ${message.data}`);
-                room.gamestate.hostNext = message.data; 
+                room.gamestate.hostNext = message.data;
                 if (room.gamestate.guestNext !== null) {
                     if (room.gamestate.hostNext === room.gamestate.guestNext) {
                         console.log('victory!!!');
-                        room.broadcast('victory'); 
-                        break;
-                    }
-                    
-                    console.log('running next move');
-                    Promise.all([
-                        room.gamestate.getNext(true),  // for host
-                        room.gamestate.getNext(false)  // for guest
-                      ]).then(() => {
-                        room.broadcast('restore_gamestate', room.gamestate);
-                        room.gamestate.guestNext = null;
-                        room.gamestate.hostNext = null; 
-                      });
-                    
-                }
-                break;
-            case 'guest_choice':
-                console.log(`guest just chose ${message.data}`);
-                room.gamestate.guestNext = message.data; 
-                if (room.gamestate.hostNext !== null) {
-                    if (room.gamestate.hostNext === room.gamestate.guestNext) {
-                        console.log('victory!!!');
-                        room.broadcast('victory'); 
+                        room.broadcast('victory');
                         break;
                     }
 
@@ -278,13 +260,35 @@ wss.on('connection', (connection, request) => {
                     Promise.all([
                         room.gamestate.getNext(true),  // for host
                         room.gamestate.getNext(false)  // for guest
-                      ]).then(() => {
+                    ]).then(() => {
                         room.broadcast('restore_gamestate', room.gamestate);
                         room.gamestate.guestNext = null;
-                        room.gamestate.hostNext = null; 
-                      });
+                        room.gamestate.hostNext = null;
+                    });
+
                 }
-                break; 
+                break;
+            case 'guest_choice':
+                console.log(`guest just chose ${message.data}`);
+                room.gamestate.guestNext = message.data;
+                if (room.gamestate.hostNext !== null) {
+                    if (room.gamestate.hostNext === room.gamestate.guestNext) {
+                        console.log('victory!!!');
+                        room.broadcast('victory');
+                        break;
+                    }
+
+                    console.log('running next move');
+                    Promise.all([
+                        room.gamestate.getNext(true),  // for host
+                        room.gamestate.getNext(false)  // for guest
+                    ]).then(() => {
+                        room.broadcast('restore_gamestate', room.gamestate);
+                        room.gamestate.guestNext = null;
+                        room.gamestate.hostNext = null;
+                    });
+                }
+                break;
             default:
                 console.log(`Unknown message, type: ${message.type}`);
         }
