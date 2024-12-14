@@ -1,5 +1,5 @@
-const lever = true;
-const address = lever ? 'wikitosql.nfshost.com': 'localhost:9999';
+const lever = false;
+const address = lever ? 'wikitouch.click': 'localhost:9999';
 
 const params = new URLSearchParams(window.location.search);
 if (!params.has('type')) params.set('type', 'lobby');
