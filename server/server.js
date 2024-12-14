@@ -58,8 +58,8 @@ const httppserver = https.createServer((request, response) => {
 
 
 const wss = new WebSocketServer({ server: httppserver });
-const port = process.env.PORT || 8089;
-const HOSTNAME = 'wikitosql.nfshost.com';
+const port = process.env.PORT || 80;
+const HOSTNAME = 'dwyo6u16x7mck.cloudfront.net';
 const nOfRooms = 100;
 
 const gameRooms = new Map();
