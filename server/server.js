@@ -1,4 +1,4 @@
-const https = require('https');
+const http = require('http');
 const url = require('url');
 const fs = require('fs');
 const path = require('path');
@@ -8,7 +8,7 @@ const { WebSocketServer, WebSocket } = require('ws');
 
 const { Gamestate, createGame } = require('./game.js');
 
-const httppserver = https.createServer((request, response) => {
+const httppserver = http.createServer((request, response) => {
     if (request.method != 'GET') {
         response.statusCode = 501;
         response.setHeader("Content-Type", "text/plain");
@@ -238,7 +238,7 @@ wss.on('connection', (connection, request) => {
             case 'generate_link':
                 const guestuid = uuid().slice(0, 8);
                 const hostuid = uid;
-                const link = `https://${HOSTNAME}/game.html?type=guest&uid=${guestuid}&roomID=${roomID}`; // roomID shold be last
+                const link = `http://${HOSTNAME}/game.html?type=guest&uid=${guestuid}&roomID=${roomID}`; // roomID shold be last
                 room.gamestate = new Gamestate(message.data.lang)
                 connection.send(JSON.stringify({ type: 'gamelink', data: { link: link, hostuid: hostuid } }));
                 break;
