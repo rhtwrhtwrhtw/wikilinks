@@ -8,7 +8,7 @@ const { WebSocketServer, WebSocket } = require('ws');
 
 const { Gamestate, createGame } = require('./game.js');
 
-const httppserver = http.createServer((request, response) => {
+const httpserver = http.createServer((request, response) => {
     if (request.method != 'GET') {
         response.statusCode = 501;
         response.setHeader("Content-Type", "text/plain");
@@ -330,7 +330,7 @@ wss.on('connection', (connection, request) => {
     };
 })
 
-httppserver.listen(port, () => {
+httpserver.listen(port, () => {
     createRooms();
     console.log(`server running on port ${port}`);
 });
