@@ -58,8 +58,8 @@ const httppserver = https.createServer((request, response) => {
 
 
 const wss = new WebSocketServer({ server: httppserver });
-const port = process.env.PORT || 80;
-const HOSTNAME = 'dwyo6u16x7mck.cloudfront.net';
+const port = process.env.PORT || 9999;
+const HOSTNAME = 'wikitouch.click';
 const nOfRooms = 100;
 
 const gameRooms = new Map();
