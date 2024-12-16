@@ -7,7 +7,7 @@ if (!params.has('type')) params.set('type', 'lobby');
 const url = 'https://' + address + '?' + params.toString();
 console.log(url);
 window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
-ws = new WebSocket('ws://' + address + '?' + params.toString());
+ws = new WebSocket(`ws://${address.replace('localhost:', '')}`);
 
 let roomID;
 let hostuid;

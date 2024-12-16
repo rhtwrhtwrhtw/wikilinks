@@ -330,7 +330,7 @@ wss.on('connection', (connection, request) => {
     };
 })
 
-httpserver.listen(port, () => {
+httpserver.listen(port, '0.0.0.0', () => {
     createRooms();
     console.log(`server running on port ${port}`);
 });
