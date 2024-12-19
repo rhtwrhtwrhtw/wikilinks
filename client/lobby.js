@@ -1,4 +1,4 @@
-const lever = false;
+const lever = true;
 const address = lever ? 'wikitouch.click': 'localhost:9999';
 
 const params = new URLSearchParams(window.location.search);
@@ -7,7 +7,8 @@ if (!params.has('type')) params.set('type', 'lobby');
 const url = 'https://' + address + '?' + params.toString();
 console.log(url);
 window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
-ws = new WebSocket(`ws://${address.replace('localhost:', '')}`);
+const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+ws = new WebSocket(`${wsProtocol}//${address}`);
 
 let roomID;
 let hostuid;
