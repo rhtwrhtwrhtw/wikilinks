@@ -63,7 +63,7 @@ const wss = new WebSocketServer({
     verifyClient: false
 });
 const port = process.env.PORT || 9999;
-const HOSTNAME = 'localhost:9999';
+const HOSTNAME = 'wikitouch.click';
 const nOfRooms = 100;
 
 const gameRooms = new Map();
