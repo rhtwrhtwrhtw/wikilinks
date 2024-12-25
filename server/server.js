@@ -175,10 +175,6 @@ wss.on('connection', (connection, request) => {
     }
 
     switch (type) {
-        case 'lobby':
-            console.log(`user ${uid} has entered the lobby, preparing room ${roomID}`);
-            room.lobby = connection;
-            break;
         case 'host':
             if (room.status === 'playing') {
                 console.log(`host ${uid} has reconnected to room ${roomID}`);
@@ -207,7 +203,8 @@ wss.on('connection', (connection, request) => {
             room.lobby.send(JSON.stringify({ type: 'game_starts', data: {} }));
             break;
         default:
-            console.log('no type provided');
+            console.log(`user ${uid} has entered the lobby, preparing room ${roomID}`);
+            room.lobby = connection;
             break;
     }
 
