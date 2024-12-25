@@ -46,6 +46,7 @@ class ClientConnection {
         case 'restore_gamestate':
           this.gamestate = message.data;
           this.displayState();
+          this.buttonReload();
           break;
         case 'victory':
           alert('You have met on the same article! You won!');
