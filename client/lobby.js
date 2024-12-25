@@ -1,13 +1,9 @@
-const address = 'ws.wikitouch.click';
-
 const params = new URLSearchParams(window.location.search);
 if (!params.has('type')) params.set('type', 'lobby');
-
-const url = 'https://' + address + '?' + params.toString();
-console.log(url);
 window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
 
 const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+const address = window.location.host;
 ws = new WebSocket(`${wsProtocol}//${address}`);
 
 let roomID;
