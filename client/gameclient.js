@@ -19,7 +19,7 @@ class ClientConnection {
     this.roomID = params.get('roomID');
     this.uid = params.get('uid');
 
-    this.ws = new WebSocket(connectionurl.replace('wss://', 'ws://'));
+    this.ws = new WebSocket(connectionurl);
 
     this.ws.onopen = (event) => {
       if (!this.isHost) {
@@ -49,8 +49,12 @@ class ClientConnection {
           this.buttonReload();
           break;
         case 'victory':
-          alert('You have met on the same article! You won!');
-          break; 
+          this.showVictoryButtons();
+          break;
+        case 'clear_button':
+          this.hideVictoryButtons();
+          this.buttonReload();
+          break;
         default:
           console.log(`Unknown message, type: ${message.type}`);
       }
@@ -110,7 +114,7 @@ class ClientConnection {
 
     mySide.appendChild(your);
     mySide.appendChild(list);
-    myList.appendChild(mypath); 
+    myList.appendChild(mypath);
     oppSide.appendChild(opp);
   }
 
@@ -133,11 +137,34 @@ class ClientConnection {
 
     ready.addEventListener('click', handleClick);
   }
+
+  showVictoryButtons() {
+    const overlay = document.getElementById('popups');
+    overlay.style.display = 'flex';
+
+    const nextButton = document.getElementById('nextGameYes');
+    const connection = this.ws;
+    const hostornot = this.isHost ? 'host' : 'guest';
+
+
+    function anotherRound() {
+      connection.send(JSON.stringify({
+        type: 'another_one',
+        data: {sentfrom: hostornot}
+      }));
+    }
+
+    nextButton.addEventListener('click', anotherRound);
+  }
+
+  hideVictoryButtons() {
+    const overlay = document.getElementById('popups');
+    overlay.style.display = 'none';
+  }
 }
 
 let connection;
 window.addEventListener('DOMContentLoaded', () => {
   console.log('loaded');
   connection = new ClientConnection();
-  setTimeout(() => console.log(connection), 10000);
 });

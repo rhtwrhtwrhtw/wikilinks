@@ -78,6 +78,8 @@ class Gameroom {
         this.lobby = null;
         this.status = 'pending';
         this.gamestate = {};
+        this.hostWantsNext = false;
+        this.guestWantsNext = false;
     }
 
     broadcast(type, data = {}, toWhom = null) { //
@@ -286,6 +288,23 @@ wss.on('connection', (connection, request) => {
                     });
                 }
                 break;
+            case 'another_one':
+                if (message.data.sentfrom === 'host') room.hostWantsNext = true;
+                if (message.data.sentfrom === 'guest') room.guestWantsNext = true;
+
+                if (room.hostWantsNext && room.guestWantsNext) {
+                    handleGameStart(room).then(
+                        () => {
+                            console.log(`game reinitialized, links:`);
+                            console.log(`host: ${room.gamestate.hostLink.title}`);
+                            console.log(`guest: ${room.gamestate.guestLink.title}`);
+                            room.broadcast('initial_gamestate', room.gamestate);
+                            room.broadcast('clear_button', {});
+                        });
+                    room.hostWantsNext = false;
+                    room.guestWantsNext = false;
+                }
+                break;
             default:
                 console.log(`Unknown message, type: ${message.type}`);
         }
@@ -330,5 +349,5 @@ wss.on('connection', (connection, request) => {
 httpserver.listen(port, '0.0.0.0', () => {
     createRooms();
     console.log(`server running on port ${port}`);
-    console.log(process.env.ADDRESS)
+    console.log('address is ' + process.env.ADDRESS);
 });
