@@ -1,3 +1,5 @@
+const cheerio = require('cheerio');
+
 class Gamestate {
     constructor(lang) {
         this.lang = lang;
@@ -164,10 +166,11 @@ async function getHTMLbyName(title, lang) {
 }
 
 function cleanHTML(html) {
-    html = html.replace(/(<a(.|\s)+?>|<\/a>)/gm, ''); 
-   // html = html.replace(/(<span class="mw-editsection"(.|\s)+?\/span>)/gm, '');
+    const ch = cheerio.load(html);
+    ch('.mw-editsection').remove();
+    const result = ch.html();
 
-    return html;
+    return result;
 }
 
 async function createGame(lang, startForHost = null, startForGuest = null) {
