@@ -37,6 +37,7 @@ const httpserver = http.createServer((request, response) => {
             switch (trimLink) {
                 case 'index.html':
                 case 'game.html':
+                case 'test.html':
                     response.writeHead(200, { "Content-type": "text/html" });
                     break;
                 case 'gameclient.js':
@@ -48,6 +49,8 @@ const httpserver = http.createServer((request, response) => {
                     break;
                 case 'W.png':
                     response.writeHead(200, { "Content-Type": "image/png" });
+                case 'test.txt':
+                    response.writeHead(200, { "Content-Type": "text/plain" });
             }
             response.end(content)
         }

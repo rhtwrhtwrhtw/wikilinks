@@ -64,7 +64,7 @@ class Gamestate {
 async function randomArticles(lang, n, linkN) {
     try {
         const request = `https://${lang}.wikipedia.org/w/api.php?action=query&format=json&prop=info%7Clinks%7Clinkshere&generator=random&formatversion=2&pllimit=${linkN}&lhlimit=${linkN}&grnlimit=${n}&grnnamespace=0`;
-        const response = await fetch(request, {timeout: 3000});
+        const response = await fetch(request, { timeout: 3000 });
         if (!response.ok) {
             throw new Error(`failed to fetch random articles: ${response.status}`);
         }
@@ -147,6 +147,29 @@ async function getCleanLinks(title, lang) {
 
 }
 
+async function getHTMLbyName(title, lang) {
+    while (true) {
+        const request = `https://${lang}.wikipedia.org/w/api.php?action=parse&format=json&page=${encodeURIComponent(title)}&formatversion=2`;
+        try {
+            response = await fetch(request);
+            const data = await response.json();
+            const text = data.parse.text;
+
+            return cleanHTML(text);
+        } catch (error) {
+            console.warn(`getHTMLbyName: ${error}, retry`);
+            throw error;
+        }
+    }
+}
+
+function cleanHTML(html) {
+    html = html.replace(/(<a(.|\s)+?>|<\/a>)/gm, ''); 
+   // html = html.replace(/(<span class="mw-editsection"(.|\s)+?\/span>)/gm, '');
+
+    return html;
+}
+
 async function createGame(lang, startForHost = null, startForGuest = null) {
     const game = new Gamestate(lang, startForHost, startForGuest);
     await game.init(startForHost, startForGuest);
@@ -170,7 +193,12 @@ async function runTest() {
     }
 }
 
+getHTMLbyName('Bureya_Range', "en").then(
+    output => console.log(output)
+)
+
 module.exports = {
     Gamestate,
     createGame
 };
+
