@@ -69,3 +69,7 @@ body {
   #nextGameYes:hover {
     background-color: #0056b3;
   }
+
+  .gamelink {
+    color:#007bff;
+  }

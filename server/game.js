@@ -138,7 +138,7 @@ async function getCleanLinks(title, lang) {
             linksarray = text.match(linkregex);
             linksarray = linksarray
                 .map(title => title.replace(/\[\[|\]\]/g, ''))
-                .map(title => title.split('|')[0]);
+                .map(title => title.split('|'));
 
             return linksarray;
         } catch (error) {
@@ -168,9 +168,31 @@ async function getHTMLbyName(title, lang) {
 function cleanHTML(html) {
     const ch = cheerio.load(html);
     ch('.mw-editsection').remove();
-    const result = ch.html();
+    let result = ch.html();
+
+    result = result.replace(/(<a.+?>|<\/a>)/g, '');
 
     return result;
+}
+
+async function combinedArticle(name, lang) {
+    let article = await getHTMLbyName(name, lang);
+    const links = await getCleanLinks(name, lang);
+
+    currentPosition = 0; 
+    while (links.length > 0) {
+        const currentLink = links[0];
+        if (currentLink.length === 1) {
+           const pos = article.indexOf(currentLink); 
+           article = article.slice(0,pos) + '<span class="gamelink">' + currentLink + '</span>' + article.slice(pos+currentLink[0].length, article.length);
+        }
+        if (currentLink.length === 2) {
+           
+        }
+        links.shift();
+    }
+
+    return article;
 }
 
 async function createGame(lang, startForHost = null, startForGuest = null) {
@@ -197,6 +219,15 @@ async function runTest() {
 }
 
 getHTMLbyName('Bureya_Range', "en").then(
+    //output => console.log(output)
+)
+
+getCleanLinks('Bureya_Range', "en").then(
+    //output => console.log(output)
+)
+
+
+combinedArticle('Russian_Far_East', 'en').then(
     output => console.log(output)
 )
 
