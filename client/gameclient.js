@@ -80,19 +80,17 @@ class ClientConnection {
     const mypath = document.createElement('ol');
     const opp = document.createElement('ol');
 
-    your.textContent = 'Your article is: ' +
-      (this.isHost ? this.gamestate.hostLink.title : this.gamestate.guestLink.title);
-
-    list.textContent = 'You can choose from: '
-    const yourArray = this.isHost ? this.gamestate.hostLink.links : this.gamestate.guestLink.links;
-    for (let link of yourArray) {
-      const item = document.createElement('li');
-      item.textContent = link;
-      item.addEventListener('click', () => {
-        current.textContent = item.textContent;
-        this.currentChoice = item.textContent;
-      });
-      list.appendChild(item);
+    list.textContent = 'Choose a link from the article: '
+    const yourArticle = this.isHost ? this.gamestate.hostLink.links : this.gamestate.guestLink.links;
+    console.log(yourArticle);    
+    list.innerHTML = yourArticle;
+    const linksInside = document.getElementsByClassName('gamelink');
+    for (let link of linksInside) {
+      link.addEventListener('click', () => {
+        console.log('click')
+        current.textContent = link.linkto;
+        this.currentChoice = link.linkto;
+      })
     }
 
     mypath.textContent = "Your path: "

@@ -20,8 +20,8 @@ class Gamestate {
             this.hostArray = [this.hostLink];
             this.guestArray = [this.guestLink];
 
-            this.hostLink.links = await getCleanLinks(this.hostLink.title, this.lang);
-            this.guestLink.links = await getCleanLinks(this.guestLink.title, this.lang);
+            this.hostLink.links = await getHTMLbyName(this.hostLink.title, this.lang);
+            this.guestLink.links = await getHTMLbyName(this.guestLink.title, this.lang);
 
             this.isReady = true;
         } catch (error) {
@@ -48,11 +48,11 @@ class Gamestate {
                 if (isHost) {
                     this.hostArray.push(article);
                     this.hostLink = article;
-                    this.hostLink.links = await getCleanLinks(this.hostLink.title, this.lang);
+                    this.hostLink.links = await getHTMLbyName(this.hostLink.title, this.lang);
                 } else {
                     this.guestArray.push(article);
                     this.guestLink = article;
-                    this.guestLink.links = await getCleanLinks(this.guestLink.title, this.lang);
+                    this.guestLink.links = await getHTMLbyName(this.guestLink.title, this.lang);
                 }
                 break;
             } catch (error) {
@@ -155,9 +155,11 @@ async function getHTMLbyName(title, lang) {
         try {
             response = await fetch(request);
             const data = await response.json();
-            const text = data.parse.text;
+            let text = data.parse.text;
+            text = cleanHTML(text);
+            text = replaceLinks(text);
 
-            return cleanHTML(text);
+            return text;
         } catch (error) {
             console.warn(`getHTMLbyName: ${error}, retry`);
             throw error;
@@ -168,31 +170,32 @@ async function getHTMLbyName(title, lang) {
 function cleanHTML(html) {
     const ch = cheerio.load(html);
     ch('.mw-editsection').remove();
+    ch('.navbox').remove();
     let result = ch.html();
-
-    result = result.replace(/(<a.+?>|<\/a>)/g, '');
 
     return result;
 }
 
-async function combinedArticle(name, lang) {
-    let article = await getHTMLbyName(name, lang);
-    const links = await getCleanLinks(name, lang);
-
-    currentPosition = 0; 
-    while (links.length > 0) {
-        const currentLink = links[0];
-        if (currentLink.length === 1) {
-           const pos = article.indexOf(currentLink); 
-           article = article.slice(0,pos) + '<span class="gamelink">' + currentLink + '</span>' + article.slice(pos+currentLink[0].length, article.length);
+function replaceLinks(html) {
+    const ch = cheerio.load(html);
+    ch('a[href^="/wiki/"]').each(function () {
+        if (ch(this).text()) {
+            const text = ch(this).text();
+            const href = ch(this).attr('href')
+                .replace(/\/wiki\//, '')
+        //        .replace(/_/g, ' ');
+            const replacement = `<span class="gamelink" linkto=${href}> ${text} </span>`;
+            ch(this).replaceWith(replacement);
         }
-        if (currentLink.length === 2) {
-           
+    })
+    ch('a').each(function () {
+        if (ch(this).text() && !ch(this).attr('href').startsWith('#')) {
+            const text = ch(this).text();
+            ch(this).replaceWith(text);
         }
-        links.shift();
-    }
+    })
 
-    return article;
+    return ch.html();
 }
 
 async function createGame(lang, startForHost = null, startForGuest = null) {
@@ -217,19 +220,6 @@ async function runTest() {
         console.error('Error:', error);
     }
 }
-
-getHTMLbyName('Bureya_Range', "en").then(
-    //output => console.log(output)
-)
-
-getCleanLinks('Bureya_Range', "en").then(
-    //output => console.log(output)
-)
-
-
-combinedArticle('Russian_Far_East', 'en').then(
-    output => console.log(output)
-)
 
 module.exports = {
     Gamestate,

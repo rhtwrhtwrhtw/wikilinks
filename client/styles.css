@@ -16,6 +16,13 @@ body {
     padding: 15px;
     border-radius: 8px;
 }
+#mySide {
+  flex-basis: 50%;
+} 
+
+#oppSide, #myList {
+  font-size: small;
+}
 
 #gameControls, #current {
     margin-bottom: 20px;
