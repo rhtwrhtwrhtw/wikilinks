@@ -158,6 +158,7 @@ async function getHTMLbyName(title, lang) {
             let text = data.parse.text;
             text = cleanHTML(text);
             text = replaceLinks(text);
+            text = `<h1>${title}</h1>` + text;
 
             return text;
         } catch (error) {
@@ -171,6 +172,8 @@ function cleanHTML(html) {
     const ch = cheerio.load(html);
     ch('.mw-editsection').remove();
     ch('.navbox').remove();
+    ch('.ambox').remove();
+    ch('.mbox-text').remove();
     let result = ch.html();
 
     return result;
@@ -181,15 +184,13 @@ function replaceLinks(html) {
     ch('a[href^="/wiki/"]').each(function () {
         if (ch(this).text()) {
             const text = ch(this).text();
-            const href = ch(this).attr('href')
-                .replace(/\/wiki\//, '')
-        //        .replace(/_/g, ' ');
-            const replacement = `<span class="gamelink" linkto=${href}> ${text} </span>`;
+            const href = ch(this).attr('href').replace(/\/wiki\//, '');
+            const replacement = `<span class="gamelink" linkto=${decodeURIComponent(href)}> ${text} </span>`;
             ch(this).replaceWith(replacement);
         }
     })
     ch('a').each(function () {
-        if (ch(this).text() && !ch(this).attr('href').startsWith('#')) {
+        if (ch(this).text() && !encodeURIComponent(ch(this).attr('href')).startsWith('#')) {
             const text = ch(this).text();
             ch(this).replaceWith(text);
         }

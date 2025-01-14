@@ -74,22 +74,21 @@ class ClientConnection {
     mySide.innerHTML = '';
     myList.innerHTML = '';
     oppSide.innerHTML = '';
+    current.textContent = '';
 
-    const your = document.createElement('p');
-    const list = document.createElement('ul');
+    const list = document.createElement('div');
     const mypath = document.createElement('ol');
     const opp = document.createElement('ol');
 
-    list.textContent = 'Choose a link from the article: '
-    const yourArticle = this.isHost ? this.gamestate.hostLink.links : this.gamestate.guestLink.links;
-    console.log(yourArticle);    
+    const yourArticle = this.isHost ? this.gamestate.hostLink.links : this.gamestate.guestLink.links;  
+    console.log(this.gamestate.guestLink.links)  
     list.innerHTML = yourArticle;
-    const linksInside = document.getElementsByClassName('gamelink');
+    const linksInside = list.getElementsByClassName('gamelink');
     for (let link of linksInside) {
       link.addEventListener('click', () => {
-        console.log('click')
-        current.textContent = link.linkto;
-        this.currentChoice = link.linkto;
+        link.style.color = "#0B0BFF"
+        current.textContent = link.getAttribute('linkto').replace(/_/g, ' ');
+        this.currentChoice = link.getAttribute('linkto');
       })
     }
 
@@ -109,8 +108,6 @@ class ClientConnection {
       opp.appendChild(item);
     }
 
-
-    mySide.appendChild(your);
     mySide.appendChild(list);
     myList.appendChild(mypath);
     oppSide.appendChild(opp);
