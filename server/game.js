@@ -174,6 +174,7 @@ function cleanHTML(html) {
     ch('.navbox').remove();
     ch('.ambox').remove();
     ch('.mbox-text').remove();
+    ch('.asbox').remove();
     let result = ch.html();
 
     return result;
@@ -190,7 +191,9 @@ function replaceLinks(html) {
         }
     })
     ch('a').each(function () {
-        if (ch(this).text() && !encodeURIComponent(ch(this).attr('href')).startsWith('#')) {
+        console.log(ch(this));
+        console.log(ch(this).attr('href'));
+        if (ch(this).text() && !ch(this).attr('href').startsWith('#')) {
             const text = ch(this).text();
             ch(this).replaceWith(text);
         }

@@ -13,7 +13,8 @@ class ClientConnection {
   }
 
   connect() {
-    const connectionurl = window.location.href;
+    let connectionurl = window.location.href;
+    connectionurl = connectionurl.split('#')[0];
     const params = new Map(connectionurl.split('?')[1].split('&').map(string => string.split('=')));
     this.isHost = params.get('type') === 'host';
     this.roomID = params.get('roomID');
