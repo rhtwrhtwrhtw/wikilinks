@@ -6,7 +6,11 @@ const path = require('path');
 const uuid = require('uuid').v4;
 const { WebSocketServer, WebSocket } = require('ws');
 
+const Logger = require('./logger.js')
 const { Gamestate, createGame } = require('./game.js');
+
+
+const logger = new Logger();
 
 const httpserver = http.createServer((request, response) => {
     if (request.method != 'GET') {
@@ -127,7 +131,7 @@ function createRooms(n = nOfRooms) {
         let room = new Gameroom(roomID);
         gameRooms.set(roomID, room);
     }
-    console.log(`created ${n} rooms`);
+    logger.serverWrite(`created ${n} rooms`);
 }
 
 function findEmptyRoomID() {
@@ -351,6 +355,6 @@ wss.on('connection', (connection, request) => {
 
 httpserver.listen(port, '0.0.0.0', () => {
     createRooms();
-    console.log(`server running on port ${port}`);
-    console.log('address is ' + process.env.ADDRESS);
+    logger.serverWrite(`server running on port ${port}`);
+    logger.serverWrite('address is ' + process.env.ADDRESS);
 });
