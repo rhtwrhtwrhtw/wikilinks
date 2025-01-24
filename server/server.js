@@ -10,7 +10,7 @@ const Logger = require('./logger.js')
 const { Gamestate, createGame } = require('./game.js');
 
 
-const logger = new Logger();
+const logger = new Logger(); //for server logs
 
 const httpserver = http.createServer((request, response) => {
     if (request.method != 'GET') {
@@ -27,16 +27,16 @@ const httpserver = http.createServer((request, response) => {
         trimLink = 'index.html';
     }
 
-    console.log(`${request.socket.remoteAddress} requested file ${trimLink}`);
+    logger.serverWrite(`${request.socket.remoteAddress} requested file ${trimLink}`);
 
     const file = path.join(__dirname, '..', 'client', trimLink);
     fs.readFile(file, (error, content) => {
         if (error) {
-            console.log(`file ${file} not found`);
+            logger.serverWrite(`file ${file} not found`);
             response.writeHead(404);
             response.end();
         } else {
-            //console.log(`serving ${file} to ${request.socket.remoteAddress}`);
+            logger.serverWrite(`serving ${file} to ${request.socket.remoteAddress}`);
             response.setHeader("X-Content-Type-Options", "nosniff");
             switch (trimLink) {
                 case 'index.html':
@@ -87,6 +87,9 @@ class Gameroom {
         this.gamestate = {};
         this.hostWantsNext = false;
         this.guestWantsNext = false;
+
+        this.logger = new Logger();
+        this.logger.assignToRoom(roomID);
     }
 
     broadcast(type, data = {}, toWhom = null) { //
@@ -99,20 +102,20 @@ class Gameroom {
             if (this.hostConnection.readyState === WebSocket.OPEN) {
                 this.hostConnection.send(message);
             } else {
-                console.log(`host ${this.hostID} of room ${this.roomID} is not open`);
+                this.logger.write(`host ${this.hostID} of room ${this.roomID} is not open`);
             }
         } else if (toWhom === null) {
-            console.log(`no host to receive message ${type}`);
+            this.logger.write(`no host to receive message ${type}`);
         };
 
         if (this.guestConnection && toWhom !== 'host') {
             if (this.guestConnection.readyState === WebSocket.OPEN) {
                 this.guestConnection.send(message);
             } else {
-                console.log(`guest ${this.guestID} of room ${this.roomID} is not open`);
+                this.logger.write(`guest ${this.guestID} of room ${this.roomID} is not open`);
             }
         } else if (toWhom === null) {
-            console.log(`no guest to receive message ${type}`);
+            this.logger.write(`no guest to receive message ${type}`);
         };
     }
 
@@ -145,7 +148,7 @@ function findEmptyRoomID() {
             i++;
         }
     }
-    console.log('no empty rooms you do not get to play get fucked');
+    logger.serverWrite('failed to fetch an empty room');
     return false;
 }
 
@@ -163,7 +166,7 @@ function findRoomByUID(uid) {
     for (room of copy) {
         if (uid === room.hostID || uid === room.guestID) return room;
     }
-    console.log(`there is not a room with uid ${uid}`);
+    logger.serverWrite(`there is not a room with uid ${uid}`);
 }
 
 wss.on('connection', (connection, request) => {
@@ -179,90 +182,90 @@ wss.on('connection', (connection, request) => {
 
     if (!room) {
         connection.close(1008, 'wrong room code');
-        console.log(`there is no room with id ${roomID}, GET OUT!`);
+        this.logger.write(`there is no room with id ${roomID}, GET OUT!`);
         return;
     }
 
     switch (type) {
         case 'host':
             if (room.status === 'playing') {
-                console.log(`host ${uid} has reconnected to room ${roomID}`);
+                room.logger.write(`host ${uid} has reconnected to room ${roomID}`);
                 room.hostConnection = connection;
                 connection.send(JSON.stringify({ type: 'restore_gamestate', data: room.gamestate }));
                 break;
             }
 
-            console.log(`host ${uid} has joined room ${roomID}`);
+            room.logger.write(`host ${uid} has joined room ${roomID}`);
             room.hostID = uid;
             room.hostConnection = connection;
             connection.send(JSON.stringify({ type: 'set_uid', data: uid }));
             break;
         case 'guest':
             if (room.status === 'playing') {
-                console.log(`guest ${uid} has reconnected to room ${roomID}`);
+                room.logger.write(`guest ${uid} has reconnected to room ${roomID}`);
                 room.guestConnection = connection;
                 connection.send(JSON.stringify({ type: 'restore_gamestate', data: room.gamestate }));
                 break;
             }
 
-            console.log(`guest ${uid} has joined room ${roomID}`);
+            room.logger.write(`guest ${uid} has joined room ${roomID}`);
             room.guestID = uid;
             room.guestConnection = connection;
             connection.send(JSON.stringify({ type: 'set_uid', data: uid }));
             room.lobby.send(JSON.stringify({ type: 'game_starts', data: {} }));
             break;
         default:
-            console.log(`user ${uid} has entered the lobby, preparing room ${roomID}`);
+            room.logger.write(`user ${uid} has entered the lobby, preparing room ${roomID}`);
             room.lobby = connection;
             break;
     }
 
     connection.on('message', (message) => {
         message = JSON.parse(message.toString());
-        console.log(`received message ${message.type}`);
+        room.logger.write(`received message ${message.type}`);
 
         switch (message.type) {
             case 'printrooms':
-                console.log(gameRooms);
+                room.logger.write(gameRooms);
                 break;
 
             case 'host_transfer':
                 if (room.status === 'pending') {
                     handleGameStart(room).then(
                         () => {
-                            console.log(`game initialized, initial links:`);
-                            console.log(`host: ${room.gamestate.hostLink.title}`);
-                            console.log(`guest: ${room.gamestate.guestLink.title}`);
+                            room.logger.write(`game initialized, initial links:`);
+                            room.logger.write(`host: ${room.gamestate.hostLink.title}`);
+                            room.logger.write(`guest: ${room.gamestate.guestLink.title}`);
                             room.broadcast('initial_gamestate', room.gamestate);
                             room.status = 'playing';
                         }); // things can break here and I probably need a better way of handling it
                 } else {
-                    console.log('no transfer needed, reconnection');
+                    room.logger.write('no transfer needed, reconnection');
                 }
                 break;
             case 'next_move':
                 const article = message.data.name;
                 room.gamestate.getNext(true, article)
-                    .then(() => console.log(`next article for host fetched succesfully`));
+                    .then(() => room.logger.write(`next article for host fetched succesfully`));
                 break;
             case 'generate_link':
                 const guestuid = uuid().slice(0, 8);
                 const hostuid = uid;
                 const link = `http://${HOSTNAME}/game.html?type=guest&uid=${guestuid}&roomID=${roomID}`; // roomID shold be last
-                room.gamestate = new Gamestate(message.data.lang)
+                room.gamestate = new Gamestate(message.data.lang, room.logger)
                 connection.send(JSON.stringify({ type: 'gamelink', data: { link: link, hostuid: hostuid } }));
                 break;
             case 'host_choice':
-                console.log(`host just chose ${message.data}`);
+                room.logger.write(`host just chose ${message.data}`);
                 room.gamestate.hostNext = message.data;
                 if (room.gamestate.guestNext !== null) {
                     if (room.gamestate.hostNext === room.gamestate.guestNext) {
-                        console.log('victory!!!');
+                        room.logger.write('victory!!!');
                         room.broadcast('victory');
                         break;
                     }
 
-                    console.log('running next move');
+                    room.logger.write('running next move');
                     Promise.all([
                         room.gamestate.getNext(true),  // for host
                         room.gamestate.getNext(false)  // for guest
@@ -275,16 +278,16 @@ wss.on('connection', (connection, request) => {
                 }
                 break;
             case 'guest_choice':
-                console.log(`guest just chose ${message.data}`);
+                room.logger.write(`guest just chose ${message.data}`);
                 room.gamestate.guestNext = message.data;
                 if (room.gamestate.hostNext !== null) {
                     if (room.gamestate.hostNext === room.gamestate.guestNext) {
-                        console.log('victory!!!');
+                        room.logger.write('victory!!!');
                         room.broadcast('victory');
                         break;
                     }
 
-                    console.log('running next move');
+                    room.logger.write('running next move');
                     Promise.all([
                         room.gamestate.getNext(true),  // for host
                         room.gamestate.getNext(false)  // for guest
@@ -302,9 +305,9 @@ wss.on('connection', (connection, request) => {
                 if (room.hostWantsNext && room.guestWantsNext) {
                     handleGameStart(room).then(
                         () => {
-                            console.log(`game reinitialized, links:`);
-                            console.log(`host: ${room.gamestate.hostLink.title}`);
-                            console.log(`guest: ${room.gamestate.guestLink.title}`);
+                            room.logger.write(`game reinitialized, links:`);
+                            room.logger.write(`host: ${room.gamestate.hostLink.title}`);
+                            room.logger.write(`guest: ${room.gamestate.guestLink.title}`);
                             room.broadcast('initial_gamestate', room.gamestate);
                             room.broadcast('clear_button', {});
                         });
@@ -313,7 +316,7 @@ wss.on('connection', (connection, request) => {
                 }
                 break;
             default:
-                console.log(`Unknown message, type: ${message.type}`);
+                room.logger.write(`Unknown message, type: ${message.type}`);
         }
     });
 
@@ -321,26 +324,26 @@ wss.on('connection', (connection, request) => {
         switch (type) {
             case 'lobby':
                 if (room.guestConnection === null) {
-                    console.log(`host ${uid} left the lobby for room ${roomID} before starting the game`);
+                    room.logger.write(`host ${uid} left the lobby for room ${roomID} before starting the game`);
                     gameRooms.delete(roomID);
                     createRooms(1);
                     return;
-                } else console.log(`lobby for room ${roomID} was discarded successfully`);
+                } else room.logger.write(`lobby for room ${roomID} was discarded successfully`);
                 break;
             case 'host':
-                console.log(`host ${room.hostID} disconnected from room ${roomID}`);
+                room.logger.write(`host ${room.hostID} disconnected from room ${roomID}`);
                 if (room.hostConnection.readyState === WebSocket.CLOSED &&
                     room.guestConnection.readyState === WebSocket.CLOSED) {
-                    console.log(`room ${roomID} is empty, cleaning up`);
+                    room.logger.write(`room ${roomID} is empty, cleaning up`);
                     gameRooms.delete(roomID);
                     createRooms(1);
                 }
                 break;
             case 'guest':
-                console.log(`guest ${room.guestID} disconnected from room ${roomID}`);
+                room.logger.write(`guest ${room.guestID} disconnected from room ${roomID}`);
                 if (room.hostConnection.readyState === WebSocket.CLOSED &&
                     room.guestConnection.readyState === WebSocket.CLOSED) {
-                    console.log(`room ${roomID} is empty, cleaning up`);
+                    room.logger.write(`room ${roomID} is empty, cleaning up`);
                     gameRooms.delete(roomID);
                     createRooms(1);
                 }

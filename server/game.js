@@ -1,7 +1,7 @@
 const cheerio = require('cheerio');
 
 class Gamestate {
-    constructor(lang) {
+    constructor(lang, logger) {
         this.lang = lang;
         this.hostLink = null;
         this.guestLink = null;
@@ -10,13 +10,15 @@ class Gamestate {
         this.hostNext = null;
         this.guestNext = null;
         this.isReady = false;
+
+        this.logger = logger;
     }
 
     async init(startForHost = null, startForGuest = null) {
-        console.log(`Init called with lang ${this.lang}, starts:`, startForHost, startForGuest);
+        this.logger.write(`Init called with lang ${this.lang}, starts:`, startForHost, startForGuest);
         try {
-            this.hostLink = (startForHost != null) ? await getByName(startForHost, this.lang) : await getAGoodOne(this.lang);
-            this.guestLink = (startForGuest != null) ? await getByName(startForGuest, this.lang) : await getAGoodOne(this.lang);
+            this.hostLink = (startForHost != null) ? await getByName(startForHost, this.lang, this.logger) : await getAGoodOne(this.lang, this.logger);
+            this.guestLink = (startForGuest != null) ? await getByName(startForGuest, this.lang, this.logger) : await getAGoodOne(this.lang, this.logger);
             this.hostArray = [this.hostLink];
             this.guestArray = [this.guestLink];
 
@@ -56,14 +58,14 @@ class Gamestate {
                 }
                 break;
             } catch (error) {
-                console.log(`there is a ${error.name} that says ${error.message}`);
+                this.logger.write(`error in getNext: ${error}`);
                 throw error;
             }
         }
     }
 }
 
-async function randomArticles(lang, n, linkN) {
+async function randomArticles(lang, logger, n, linkN) {
     try {
         const request = `https://${lang}.wikipedia.org/w/api.php?action=query&format=json&prop=info%7Clinks%7Clinkshere&generator=random&formatversion=2&pllimit=${linkN}&lhlimit=${linkN}&grnlimit=${n}&grnnamespace=0`;
         const response = await fetch(request, { timeout: 3000 });
@@ -77,25 +79,26 @@ async function randomArticles(lang, n, linkN) {
             links: articleobject.links || 0,
         }));
         return articles;
-    } catch (error) { //need to add errors for the cycling
-        //console.log(`there is a ${error.name} that says ${error.message}`);
+    } catch (error) { 
+        logger.write(`randomArticles error: ${error}`);
         throw error;
     }
 }
 
-async function getAGoodOne(lang, n = 8, linkN = 500) {
+async function getAGoodOne(lang, logger, n = 8, linkN = 500) {
     let articles = []
     let errorcount = 0;
     for (; ;) {
+        const passlogger = logger;
         try {
-            articles = await randomArticles(lang, n, linkN);
+            articles = await randomArticles(lang, logger, n, linkN);
             break;
         } catch ({ name, message }) {
             if (name !== 'TypeError') {
-                console.error(`non typerror: ${message}`);
+                logger.write(`non typerror: ${message}`);
                 break;
             }
-            console.warn(`TypeError in getAGoodOne: ${message}, retry`);
+            passlogger.write(`TypeError in getAGoodOne: ${message}, retry`);
             errorcount++;
             if (errorcount >= 20) throw new Error('getAGoodOne failed');
         }
@@ -105,9 +108,10 @@ async function getAGoodOne(lang, n = 8, linkN = 500) {
     return articles.shift();
 }
 
-async function getByName(name, lang) {
-    console.log("getByName called with:", name, lang);
+async function getByName(name, lang, logger) {
+    logger.write("getByName called with:", name, lang);
     while (true) {
+        const passlogger = logger;
         try {
             const request = `https://${lang}.wikipedia.org/w/api.php?action=query&format=json&prop=links&list=&titles=${encodeURIComponent(name)}&formatversion=2&pllimit=500`;
             const response = await fetch(request);
@@ -117,41 +121,19 @@ async function getByName(name, lang) {
             const data = await response.json();
             const article = data.query.pages[0];
 
-            console.log(`fetching by name ${name}, ${response.ok}`);
+            passlogger.write(`fetching by name ${name}, ${response.ok}`);
             return article;
-        } catch (error) { //need to add errors for the cycling
-            //console.log(`there is a ${error.name} that says ${error.message}`); 
+        } catch (error) { 
+            passlogger.write(`getByName error: ${error}`); 
             throw error;
         }
     }
 }
 
-async function getCleanLinks(title, lang) {
-    while (true) {
-        try {
-            const request = `https://${lang}.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=${encodeURIComponent(title)}&formatversion=2&rvprop=content&rvslots=main&rvlimit=1`;
-            const response = await fetch(request);
-            const data = await response.json();
-
-            const text = data.query.pages[0].revisions[0].slots.main.content;
-            const linkregex = /\[\[[\w\s\d\|]+?\]\]/g;
-            linksarray = text.match(linkregex);
-            linksarray = linksarray
-                .map(title => title.replace(/\[\[|\]\]/g, ''))
-                .map(title => title.split('|'));
-
-            return linksarray;
-        } catch (error) {
-            console.warn(`getCleanLinks: ${error}, retry`);
-            throw error;
-        }
-    }
-
-}
-
-async function getHTMLbyName(title, lang) {
+async function getHTMLbyName(title, lang, logger) {
     while (true) {
         const request = `https://${lang}.wikipedia.org/w/api.php?action=parse&format=json&page=${encodeURIComponent(title)}&formatversion=2`;
+        const passlogger = logger;
         try {
             response = await fetch(request);
             const data = await response.json();
@@ -162,7 +144,7 @@ async function getHTMLbyName(title, lang) {
 
             return text;
         } catch (error) {
-            console.warn(`getHTMLbyName: ${error}, retry`);
+            passlogger.write(`getHTMLbyName: ${error}, retry`);
             throw error;
         }
     }
@@ -191,9 +173,7 @@ function replaceLinks(html) {
         }
     })
     ch('a').each(function () {
-        console.log(ch(this));
-        console.log(ch(this).attr('href'));
-        if (ch(this).text() && !ch(this).attr('href').startsWith('#')) {
+        if (ch(this).text() && !String(ch(this).attr('href'))[0] != '#') {
             const text = ch(this).text();
             ch(this).replaceWith(text);
         }
