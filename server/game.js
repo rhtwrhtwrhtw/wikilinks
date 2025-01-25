@@ -87,8 +87,7 @@ async function randomArticles(lang, logger, n, linkN) {
 
 async function getAGoodOne(lang, logger, n = 8, linkN = 500) {
     let articles = []
-    let errorcount = 0;
-    for (; ;) {
+    while (true) {
         const passlogger = logger;
         try {
             articles = await randomArticles(lang, logger, n, linkN);
@@ -99,8 +98,6 @@ async function getAGoodOne(lang, logger, n = 8, linkN = 500) {
                 break;
             }
             passlogger.write(`TypeError in getAGoodOne: ${message}, retry`);
-            errorcount++;
-            if (errorcount >= 20) throw new Error('getAGoodOne failed');
         }
     }
     articles.filter(article => article.linksLength !== 0);
@@ -157,6 +154,7 @@ function cleanHTML(html) {
     ch('.ambox').remove();
     ch('.mbox-text').remove();
     ch('.asbox').remove();
+    ch('.navbar').remove();
     let result = ch.html();
 
     return result;
@@ -173,7 +171,7 @@ function replaceLinks(html) {
         }
     })
     ch('a').each(function () {
-        if (ch(this).text() && !String(ch(this).attr('href'))[0] != '#') {
+        if (ch(this).text() && String(ch(this).attr('href'))[0] != '#') {
             const text = ch(this).text();
             ch(this).replaceWith(text);
         }
