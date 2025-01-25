@@ -174,7 +174,7 @@ wss.on('connection', (connection, request) => {
     let uid = url.parse(urlinstance, true).query.uid;
     const type = url.parse(urlinstance, true).query.type;
     let roomID = url.parse(urlinstance, true).query.roomID;
-    const serverlogger = logger;
+    const passlogger = logger;
 
     if (!uid) uid = uuid().slice(0, 8);
 
@@ -183,7 +183,7 @@ wss.on('connection', (connection, request) => {
 
     if (!room) {
         connection.close(1008, 'wrong room code');
-        serverlogger.write(`there is no room with id ${roomID}, GET OUT!`);
+        passlogger.serverWrite(`there is no room with id ${roomID}, GET OUT!`);
         return;
     }
 

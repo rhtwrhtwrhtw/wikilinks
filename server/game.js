@@ -22,8 +22,8 @@ class Gamestate {
             this.hostArray = [this.hostLink];
             this.guestArray = [this.guestLink];
 
-            this.hostLink.links = await getHTMLbyName(this.hostLink.title, this.lang);
-            this.guestLink.links = await getHTMLbyName(this.guestLink.title, this.lang);
+            this.hostLink.links = await getHTMLbyName(this.hostLink.title, this.lang, this.logger);
+            this.guestLink.links = await getHTMLbyName(this.guestLink.title, this.lang, this.logger);
 
             this.isReady = true;
         } catch (error) {
@@ -136,11 +136,12 @@ async function getHTMLbyName(title, lang, logger) {
             const data = await response.json();
             let text = data.parse.text;
             text = cleanHTML(text);
-            text = replaceLinks(text);
+            text = replaceLinks(text, lang);
             text = `<h1>${title}</h1>` + text;
 
             return text;
         } catch (error) {
+            console.log(JSON.stringify(passlogger));
             passlogger.write(`getHTMLbyName: ${error}, retry`);
             throw error;
         }
@@ -160,7 +161,7 @@ function cleanHTML(html) {
     return result;
 }
 
-function replaceLinks(html) {
+function replaceLinks(html, lang) {
     const ch = cheerio.load(html);
     ch('a[href^="/wiki/"]').each(function () {
         if (ch(this).text()) {
@@ -170,10 +171,15 @@ function replaceLinks(html) {
             ch(this).replaceWith(replacement);
         }
     })
-    ch('a').each(function () {
+    ch('a').each(function() {
         if (ch(this).text() && String(ch(this).attr('href'))[0] != '#') {
             const text = ch(this).text();
             ch(this).replaceWith(text);
+        }
+    })
+    ch('a').each(function() {
+        if (ch(this).children('img').length == 1) {
+            ch(this).attr('href', '');
         }
     })
 
