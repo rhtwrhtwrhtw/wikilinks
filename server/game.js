@@ -1,10 +1,10 @@
 const cheerio = require('cheerio');
 
 class Gamestate {
-    constructor(lang, logger) {
+    constructor(lang, logger, hostlink, guestlink) {
         this.lang = lang;
-        this.hostLink = null;
-        this.guestLink = null;
+        this.hostLink = hostlink;
+        this.guestLink = guestlink;
         this.hostArray = [];
         this.guestArray = [];
         this.hostNext = null;
@@ -17,8 +17,8 @@ class Gamestate {
     async init(startForHost = null, startForGuest = null) {
         this.logger.write(`Init called with lang ${this.lang}, starts:`, startForHost, startForGuest);
         try {
-            this.hostLink = (startForHost != null) ? await getByName(startForHost, this.lang, this.logger) : await getAGoodOne(this.lang, this.logger);
-            this.guestLink = (startForGuest != null) ? await getByName(startForGuest, this.lang, this.logger) : await getAGoodOne(this.lang, this.logger);
+            this.hostLink = (startForHost != '') ? await getByName(startForHost, this.lang, this.logger) : await getAGoodOne(this.lang, this.logger);
+            this.guestLink = (startForGuest != '') ? await getByName(startForGuest, this.lang, this.logger) : await getAGoodOne(this.lang, this.logger);
             this.hostArray = [this.hostLink];
             this.guestArray = [this.guestLink];
 

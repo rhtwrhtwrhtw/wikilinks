@@ -1,429 +1,106 @@
-{"time":"2025-02-06_18-04-14.123","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_18-04-14.149","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_18-04-15.045","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_18-04-15.046","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_18-04-15.066","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_18-04-15.067","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_18-04-27.859","message":"127.0.0.1 requested file game.html"}
-{"time":"2025-02-06_18-04-27.862","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
-{"time":"2025-02-06_18-04-28.300","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_18-04-28.302","message":"127.0.0.1 requested file gameclient.js"}
-{"time":"2025-02-06_18-04-28.303","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_18-04-28.304","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
-{"time":"2025-02-06_18-04-28.742","message":"127.0.0.1 requested file game.html"}
-{"time":"2025-02-06_18-04-28.742","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
-{"time":"2025-02-06_18-04-28.849","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_18-04-28.850","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_18-04-28.853","message":"127.0.0.1 requested file gameclient.js"}
-{"time":"2025-02-06_18-04-28.854","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
-{"time":"2025-02-06_19-38-09.429","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_19-38-09.430","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_19-38-09.832","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_19-38-09.833","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_19-38-09.836","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_19-38-09.837","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_19-39-01.581","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_19-39-01.583","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_19-39-01.803","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_19-39-01.806","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_19-39-01.806","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_19-39-01.808","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_19-40-30.855","message":"created 1 rooms"}
-{"time":"2025-02-06_19-40-33.085","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_19-40-33.087","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_19-40-33.769","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_19-40-33.771","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_19-40-33.772","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_19-40-33.773","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_19-41-40.869","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_19-41-40.869","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_19-41-41.087","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_19-41-41.088","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_19-41-41.089","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_19-41-41.091","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_19-41-45.884","message":"127.0.0.1 requested file game.html"}
-{"time":"2025-02-06_19-41-45.885","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
-{"time":"2025-02-06_19-41-46.316","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_19-41-46.318","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_19-41-46.324","message":"127.0.0.1 requested file gameclient.js"}
-{"time":"2025-02-06_19-41-46.324","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
-{"time":"2025-02-06_19-41-46.619","message":"127.0.0.1 requested file game.html"}
-{"time":"2025-02-06_19-41-46.619","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
-{"time":"2025-02-06_19-41-46.806","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_19-41-46.806","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_19-41-46.810","message":"127.0.0.1 requested file gameclient.js"}
-{"time":"2025-02-06_19-41-46.810","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
-{"time":"2025-02-06_20-00-39.753","message":"created 1 rooms"}
-{"time":"2025-02-06_20-00-42.264","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_20-00-42.265","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_20-00-42.557","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_20-00-42.557","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_20-00-42.563","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_20-00-42.564","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_20-07-47.634","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_20-07-47.635","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_20-07-47.821","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_20-07-47.821","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_20-07-47.822","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_20-07-47.823","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_20-08-07.192","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_20-08-07.192","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_20-08-07.306","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_20-08-07.306","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_20-08-07.307","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_20-08-07.307","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_20-09-06.508","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_20-09-06.509","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_20-09-06.658","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_20-09-06.661","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_20-09-06.662","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_20-09-06.663","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_20-09-10.688","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_20-09-10.688","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_20-09-10.817","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_20-09-10.817","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_20-09-10.818","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_20-09-10.818","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_20-09-21.608","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_20-09-21.608","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_20-09-21.872","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_20-09-21.873","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_20-09-21.873","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_20-09-21.876","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_20-09-26.029","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_20-09-26.029","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_20-09-26.306","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_20-09-26.307","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_20-09-26.308","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_20-09-26.308","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_20-21-22.065","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_20-21-22.065","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_20-21-22.215","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_20-21-22.215","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_20-21-22.221","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_20-21-22.221","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_20-21-59.527","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_20-21-59.528","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_20-21-59.702","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_20-21-59.703","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_20-21-59.704","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_20-21-59.704","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_20-24-41.257","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_20-24-41.258","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_20-24-41.462","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_20-24-41.462","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_20-24-41.463","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_20-24-41.464","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_20-25-09.805","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_20-25-09.805","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_20-25-09.942","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_20-25-09.942","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_20-25-09.943","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_20-25-09.943","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_20-25-48.804","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_20-25-48.804","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_20-25-48.909","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_20-25-48.910","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_20-25-48.910","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_20-25-48.911","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_20-29-11.173","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_20-29-11.173","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_20-29-11.301","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_20-29-11.301","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_20-29-11.303","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_20-29-11.303","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_21-50-02.034","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_21-50-02.035","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_21-50-02.169","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_21-50-02.170","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_21-50-02.170","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_21-50-02.170","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_21-50-09.847","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_21-50-09.851","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_21-50-10.112","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_21-50-10.113","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_21-50-10.113","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_21-50-10.114","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_21-50-13.788","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_21-50-13.789","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_21-50-13.860","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_21-50-13.861","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_21-50-13.862","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_21-50-13.863","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_21-50-17.062","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_21-50-17.062","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_21-50-17.131","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_21-50-17.131","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_21-50-17.132","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_21-50-17.133","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_21-50-21.081","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_21-50-21.081","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_21-50-21.141","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_21-50-21.142","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_21-50-21.145","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_21-50-21.145","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_21-50-31.820","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_21-50-31.820","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_21-50-31.981","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_21-50-31.981","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_21-50-31.990","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_21-50-31.990","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_21-50-52.887","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_21-50-52.888","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_21-50-52.990","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_21-50-52.991","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_21-50-52.991","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_21-50-52.991","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_21-51-43.431","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_21-51-43.431","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_21-51-43.545","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_21-51-43.546","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_21-51-43.547","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_21-51-43.547","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-06_21-57-01.433","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-06_21-57-01.434","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-06_21-57-01.562","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-06_21-57-01.562","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-06_21-57-01.568","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-06_21-57-01.569","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_09-22-37.652","message":"created 100 rooms"}
-{"time":"2025-02-07_09-22-37.653","message":"server running on port 9999"}
-{"time":"2025-02-07_09-22-37.653","message":"address is undefined"}
-{"time":"2025-02-07_09-22-43.115","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_09-22-43.121","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_09-22-43.440","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_09-22-43.442","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_09-22-43.443","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_09-22-43.453","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_09-22-43.579","message":"127.0.0.1 requested file w.png"}
-{"time":"2025-02-07_09-22-43.580","message":"serving /home/lena/projects/wikilinks/client/w.png to 127.0.0.1"}
-{"time":"2025-02-07_09-24-22.621","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_09-24-22.622","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_09-24-22.916","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_09-24-22.917","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_09-24-22.917","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_09-24-22.918","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_09-24-48.682","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_09-24-48.682","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_09-24-48.857","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_09-24-48.859","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_09-24-48.859","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_09-24-48.860","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_09-26-55.266","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_09-26-55.267","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_09-26-55.522","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_09-26-55.522","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_09-26-55.526","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_09-26-55.526","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_09-27-09.629","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_09-27-09.630","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_09-27-09.797","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_09-27-09.798","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_09-27-09.800","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_09-27-09.801","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_09-27-48.862","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_09-27-48.863","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_09-27-48.999","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_09-27-48.999","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_09-27-49.002","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_09-27-49.002","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_09-29-37.743","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_09-29-37.744","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_09-29-38.071","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_09-29-38.071","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_09-29-38.073","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_09-29-38.073","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_09-29-51.588","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_09-29-51.591","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_09-29-51.870","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_09-29-51.871","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_09-29-51.873","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_09-29-51.877","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_09-30-10.428","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_09-30-10.429","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_09-30-10.676","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_09-30-10.677","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_09-30-10.678","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_09-30-10.679","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_09-30-18.643","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_09-30-18.643","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_09-30-18.766","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_09-30-18.767","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_09-30-18.768","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_09-30-18.768","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_09-32-37.334","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_09-32-37.335","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_09-32-37.685","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_09-32-37.686","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_09-32-37.687","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_09-32-37.687","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_09-33-37.542","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_09-33-37.543","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_09-33-37.816","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_09-33-37.818","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_09-33-37.818","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_09-33-37.819","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_09-34-16.904","message":"127.0.0.1 requested file installHook.js.map"}
-{"time":"2025-02-07_09-34-16.904","message":"file /home/lena/projects/wikilinks/client/installHook.js.map not found"}
-{"time":"2025-02-07_09-39-05.118","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_09-39-05.118","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_09-39-05.554","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_09-39-05.555","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_09-39-05.558","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_09-39-05.559","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_09-39-26.383","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_09-39-26.383","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_09-39-26.569","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_09-39-26.569","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_09-39-26.578","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_09-39-26.579","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_09-51-11.168","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_09-51-11.169","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_09-51-11.683","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_09-51-11.684","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_09-51-11.688","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_09-51-11.689","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_09-51-52.263","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_09-51-52.263","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_09-51-52.449","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_09-51-52.450","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_09-51-52.455","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_09-51-52.456","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_09-52-06.436","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_09-52-06.437","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_09-52-06.721","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_09-52-06.727","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_09-52-06.730","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_09-52-06.730","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_09-53-12.909","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_09-53-12.910","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_09-53-13.179","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_09-53-13.180","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_09-53-13.181","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_09-53-13.182","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_09-57-16.949","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_09-57-16.950","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_09-57-17.309","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_09-57-17.310","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_09-57-17.311","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_09-57-17.312","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_09-57-25.915","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_09-57-25.916","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_09-57-26.034","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_09-57-26.035","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_09-57-26.038","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_09-57-26.038","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_09-57-45.603","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_09-57-45.603","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_09-57-45.757","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_09-57-45.757","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_09-57-45.758","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_09-57-45.759","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_10-00-11.044","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_10-00-11.046","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_10-00-11.465","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_10-00-11.466","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_10-00-11.470","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_10-00-11.470","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_10-00-26.857","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_10-00-26.857","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_10-00-27.202","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_10-00-27.203","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_10-00-27.203","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_10-00-27.204","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_10-01-15.973","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_10-01-15.974","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_10-01-16.357","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_10-01-16.358","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_10-01-16.360","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_10-01-16.362","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_10-03-17.955","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_10-03-17.955","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_10-03-18.281","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_10-03-18.281","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_10-03-18.283","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_10-03-18.284","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_10-04-15.261","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_10-04-15.262","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_10-04-15.646","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_10-04-15.646","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_10-04-15.664","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_10-04-15.664","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_10-06-39.049","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_10-06-39.049","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_10-06-39.353","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_10-06-39.353","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_10-06-39.358","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_10-06-39.359","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_10-09-36.605","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_10-09-36.606","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_10-09-37.054","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_10-09-37.054","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_10-09-37.055","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_10-09-37.056","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_10-09-54.804","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_10-09-54.804","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_10-09-54.988","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_10-09-54.989","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_10-09-54.989","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_10-09-54.990","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_10-11-07.591","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_10-11-07.591","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_10-11-07.886","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_10-11-07.887","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_10-11-07.887","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_10-11-07.889","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_10-11-13.082","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_10-11-13.083","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_10-11-13.262","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_10-11-13.263","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_10-11-13.268","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_10-11-13.268","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_10-11-28.278","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_10-11-28.279","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_10-11-28.524","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_10-11-28.525","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_10-11-28.531","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_10-11-28.532","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_10-11-43.498","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_10-11-43.498","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_10-11-43.699","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_10-11-43.700","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_10-11-43.700","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_10-11-43.701","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_10-20-02.997","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_10-20-03.002","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_10-20-03.326","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_10-20-03.327","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_10-20-03.330","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_10-20-03.330","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_10-20-06.901","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_10-20-06.903","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_10-20-07.143","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_10-20-07.144","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_10-20-07.145","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_10-20-07.146","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_10-20-11.691","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_10-20-11.693","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_10-20-11.829","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_10-20-11.830","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_10-20-11.830","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_10-20-11.831","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_10-20-15.642","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_10-20-15.643","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_10-20-15.744","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_10-20-15.745","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_10-20-15.747","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_10-20-15.747","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_10-20-30.318","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_10-20-30.318","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_10-20-30.462","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_10-20-30.463","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_10-20-30.463","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_10-20-30.464","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-07_11-22-53.079","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-07_11-22-53.083","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-07_11-22-53.432","message":"127.0.0.1 requested file styles.css"}
-{"time":"2025-02-07_11-22-53.432","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
-{"time":"2025-02-07_11-22-53.441","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-07_11-22-53.442","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
+{"time":"2025-02-08_18-51-01.969","message":"created 100 rooms"}
+{"time":"2025-02-08_18-51-01.970","message":"server running on port 9999"}
+{"time":"2025-02-08_18-51-01.970","message":"address is undefined"}
+{"time":"2025-02-08_18-51-45.735","message":"created 100 rooms"}
+{"time":"2025-02-08_18-51-45.735","message":"server running on port 9999"}
+{"time":"2025-02-08_18-51-45.736","message":"address is undefined"}
+{"time":"2025-02-08_18-52-04.538","message":"127.0.0.1 requested file index.html"}
+{"time":"2025-02-08_18-52-04.545","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
+{"time":"2025-02-08_18-52-05.152","message":"127.0.0.1 requested file styles.css"}
+{"time":"2025-02-08_18-52-05.154","message":"127.0.0.1 requested file lobby.js"}
+{"time":"2025-02-08_18-52-05.155","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
+{"time":"2025-02-08_18-52-05.170","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
+{"time":"2025-02-08_18-52-05.312","message":"127.0.0.1 requested file w.png"}
+{"time":"2025-02-08_18-52-05.327","message":"serving /home/lena/projects/wikilinks/client/w.png to 127.0.0.1"}
+{"time":"2025-02-08_18-56-36.932","message":"127.0.0.1 requested file index.html"}
+{"time":"2025-02-08_18-56-36.932","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
+{"time":"2025-02-08_18-56-37.213","message":"127.0.0.1 requested file styles.css"}
+{"time":"2025-02-08_18-56-37.214","message":"serving /home/lena/projects/wikilinks/client/styles.css to 127.0.0.1"}
+{"time":"2025-02-08_18-56-37.216","message":"127.0.0.1 requested file lobby.js"}
+{"time":"2025-02-08_18-56-37.216","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
+{"time":"2025-02-08_18-56-37.466","message":"127.0.0.1 requested file w.png"}
+{"time":"2025-02-08_18-56-37.467","message":"serving /home/lena/projects/wikilinks/client/w.png to 127.0.0.1"}
+{"time":"2025-02-08_19-00-44.193","message":"created 100 rooms"}
+{"time":"2025-02-08_19-00-44.194","message":"server running on port 9999"}
+{"time":"2025-02-08_19-00-44.194","message":"address is undefined"}
+{"time":"2025-02-08_19-06-43.300","message":"created 100 rooms"}
+{"time":"2025-02-08_19-06-43.300","message":"server running on port 9999"}
+{"time":"2025-02-08_19-06-43.301","message":"address is undefined"}
+{"time":"2025-02-08_19-06-45.968","message":"created 100 rooms"}
+{"time":"2025-02-08_19-06-45.968","message":"server running on port 9999"}
+{"time":"2025-02-08_19-06-45.969","message":"address is undefined"}
+{"time":"2025-02-08_19-07-48.191","message":"created 100 rooms"}
+{"time":"2025-02-08_19-07-48.192","message":"server running on port 9999"}
+{"time":"2025-02-08_19-07-48.192","message":"address is undefined"}
+{"time":"2025-02-08_19-08-09.652","message":"created 100 rooms"}
+{"time":"2025-02-08_19-08-09.653","message":"server running on port 9999"}
+{"time":"2025-02-08_19-08-09.653","message":"address is undefined"}
+{"time":"2025-02-08_19-11-47.626","message":"created 100 rooms"}
+{"time":"2025-02-08_19-11-47.626","message":"server running on port 9999"}
+{"time":"2025-02-08_19-11-47.626","message":"address is undefined"}
+{"time":"2025-02-08_19-13-17.575","message":"created 100 rooms"}
+{"time":"2025-02-08_19-13-17.576","message":"server running on port 9999"}
+{"time":"2025-02-08_19-13-17.576","message":"address is undefined"}
+{"time":"2025-02-08_19-14-40.327","message":"created 100 rooms"}
+{"time":"2025-02-08_19-14-40.328","message":"server running on port 9999"}
+{"time":"2025-02-08_19-14-40.328","message":"address is undefined"}
+{"time":"2025-02-08_19-19-49.621","message":"created 100 rooms"}
+{"time":"2025-02-08_19-19-49.622","message":"server running on port 9999"}
+{"time":"2025-02-08_19-19-49.622","message":"address is undefined"}
+{"time":"2025-02-08_19-20-32.717","message":"created 100 rooms"}
+{"time":"2025-02-08_19-20-32.717","message":"server running on port 9999"}
+{"time":"2025-02-08_19-20-32.717","message":"address is undefined"}
+{"time":"2025-02-08_19-26-11.859","message":"created 100 rooms"}
+{"time":"2025-02-08_19-26-11.859","message":"server running on port 9999"}
+{"time":"2025-02-08_19-26-11.859","message":"address is undefined"}
+{"time":"2025-02-08_19-27-12.516","message":"created 100 rooms"}
+{"time":"2025-02-08_19-27-12.517","message":"server running on port 9999"}
+{"time":"2025-02-08_19-27-12.517","message":"address is undefined"}
+{"time":"2025-02-08_19-27-23.906","message":"created 100 rooms"}
+{"time":"2025-02-08_19-27-23.907","message":"server running on port 9999"}
+{"time":"2025-02-08_19-27-23.907","message":"address is undefined"}
+{"time":"2025-02-08_19-27-40.307","message":"created 100 rooms"}
+{"time":"2025-02-08_19-27-40.308","message":"server running on port 9999"}
+{"time":"2025-02-08_19-27-40.308","message":"address is undefined"}
+{"time":"2025-02-08_19-28-17.944","message":"created 100 rooms"}
+{"time":"2025-02-08_19-28-17.945","message":"server running on port 9999"}
+{"time":"2025-02-08_19-28-17.945","message":"address is undefined"}
+{"time":"2025-02-08_19-29-18.344","message":"created 100 rooms"}
+{"time":"2025-02-08_19-29-18.344","message":"server running on port 9999"}
+{"time":"2025-02-08_19-29-18.344","message":"address is undefined"}
+{"time":"2025-02-08_19-34-30.142","message":"created 100 rooms"}
+{"time":"2025-02-08_19-34-30.143","message":"server running on port 9999"}
+{"time":"2025-02-08_19-34-30.143","message":"address is undefined"}
+{"time":"2025-02-08_19-36-02.028","message":"created 100 rooms"}
+{"time":"2025-02-08_19-36-02.029","message":"server running on port 9999"}
+{"time":"2025-02-08_19-36-02.029","message":"address is undefined"}
+{"time":"2025-02-08_19-37-30.130","message":"created 100 rooms"}
+{"time":"2025-02-08_19-37-30.131","message":"server running on port 9999"}
+{"time":"2025-02-08_19-37-30.131","message":"address is undefined"}
+{"time":"2025-02-08_19-40-18.835","message":"created 100 rooms"}
+{"time":"2025-02-08_19-40-18.835","message":"server running on port 9999"}
+{"time":"2025-02-08_19-40-18.835","message":"address is undefined"}
+{"time":"2025-02-08_19-45-03.684","message":"created 100 rooms"}
+{"time":"2025-02-08_19-45-03.685","message":"server running on port 9999"}
+{"time":"2025-02-08_19-45-03.685","message":"address is undefined"}
+{"time":"2025-02-08_19-45-34.268","message":"created 100 rooms"}
+{"time":"2025-02-08_19-45-34.269","message":"server running on port 9999"}
+{"time":"2025-02-08_19-45-34.269","message":"address is undefined"}
+{"time":"2025-02-08_19-46-25.137","message":"created 100 rooms"}
+{"time":"2025-02-08_19-46-25.138","message":"server running on port 9999"}
+{"time":"2025-02-08_19-46-25.138","message":"address is undefined"}
+{"time":"2025-02-08_19-46-35.151","message":"created 100 rooms"}
+{"time":"2025-02-08_19-46-35.152","message":"server running on port 9999"}
+{"time":"2025-02-08_19-46-35.152","message":"address is undefined"}
+{"time":"2025-02-08_19-46-42.723","message":"created 100 rooms"}
+{"time":"2025-02-08_19-46-42.724","message":"server running on port 9999"}
+{"time":"2025-02-08_19-46-42.724","message":"address is undefined"}
+{"time":"2025-02-08_19-47-02.738","message":"created 100 rooms"}
+{"time":"2025-02-08_19-47-02.738","message":"server running on port 9999"}
+{"time":"2025-02-08_19-47-02.739","message":"address is undefined"}
+{"time":"2025-02-08_19-50-04.129","message":"created 100 rooms"}
+{"time":"2025-02-08_19-50-04.129","message":"server running on port 9999"}
+{"time":"2025-02-08_19-50-04.130","message":"address is undefined"}
+{"time":"2025-02-08_21-35-09.805","message":"created 100 rooms"}
+{"time":"2025-02-08_21-35-09.806","message":"server running on port 9999"}
+{"time":"2025-02-08_21-35-09.806","message":"address is undefined"}

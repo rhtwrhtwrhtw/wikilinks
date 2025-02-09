@@ -8,6 +8,7 @@ const { WebSocketServer, WebSocket } = require('ws');
 
 const Logger = require('./logger.js')
 const { Gamestate, createGame } = require('./game.js');
+const { passLink, default: checkValidity } = require('./links.js');
 
 
 const logger = new Logger(); //for server logs
@@ -253,8 +254,11 @@ wss.on('connection', (connection, request) => {
                 const guestuid = uuid().slice(0, 8);
                 const hostuid = uid;
                 const link = `http://${HOSTNAME}/game.html?type=guest&uid=${guestuid}&roomID=${roomID}`; // roomID shold be last
-                room.gamestate = new Gamestate(message.data.lang, room.logger)
-                connection.send(JSON.stringify({ type: 'gamelink', data: { link: link, hostuid: hostuid } }));
+                checkValidity(message).then(result => {
+                    const returnMessage = (result === true) ? link : result;
+                    room.gamestate = new Gamestate(message.data.lang, room.logger)
+                    connection.send(JSON.stringify({ type: 'gamelink', data: { link: returnMessage, hostuid: hostuid } }));
+                })
                 break;
             case 'host_choice':
                 room.logger.write(`host just chose ${message.data}`);
