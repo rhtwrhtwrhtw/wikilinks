@@ -2,7 +2,6 @@ const cheerio = require('cheerio');
 
 class Gamestate {
     constructor(lang, artforhost, artforguest, logger) {
-        console.log(lang, artforhost, artforguest, logger)
         this.lang = lang;
         this.startForHost = artforhost.match(/wikipedia\.org\/wiki\/(.+?)(?:\?|#|$)/)?.[1];
         this.startForGuest = artforguest.match(/wikipedia\.org\/wiki\/(.+?)(?:\?|#|$)/)?.[1];
@@ -144,7 +143,6 @@ async function getHTMLbyName(title, lang, logger) {
 
             return text;
         } catch (error) {
-            console.log(JSON.stringify(passlogger));
             passlogger.write(`getHTMLbyName: ${error}, retry`);
             throw error;
         }

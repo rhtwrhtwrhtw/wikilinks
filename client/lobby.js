@@ -50,9 +50,7 @@ button.addEventListener('click', passLink);
 
 ws.onmessage = (event) => {
     const message = JSON.parse(event.data);
-    console.log(`received message ${message.type}`);
-    console.log(message.data)
-
+   
     switch (message.type) {
         case 'gamelink':
             //generating link and the copy button
@@ -75,26 +73,22 @@ ws.onmessage = (event) => {
             document.getElementById('linktosend').appendChild(copybutton);
             break;
         case 'game_starts':
-            console.log('game is starting');
             window.location.href = `/game.html?type=host&uid=${hostuid}&roomID=${roomID}`;
             break;
     }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    console.log(sessionStorage);
     const hostcheckboxState = sessionStorage.getItem('hostcheckboxState');
     const guestcheckboxState = sessionStorage.getItem('guestcheckboxState');
 
     if (hostcheckboxState === null) {
         sessionStorage.setItem('hostcheckboxState', 'random');
         hosttextinput.disabled = true;
-        console.log('state set')
     } else {
         hostcheckbox.value = hostcheckboxState;
         hostcheckbox.checked = hostcheckboxState === "random";
         hosttextinput.disabled = hostcheckboxState === "random";
-        console.log('state loaded')
     }
     if (guestcheckboxState === null) {
         sessionStorage.setItem('guestcheckboxState', 'random');

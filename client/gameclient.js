@@ -9,7 +9,8 @@ class ClientConnection {
     this.currentChoice = null;
 
     this.connect();
-    this.buttonReload();
+    this.readyReload();
+    this.deselectInit();
   }
 
   connect() {
@@ -47,14 +48,14 @@ class ClientConnection {
         case 'restore_gamestate':
           this.gamestate = message.data;
           this.displayState();
-          this.buttonReload();
+          this.readyReload();
           break;
         case 'victory':
           this.showVictoryButtons();
           break;
         case 'clear_button':
           this.hideVictoryButtons();
-          this.buttonReload();
+          this.readyReload();
           break;
         default:
           console.log(`Unknown message, type: ${message.type}`);
@@ -114,24 +115,32 @@ class ClientConnection {
     oppSide.appendChild(opp);
   }
 
-  buttonReload() {
+  readyReload() {
     const ready = document.getElementById('nextMoveButton');
     ready.style.backgroundColor = '#4CAF50';
 
-    const handleClick = (event) => {
+    const handleClickReady = (event) => {
       if (this.currentChoice !== null) {
         ready.style.backgroundColor = '#f56969';
         this.ws.send(JSON.stringify({
           type: this.isHost ? 'host_choice' : 'guest_choice',
           data: this.currentChoice
         }));
-        ready.removeEventListener('click', handleClick);
+        ready.removeEventListener('click', handleClickReady);
       } else {
         event.preventDefault();
       }
     }
+    ready.addEventListener('click', handleClickReady);
+  }
 
-    ready.addEventListener('click', handleClick);
+  deselectInit() {
+    const deselect = document.getElementById('deselect');
+    deselect.addEventListener('click', () => {
+      this.currentChoice = null;
+      current.textContent = null;
+      this.readyReload();
+    });
   }
 
   showVictoryButtons() {
