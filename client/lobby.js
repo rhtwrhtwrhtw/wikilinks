@@ -56,7 +56,7 @@ ws.onmessage = (event) => {
     switch (message.type) {
         case 'gamelink':
             //generating link and the copy button
-            const linkstring = document.createElement('p');
+            const linkstring = document.createElement('pre');
             linkstring.textContent = message.data.link;
             linkstring.id = 'linkstring';
             roomID = message.data.link.split('=').pop();

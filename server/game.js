@@ -1,10 +1,13 @@
 const cheerio = require('cheerio');
 
 class Gamestate {
-    constructor(lang, logger, hostlink, guestlink) {
+    constructor(lang, artforhost, artforguest, logger) {
+        console.log(lang, artforhost, artforguest, logger)
         this.lang = lang;
-        this.hostLink = hostlink;
-        this.guestLink = guestlink;
+        this.startForHost = artforhost.match(/wikipedia\.org\/wiki\/(.+?)(?:\?|#|$)/)?.[1];
+        this.startForGuest = artforguest.match(/wikipedia\.org\/wiki\/(.+?)(?:\?|#|$)/)?.[1];
+        this.hostLink = null;
+        this.guestLink = null;
         this.hostArray = [];
         this.guestArray = [];
         this.hostNext = null;
@@ -14,11 +17,11 @@ class Gamestate {
         this.logger = logger;
     }
 
-    async init(startForHost = null, startForGuest = null) {
-        this.logger.write(`Init called with lang ${this.lang}, starts:`, startForHost, startForGuest);
+    async init() {
+        this.logger.write(`Init called with lang ${this.lang}, starts:`, this.startForHost, this.startForGuest);
         try {
-            this.hostLink = (startForHost != '') ? await getByName(startForHost, this.lang, this.logger) : await getAGoodOne(this.lang, this.logger);
-            this.guestLink = (startForGuest != '') ? await getByName(startForGuest, this.lang, this.logger) : await getAGoodOne(this.lang, this.logger);
+            this.hostLink = (this.startForHost !== undefined) ? await getByName(this.startForHost, this.lang, this.logger) : await getAGoodOne(this.lang, this.logger);
+            this.guestLink = (this.startForGuest !== undefined) ? await getByName(this.startForGuest, this.lang, this.logger) : await getAGoodOne(this.lang, this.logger);
             this.hostArray = [this.hostLink];
             this.guestArray = [this.guestLink];
 
@@ -186,31 +189,7 @@ function replaceLinks(html, lang) {
     return ch.html();
 }
 
-async function createGame(lang, startForHost = null, startForGuest = null) {
-    const game = new Gamestate(lang, startForHost, startForGuest);
-    await game.init(startForHost, startForGuest);
-    return game;
-}
-
-
-async function runTest() {
-    try {
-        const game = await createGame('ru', 'Кикиморино', 'Московское время'); //'Кикиморино', 'Московское время'
-        console.log('Initial game state:', game);
-
-        await game.getNext(true, game.hostLink.links[0].title);
-        await game.getNext(false, game.guestLink.links[11].title)
-        console.log('After getNext:', game);
-
-        if (game.checkForMatch()) console.log('worked');
-        return game;
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
-
 module.exports = {
-    Gamestate,
-    createGame
+    Gamestate
 };
 

@@ -17,7 +17,6 @@ async function pingArticle(url) {
             return true;
         } catch {
             tries--;
-            console.log('retrying')
         }
     }
     return 'cant_connect';
@@ -35,7 +34,7 @@ async function validateInput(who, lang, checkbox, input) {
     try {
         url = new URL(link);
     } catch (error) {
-        return 'Please enter a valid link';
+        return `Please enter a valid link for ${who}`;
     }
 
     if (link !== decodeURI(encodeURI(link))) {
@@ -43,7 +42,7 @@ async function validateInput(who, lang, checkbox, input) {
     }
 
     if (!config.protocols.includes(url.protocol.replace(':', ''))) {
-        return `Please make sure link for ${who} has valid protocol`;
+        return `Please make sure link for ${who} has a valid protocol`;
     }
 
     if (!config.domains.some(d => url.hostname.endsWith(d))) {
@@ -76,7 +75,7 @@ async function validateInput(who, lang, checkbox, input) {
     }
 }
 
-export default async function checkValidity(message) {
+async function checkValidity(message) {
     /*looks like: 
         {type: 'generate_link',
            data: {
@@ -86,12 +85,12 @@ export default async function checkValidity(message) {
                guestcheckbox: guestcheckbox.value,
                artforguest: (guestcheckbox.value == 'random') ? '' : guestexttinput.value
            }} */
-    message = message.data;
-    if (message.hostcheckbox === 'random' && message.guestcheckbox === 'random') { return true };
+    const { lang, hostcheckbox, artforhost, guestcheckbox, artforguest } = message.data;
+    if (hostcheckbox === 'random' && guestcheckbox === 'random') { return true };
 
     const [hostvalidity, guestvalidity] = await Promise.all([
-        validateInput('host', message.lang, message.hostcheckbox, message.artforhost),
-        validateInput('guest', message.lang, message.guestcheckbox, message.artforguest)
+        validateInput('host', lang, hostcheckbox, artforhost),
+        validateInput('guest', lang, guestcheckbox, artforguest)
     ]);
     
     if (hostvalidity === true && guestvalidity === true) return true;
@@ -112,3 +111,7 @@ const test = {
         artforguest: ''
     }
 }
+
+module.exports = {
+    checkValidity
+};
