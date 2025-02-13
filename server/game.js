@@ -17,7 +17,7 @@ class Gamestate {
     }
 
     async init() {
-        this.logger.write(`Init called with lang ${this.lang}, starts:`, this.startForHost, this.startForGuest);
+        this.logger.write(`Init called with lang ${this.lang}, prechosen links:`, this.startForHost, this.startForGuest);
         try {
             this.hostLink = (this.startForHost !== undefined) ? await getByName(this.startForHost, this.lang, this.logger) : await getAGoodOne(this.lang, this.logger);
             this.guestLink = (this.startForGuest !== undefined) ? await getByName(this.startForGuest, this.lang, this.logger) : await getAGoodOne(this.lang, this.logger);
@@ -52,11 +52,11 @@ class Gamestate {
                 if (isHost) {
                     this.hostArray.push(article);
                     this.hostLink = article;
-                    this.hostLink.links = await getHTMLbyName(this.hostLink.title, this.lang);
+                    this.hostLink.links = await getHTMLbyName(this.hostLink.title, this.lang, this.logger);
                 } else {
                     this.guestArray.push(article);
                     this.guestLink = article;
-                    this.guestLink.links = await getHTMLbyName(this.guestLink.title, this.lang);
+                    this.guestLink.links = await getHTMLbyName(this.guestLink.title, this.lang, this.logger);
                 }
                 break;
             } catch (error) {
@@ -90,7 +90,6 @@ async function randomArticles(lang, logger, n, linkN) {
 async function getAGoodOne(lang, logger, n = 8, linkN = 500) {
     let articles = []
     while (true) {
-        const passlogger = logger;
         try {
             articles = await randomArticles(lang, logger, n, linkN);
             break;
@@ -99,7 +98,7 @@ async function getAGoodOne(lang, logger, n = 8, linkN = 500) {
                 logger.write(`non typerror: ${message}`);
                 break;
             }
-            passlogger.write(`TypeError in getAGoodOne: ${message}, retry`);
+            logger.write(`TypeError in getAGoodOne: ${message}, retry`);
         }
     }
     articles.filter(article => article.linksLength !== 0);
@@ -110,7 +109,6 @@ async function getAGoodOne(lang, logger, n = 8, linkN = 500) {
 async function getByName(name, lang, logger) {
     logger.write("getByName called with:", name, lang);
     while (true) {
-        const passlogger = logger;
         try {
             const request = `https://${lang}.wikipedia.org/w/api.php?action=query&format=json&prop=links&list=&titles=${encodeURIComponent(name)}&formatversion=2&pllimit=500`;
             const response = await fetch(request);
@@ -120,19 +118,19 @@ async function getByName(name, lang, logger) {
             const data = await response.json();
             const article = data.query.pages[0];
 
-            passlogger.write(`fetching by name ${name}, ${response.ok}`);
+            logger.write(`fetching by name ${name}, ${response.ok}`);
             return article;
         } catch (error) { 
-            passlogger.write(`getByName error: ${error}`); 
+            logger.write(`getByName error: ${error}`); 
             throw error;
         }
     }
 }
 
 async function getHTMLbyName(title, lang, logger) {
+    logger.write(`getHTMLbyName called with ${title}`)
     while (true) {
         const request = `https://${lang}.wikipedia.org/w/api.php?action=parse&format=json&page=${encodeURIComponent(title)}&formatversion=2`;
-        const passlogger = logger;
         try {
             response = await fetch(request);
             const data = await response.json();
@@ -143,7 +141,7 @@ async function getHTMLbyName(title, lang, logger) {
 
             return text;
         } catch (error) {
-            passlogger.write(`getHTMLbyName: ${error}, retry`);
+            logger.write(`getHTMLbyName: ${error}, retry`);
             throw error;
         }
     }

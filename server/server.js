@@ -314,6 +314,16 @@ wss.on('connection', (connection, request) => {
                     });
                 }
                 break;
+            case 'host_clear_choice':
+                room.gamestate.hostNext = null;
+                break;
+            case 'guest_clear_choice':
+                room.gamestate.hostNext = null;
+                break;
+            case 'host_concede':
+                
+            case 'guest_concede':
+                
             case 'another_one':
                 if (message.data.sentfrom === 'host') room.hostWantsNext = true;
                 if (message.data.sentfrom === 'guest') room.guestWantsNext = true;

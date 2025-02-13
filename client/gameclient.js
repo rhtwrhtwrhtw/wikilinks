@@ -11,6 +11,7 @@ class ClientConnection {
     this.connect();
     this.readyReload();
     this.deselectInit();
+    this.givupInit();
   }
 
   connect() {
@@ -23,7 +24,7 @@ class ClientConnection {
 
     this.ws = new WebSocket(connectionurl);
 
-    this.ws.onopen = (event) => {
+    this.ws.onopen = () => {
       if (!this.isHost) {
         this.ws.send(JSON.stringify({
           type: 'host_transfer',
@@ -82,8 +83,8 @@ class ClientConnection {
     const mypath = document.createElement('ol');
     const opp = document.createElement('ol');
 
-    const yourArticle = this.isHost ? this.gamestate.hostLink.links : this.gamestate.guestLink.links;  
-    console.log(this.gamestate.guestLink.links)  
+    const yourArticle = this.isHost ? this.gamestate.hostLink.links : this.gamestate.guestLink.links;
+    console.log(this.gamestate.guestLink.links)
     list.innerHTML = yourArticle;
     const linksInside = list.getElementsByClassName('gamelink');
     for (let link of linksInside) {
@@ -119,17 +120,23 @@ class ClientConnection {
     const ready = document.getElementById('nextMoveButton');
     ready.style.backgroundColor = '#4CAF50';
 
-    const handleClickReady = (event) => {
+    const handleClickReady = () => {
       if (this.currentChoice !== null) {
-        ready.style.backgroundColor = '#f56969';
-        this.ws.send(JSON.stringify({
-          type: this.isHost ? 'host_choice' : 'guest_choice',
-          data: this.currentChoice
-        }));
-        ready.removeEventListener('click', handleClickReady);
-      } else {
-        event.preventDefault();
-      }
+      ready.style.backgroundColor = '#f56969';
+      this.ws.send(JSON.stringify({
+        type: this.isHost ? 'host_choice' : 'guest_choice',
+        data: this.currentChoice
+      }));
+      ready.removeEventListener('click', handleClickReady);
+    } else {
+      ready.style.background = '#FDFD96';
+      this.ws.send(JSON.stringify({
+        type: this.isHost ? 'host_choice' : 'guest_choice',
+        data: this.isHost ? this.gamestate.hostArray.pop().title : this.gamestate.guestArray.pop().title
+      }));
+      ready.removeEventListener('click', handleClickReady);
+    }
+
     }
     ready.addEventListener('click', handleClickReady);
   }
@@ -137,10 +144,24 @@ class ClientConnection {
   deselectInit() {
     const deselect = document.getElementById('deselect');
     deselect.addEventListener('click', () => {
+      this.ws.send(JSON.stringify({
+        type: this.isHost ? 'host_clear_choice' : 'guest_clear_choice',
+        data: {}
+      }));
       this.currentChoice = null;
       current.textContent = null;
       this.readyReload();
     });
+  }
+
+  givupInit() {
+    const giveUp = document.getElementById('giveUp');
+    giveUp.addEventListener('click', () => {
+      this.ws.send(JSON.stringify({
+        type: this.isHost ? 'host_concede' : 'guest_concede',
+        data: {}
+      }));
+    })
   }
 
   showVictoryButtons() {
@@ -149,13 +170,11 @@ class ClientConnection {
 
     const nextButton = document.getElementById('nextGameYes');
     const connection = this.ws;
-    const hostornot = this.isHost ? 'host' : 'guest';
-
-
+    
     function anotherRound() {
       connection.send(JSON.stringify({
         type: 'another_one',
-        data: {sentfrom: hostornot}
+        data: { sentfrom: this.isHost ? 'host' : 'guest'}
       }));
     }
 
@@ -170,6 +189,5 @@ class ClientConnection {
 
 let connection;
 window.addEventListener('DOMContentLoaded', () => {
-  console.log('loaded');
   connection = new ClientConnection();
 });
