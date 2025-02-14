@@ -320,12 +320,11 @@ wss.on('connection', (connection, request) => {
             case 'guest_clear_choice':
                 room.gamestate.hostNext = null;
                 break;
-            case 'host_concede':
-                
-            case 'guest_concede':
-                
+            case 'host_gave_up':
+                room.broadcast('opponent_gave_up', {}, 'guest');
+            case 'guest_gave_up':
+                room.broadcast('opponent_gave_up', {}, 'host');
             case 'another_one':
-                console.log(message.data);
                 if (message.data.sentfrom === 'host') room.hostWantsNext = true;
                 if (message.data.sentfrom === 'guest') room.guestWantsNext = true;
 

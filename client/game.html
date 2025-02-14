@@ -13,13 +13,6 @@
 </head>
 
 <body>
-    <div id="popups">
-        <div id="win">
-            <p>You won! Would you like to play again?</p>
-            <button id="nextGameYes">Yes</button>
-        </div>
-    </div>
-
     <div id="game">
         <div id="mySide"></div>
         <div id="floating">
@@ -36,6 +29,19 @@
         </div>
     </div>
 
+    <div class="popup" id="win">
+        <p>You won! Would you like to play again?</p>
+        <button id="nextGameYes">Yes</button>
+    </div>
+    <div class="popup" id="areyousure">
+        <p>Are you sure you want to give up?</p>
+        <button id="giveUpYes">Yes</button>
+        <button id="giveUpNo">No</button>
+    </div>
+    <div class="popup" id="opponentGaveUp">
+        <p>Your opponent just gave up</p>
+        <button id="redirectMe">Ok</button>
+    </div>
 
 </body>
 

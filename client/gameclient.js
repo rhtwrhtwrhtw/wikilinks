@@ -58,6 +58,8 @@ class ClientConnection {
           this.hideVictoryButtons();
           this.readyReload();
           break;
+        case 'opponent_gave_up':
+          this.jover()
         default:
           console.log(`Unknown message, type: ${message.type}`);
       }
@@ -84,7 +86,6 @@ class ClientConnection {
     const opp = document.createElement('ol');
 
     const yourArticle = this.isHost ? this.gamestate.hostLink.links : this.gamestate.guestLink.links;
-    console.log(this.gamestate.guestLink.links)
     list.innerHTML = yourArticle;
     const linksInside = list.getElementsByClassName('gamelink');
     for (let link of linksInside) {
@@ -156,12 +157,39 @@ class ClientConnection {
 
   givupInit() {
     const giveUp = document.getElementById('giveUp');
+    const popup = document.getElementById('areyousure');
+    const giveUpYes = document.getElementById('giveUpYes');
+    const giveUpNo = document.getElementById('giveUpNo');
+
     giveUp.addEventListener('click', () => {
+      popup.style.display = 'flex';
+    });
+
+    giveUpNo.addEventListener('click', () => {
+      popup.style.display = 'none';
+    })
+
+    giveUpYes.addEventListener('click', () => {
       this.ws.send(JSON.stringify({
-        type: this.isHost ? 'host_concede' : 'guest_concede',
+        type: this.isHost ? 'host_gave_up' : 'guest_gave_up',
         data: {}
       }));
+      this.backToLobby();
+    });
+  }
+
+  jover() {
+    const jover = document.getElementById('opponentGaveUp');
+    const joverButton = document.getElementById('redirectMe');
+
+    jover.style.display = 'flex';
+    joverButton.addEventListener('click', () => {
+      this.backToLobby();
     })
+  }
+
+  backToLobby() {
+    window.location.href = '/';
   }
 
   showVictoryButtons() {
