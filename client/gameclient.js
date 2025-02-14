@@ -167,14 +167,15 @@ class ClientConnection {
   showVictoryButtons() {
     const overlay = document.getElementById('popups');
     overlay.style.display = 'flex';
+    overlay.style.zIndex = '20';
 
     const nextButton = document.getElementById('nextGameYes');
     const connection = this.ws;
-    
+    console.log(this.isHost)
     function anotherRound() {
       connection.send(JSON.stringify({
         type: 'another_one',
-        data: { sentfrom: this.isHost ? 'host' : 'guest'}
+        data: { sentfrom: self.isHost ? 'host' : 'guest'}
       }));
     }
 

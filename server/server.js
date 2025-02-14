@@ -325,6 +325,7 @@ wss.on('connection', (connection, request) => {
             case 'guest_concede':
                 
             case 'another_one':
+                console.log(message.data);
                 if (message.data.sentfrom === 'host') room.hostWantsNext = true;
                 if (message.data.sentfrom === 'guest') room.guestWantsNext = true;
 

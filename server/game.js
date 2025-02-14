@@ -107,7 +107,8 @@ async function getAGoodOne(lang, logger, n = 8, linkN = 500) {
 }
 
 async function getByName(name, lang, logger) {
-    logger.write("getByName called with:", name, lang);
+    name = decodeURIComponent(name);
+    logger.write(`getByName called with: ${name}, ${lang}`);
     while (true) {
         try {
             const request = `https://${lang}.wikipedia.org/w/api.php?action=query&format=json&prop=links&list=&titles=${encodeURIComponent(name)}&formatversion=2&pllimit=500`;
@@ -118,7 +119,6 @@ async function getByName(name, lang, logger) {
             const data = await response.json();
             const article = data.query.pages[0];
 
-            logger.write(`fetching by name ${name}, ${response.ok}`);
             return article;
         } catch (error) { 
             logger.write(`getByName error: ${error}`); 
@@ -128,12 +128,17 @@ async function getByName(name, lang, logger) {
 }
 
 async function getHTMLbyName(title, lang, logger) {
+    title = decodeURIComponent(title);
     logger.write(`getHTMLbyName called with ${title}`)
     while (true) {
-        const request = `https://${lang}.wikipedia.org/w/api.php?action=parse&format=json&page=${encodeURIComponent(title)}&formatversion=2`;
+        const request = `https://${lang}.wikipedia.org/w/api.php?action=parse&format=json&page=${title}&formatversion=2`;
         try {
             response = await fetch(request);
+            if (!response.ok) {
+                throw new Error(`failed to fetch ${choice}: ${response.status}`);
+            }
             const data = await response.json();
+        
             let text = data.parse.text;
             text = cleanHTML(text);
             text = replaceLinks(text, lang);

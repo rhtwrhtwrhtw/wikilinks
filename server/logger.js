@@ -37,7 +37,7 @@ class Logger {
     }
 
     async assignToRoom(roomID) {
-        this.roomlog = path.join(this.logfolder, `${this.timestamp()}_${roomID}.log`);
+        this.roomlog = path.join(this.logfolder, `${roomID}_${this.timestamp()}.log`);
     }
 
     async serverWrite(message) {
