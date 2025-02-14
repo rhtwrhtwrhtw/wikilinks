@@ -171,11 +171,11 @@ class ClientConnection {
 
     const nextButton = document.getElementById('nextGameYes');
     const connection = this.ws;
-    console.log(this.isHost)
+    const hostornot = this.isHost ? 'host' : 'guest';
     function anotherRound() {
       connection.send(JSON.stringify({
         type: 'another_one',
-        data: { sentfrom: self.isHost ? 'host' : 'guest'}
+        data: { sentfrom: hostornot}
       }));
     }
 
