@@ -1,0 +1,5 @@
+In this game, both players are given a wikipedia article at the start. 
+Articles have been cleared of hyperlinks to websites other than wikipedia. 
+The goal is to navigate the hyperlinks to meet each other on the same article. 
+Select a hyperlink and click Ready to go to another article. 
+Click Ready with a clear selection to stay on the same article.

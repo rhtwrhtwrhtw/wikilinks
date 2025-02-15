@@ -14,7 +14,9 @@
 
 <body>
     <div id="game">
-        <div id="mySide"></div>
+        <div id="mySide">
+            <img src="throbber.gif" alt="loading">
+        </div>
         <div id="floating">
             <div id="gameControls">
                 <button id="deselect">Deselect</button>
@@ -30,16 +32,17 @@
     </div>
 
     <div class="popup" id="win">
-        <p>You won! Would you like to play again?</p>
+        <p>You won! Would you like to play with the same settings again?</p>
         <button id="nextGameYes">Yes</button>
+        <button id="nextGameNo">No</button>
     </div>
     <div class="popup" id="areyousure">
         <p>Are you sure you want to give up?</p>
         <button id="giveUpYes">Yes</button>
         <button id="giveUpNo">No</button>
     </div>
-    <div class="popup" id="opponentGaveUp">
-        <p>Your opponent just gave up</p>
+    <div class="popup" id="endscreen">
+        <p id="popuptext"></p>
         <button id="redirectMe">Ok</button>
     </div>
 

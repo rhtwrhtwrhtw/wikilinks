@@ -8,10 +8,12 @@ class ClientConnection {
     this.gamestate = {};
     this.currentChoice = null;
 
+    this.loadedFlag = false; 
+
     this.connect();
     this.readyReload();
     this.deselectInit();
-    this.givupInit();
+    this.giveUpInit();
   }
 
   connect() {
@@ -47,6 +49,7 @@ class ClientConnection {
           this.playerID = message.data;
           break;
         case 'restore_gamestate':
+          this.loadedFlag = false;
           this.gamestate = message.data;
           this.displayState();
           this.readyReload();
@@ -59,7 +62,9 @@ class ClientConnection {
           this.readyReload();
           break;
         case 'opponent_gave_up':
-          this.jover()
+          this.jover('Your opponent just gave up');
+        case 'opponent_left':
+          this.jover('Your opponent just left');
         default:
           console.log(`Unknown message, type: ${message.type}`);
       }
@@ -115,6 +120,8 @@ class ClientConnection {
     mySide.appendChild(list);
     myList.appendChild(mypath);
     oppSide.appendChild(opp);
+
+    this.loadedFlag = true;
   }
 
   readyReload() {
@@ -122,21 +129,22 @@ class ClientConnection {
     ready.style.backgroundColor = '#4CAF50';
 
     const handleClickReady = () => {
+      if (!this.loadedFlag) return;
       if (this.currentChoice !== null) {
-      ready.style.backgroundColor = '#f56969';
-      this.ws.send(JSON.stringify({
-        type: this.isHost ? 'host_choice' : 'guest_choice',
-        data: this.currentChoice
-      }));
-      ready.removeEventListener('click', handleClickReady);
-    } else {
-      ready.style.background = '#FDFD96';
-      this.ws.send(JSON.stringify({
-        type: this.isHost ? 'host_choice' : 'guest_choice',
-        data: this.isHost ? this.gamestate.hostArray.pop().title : this.gamestate.guestArray.pop().title
-      }));
-      ready.removeEventListener('click', handleClickReady);
-    }
+        ready.style.backgroundColor = '#f56969';
+        this.ws.send(JSON.stringify({
+          type: this.isHost ? 'host_choice' : 'guest_choice',
+          data: this.currentChoice
+        }));
+        ready.removeEventListener('click', handleClickReady);
+      } else {
+        ready.style.background = '#FDFD96';
+        this.ws.send(JSON.stringify({
+          type: this.isHost ? 'host_choice' : 'guest_choice',
+          data: this.isHost ? this.gamestate.hostArray.pop().title : this.gamestate.guestArray.pop().title
+        }));
+        ready.removeEventListener('click', handleClickReady);
+      }
 
     }
     ready.addEventListener('click', handleClickReady);
@@ -145,6 +153,7 @@ class ClientConnection {
   deselectInit() {
     const deselect = document.getElementById('deselect');
     deselect.addEventListener('click', () => {
+      if (!this.loadedFlag) return;
       this.ws.send(JSON.stringify({
         type: this.isHost ? 'host_clear_choice' : 'guest_clear_choice',
         data: {}
@@ -155,13 +164,14 @@ class ClientConnection {
     });
   }
 
-  givupInit() {
+  giveUpInit() {
     const giveUp = document.getElementById('giveUp');
     const popup = document.getElementById('areyousure');
     const giveUpYes = document.getElementById('giveUpYes');
     const giveUpNo = document.getElementById('giveUpNo');
 
     giveUp.addEventListener('click', () => {
+      if (!this.loadedFlag) return;
       popup.style.display = 'flex';
     });
 
@@ -178,11 +188,18 @@ class ClientConnection {
     });
   }
 
-  jover() {
-    const jover = document.getElementById('opponentGaveUp');
+  jover(message) {
+    const allPopups = document.getElementsByClassName('popup');
+    const jover = document.getElementById('endscreen');
     const joverButton = document.getElementById('redirectMe');
+    const joverText = document.getElementById('popuptext');
+
+    for (let popup of allPopups) {
+      popup.style.display = 'none';
+    }
 
     jover.style.display = 'flex';
+    joverText.textContent = message;
     joverButton.addEventListener('click', () => {
       this.backToLobby();
     })
@@ -193,26 +210,31 @@ class ClientConnection {
   }
 
   showVictoryButtons() {
-    const overlay = document.getElementById('popups');
-    overlay.style.display = 'flex';
-    overlay.style.zIndex = '20';
-
+    const winscreen = document.getElementById('win');
     const nextButton = document.getElementById('nextGameYes');
+    const nopeButton = document.getElementById('nextGameNo');
     const connection = this.ws;
-    const hostornot = this.isHost ? 'host' : 'guest';
-    function anotherRound() {
+    //const hostornot = this.isHost ? 'host' : 'guest';
+
+    winscreen.style.display = 'flex';
+    nextButton.addEventListener('click', () => {
       connection.send(JSON.stringify({
         type: 'another_one',
-        data: { sentfrom: hostornot}
+        data: { sentfrom: this.isHost ? 'host' : 'guest' }
       }));
-    }
-
-    nextButton.addEventListener('click', anotherRound);
+    });
+    nopeButton.addEventListener('click', () => {
+      connection.send(JSON.stringify({
+        type: 'left_after_win',
+        data: { sentfrom: this.isHost ? 'host' : 'guest' }
+      }));
+      this.backToLobby();
+    })
   }
 
   hideVictoryButtons() {
-    const overlay = document.getElementById('popups');
-    overlay.style.display = 'none';
+    const winscreen = document.getElementById('win');
+    winscreen.style.display = 'none';
   }
 }
 

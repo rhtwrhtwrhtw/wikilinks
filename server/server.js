@@ -54,8 +54,14 @@ const httpserver = http.createServer((request, response) => {
                     break;
                 case 'W.png':
                     response.writeHead(200, { "Content-Type": "image/png" });
+                    break;
+                case 'throbber.gif':
+                    response.writeHead(200, { "Content-Type": "image/gif" });
+                    break;
                 case 'test.txt':
+                case 'rules.txt':
                     response.writeHead(200, { "Content-Type": "text/plain" });
+                    break;
             }
             response.end(content)
         }
@@ -341,6 +347,12 @@ wss.on('connection', (connection, request) => {
                     room.guestWantsNext = false;
                 }
                 break;
+            case 'left_after_win':
+                if (message.data.sentfrom === 'host') {
+                    room.broadcast('opponent_left', {}, 'guest');
+                } else if (message.data.sentfrom === 'guest') {
+                    room.broadcast('opponent_left', {}, 'host');
+                }
             default:
                 room.logger.write(`Unknown message, type: ${message.type}`);
         }

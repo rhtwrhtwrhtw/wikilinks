@@ -72,27 +72,6 @@ body {
     z-index: 20;
   }
 
-  #win {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-  }
-
-  #nextGameYes {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  #nextGameYes:hover {
-    background-color: #0056b3;
-  }
-
   .gamelink {
     color:#007bff;
   }

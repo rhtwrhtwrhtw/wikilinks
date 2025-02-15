@@ -9,6 +9,14 @@ ws = new WebSocket(`${wsProtocol}//${address}`);
 let roomID;
 let hostuid;
 
+let rules;
+fetch('rules.txt')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('rules').textContent = data;
+        rules = data;
+    })
+
 const hosttextinput = document.getElementById('artforhost');
 const hostcheckbox = document.getElementById('randomhost');
 const guestexttinput = document.getElementById('artforguest');
@@ -50,7 +58,7 @@ button.addEventListener('click', passLink);
 
 ws.onmessage = (event) => {
     const message = JSON.parse(event.data);
-   
+
     switch (message.type) {
         case 'gamelink':
             //generating link and the copy button
@@ -68,9 +76,21 @@ ws.onmessage = (event) => {
                 navigator.clipboard.writeText(message.data.link);
             }
 
+            const copybuttonRules = document.createElement('button');
+            copybuttonRules.type = "button";
+            copybuttonRules.textContent = "Copy with rules";
+            copybuttonRules.id = 'copybuttonRules';
+            copybuttonRules.onclick = () => {
+                const linkandrules = ["You are invited to play a game!",
+                    message.data.link,
+                    rules].join('\n');
+                navigator.clipboard.writeText(linkandrules);
+            }
+
             document.getElementById('linktosend').innerHTML = '';
             document.getElementById('linktosend').appendChild(linkstring);
             document.getElementById('linktosend').appendChild(copybutton);
+            document.getElementById('linktosend').appendChild(copybuttonRules);
             break;
         case 'game_starts':
             window.location.href = `/game.html?type=host&uid=${hostuid}&roomID=${roomID}`;
