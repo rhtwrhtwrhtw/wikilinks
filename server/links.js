@@ -101,17 +101,6 @@ async function checkValidity(message) {
     return result;
 }
 
-const test = {
-    type: 'generate_link',
-    data: {
-        lang: 'en',
-        hostcheckbox: 'nonradom',
-        artforhost: 'amogus',
-        guestcheckbox: 'random',
-        artforguest: ''
-    }
-}
-
 module.exports = {
     checkValidity
 };

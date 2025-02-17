@@ -86,11 +86,12 @@ ws.onmessage = (event) => {
                     rules].join('\n');
                 navigator.clipboard.writeText(linkandrules);
             }
-
-            document.getElementById('linktosend').innerHTML = '';
-            document.getElementById('linktosend').appendChild(linkstring);
-            document.getElementById('linktosend').appendChild(copybutton);
-            document.getElementById('linktosend').appendChild(copybuttonRules);
+            const linktosend = document.getElementById('linktosend');
+            linktosend.style.display = 'flex';
+            linktosend.innerHTML = '';
+            linktosend.appendChild(linkstring);
+            linktosend.appendChild(copybutton);
+            linktosend.appendChild(copybuttonRules);
             break;
         case 'game_starts':
             window.location.href = `/game.html?type=host&uid=${hostuid}&roomID=${roomID}`;

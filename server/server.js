@@ -50,6 +50,7 @@ const httpserver = http.createServer((request, response) => {
                     response.writeHead(200, { "Content-type": "application/javascript" });
                     break;
                 case 'styles.css':
+                case 'wikilinks-styles.css':
                     response.writeHead(200, { "Content-type": "text/css" });
                     break;
                 case 'W.png':

@@ -50,11 +50,15 @@ class Gamestate {
                 const article = data.query.pages[0];
 
                 if (isHost) {
-                    this.hostArray.push(article);
+                    if (!this.hostArray.some(a => a.title === article.title)) {
+                        this.hostArray.push(article);
+                    }   
                     this.hostLink = article;
                     this.hostLink.links = await getHTMLbyName(this.hostLink.title, this.lang, this.logger);
                 } else {
-                    this.guestArray.push(article);
+                    if (!this.guestArray.some(a => a.title === article.title)) {
+                        this.guestArray.push(article);
+                    }                    
                     this.guestLink = article;
                     this.guestLink.links = await getHTMLbyName(this.guestLink.title, this.lang, this.logger);
                 }
@@ -167,6 +171,28 @@ function cleanHTML(html) {
 
 function replaceLinks(html, lang) {
     const ch = cheerio.load(html);
+    ch(`
+        a[href^="/wiki/Special:"],
+        a[href^="/wiki/Help:"],
+        a[href^="/wiki/Category:"],
+        a[href^="/wiki/Talk:"],
+        a[href^="/wiki/User:"],
+        a[href^="/wiki/Template:"],
+        a[href^="/wiki/Portal:"],
+        a[href^="/wiki/File:"],
+        a[href^="/wiki/MediaWiki:"],
+        a[href^="/wiki/Wikipedia:"],
+        a[href^="/wiki/Module:"],
+        a[href^="/wiki/TimedText:"],
+        a[href^="/wiki/Draft:"],
+        a[href^="/wiki/Book:"]
+      `).each(function () {
+        if (ch(this).text()) {
+            const text = ch(this).text();
+            ch(this).replaceWith(text);
+        }
+    });
+
     ch('a[href^="/wiki/"]').each(function () {
         if (ch(this).text()) {
             const text = ch(this).text();

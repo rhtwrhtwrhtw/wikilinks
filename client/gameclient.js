@@ -138,7 +138,7 @@ class ClientConnection {
         }));
         ready.removeEventListener('click', handleClickReady);
       } else {
-        ready.style.background = '#FDFD96';
+        ready.style.background = '#ffee8c';
         this.ws.send(JSON.stringify({
           type: this.isHost ? 'host_choice' : 'guest_choice',
           data: this.isHost ? this.gamestate.hostArray.pop().title : this.gamestate.guestArray.pop().title
