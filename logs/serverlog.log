@@ -411,3 +411,389 @@
 {"time":"2025-02-17_10-54-35.880","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
 {"time":"2025-02-17_10-54-35.881","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
 {"time":"2025-02-17_10-54-35.983","message":"there is no room with id undefined, GET OUT!"}
+{"time":"2025-02-18_10-01-45.254","message":"created 100 rooms"}
+{"time":"2025-02-18_10-01-45.255","message":"server running on port 9999"}
+{"time":"2025-02-18_10-01-45.255","message":"address is undefined"}
+{"time":"2025-02-18_10-02-15.526","message":"127.0.0.1 requested file index.html"}
+{"time":"2025-02-18_10-02-15.531","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
+{"time":"2025-02-18_10-02-15.769","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-02-15.771","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-02-15.786","message":"127.0.0.1 requested file lobby.js"}
+{"time":"2025-02-18_10-02-15.787","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
+{"time":"2025-02-18_10-02-15.898","message":"127.0.0.1 requested file rules.txt"}
+{"time":"2025-02-18_10-02-15.898","message":"serving /home/lena/projects/wikilinks/client/rules.txt to 127.0.0.1"}
+{"time":"2025-02-18_10-02-24.515","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_10-02-24.522","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_10-02-24.655","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-02-24.658","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-02-24.662","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_10-02-24.664","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_10-02-24.665","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_10-02-24.666","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_10-02-24.929","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_10-02-24.930","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_10-02-25.001","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-02-25.002","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-02-25.005","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_10-02-25.006","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_10-02-25.006","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_10-02-25.007","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_10-03-25.540","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_10-03-25.540","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_10-03-25.705","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-03-25.706","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-03-25.709","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_10-03-25.709","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_10-03-25.710","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_10-03-25.711","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_10-03-38.239","message":"127.0.0.1 requested file index.html"}
+{"time":"2025-02-18_10-03-38.239","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
+{"time":"2025-02-18_10-03-38.377","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-03-38.378","message":"127.0.0.1 requested file lobby.js"}
+{"time":"2025-02-18_10-03-38.379","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-03-38.379","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
+{"time":"2025-02-18_10-03-38.497","message":"127.0.0.1 requested file rules.txt"}
+{"time":"2025-02-18_10-03-38.497","message":"serving /home/lena/projects/wikilinks/client/rules.txt to 127.0.0.1"}
+{"time":"2025-02-18_10-03-42.261","message":"created 1 rooms"}
+{"time":"2025-02-18_10-03-42.321","message":"127.0.0.1 requested file index.html"}
+{"time":"2025-02-18_10-03-42.321","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
+{"time":"2025-02-18_10-03-42.408","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-03-42.408","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-03-42.410","message":"127.0.0.1 requested file lobby.js"}
+{"time":"2025-02-18_10-03-42.410","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
+{"time":"2025-02-18_10-03-42.519","message":"127.0.0.1 requested file rules.txt"}
+{"time":"2025-02-18_10-03-42.519","message":"serving /home/lena/projects/wikilinks/client/rules.txt to 127.0.0.1"}
+{"time":"2025-02-18_10-04-10.608","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_10-04-10.608","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_10-04-10.746","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-04-10.746","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-04-10.755","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_10-04-10.756","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_10-04-10.756","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_10-04-10.757","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_10-04-10.898","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_10-04-10.900","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_10-04-11.032","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-04-11.033","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_10-04-11.036","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-04-11.036","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_10-04-11.037","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_10-04-11.037","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_10-06-01.201","message":"created 1 rooms"}
+{"time":"2025-02-18_10-06-04.116","message":"127.0.0.1 requested file index.html"}
+{"time":"2025-02-18_10-06-04.117","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
+{"time":"2025-02-18_10-06-04.349","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-06-04.350","message":"127.0.0.1 requested file lobby.js"}
+{"time":"2025-02-18_10-06-04.351","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-06-04.351","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
+{"time":"2025-02-18_10-06-04.470","message":"127.0.0.1 requested file rules.txt"}
+{"time":"2025-02-18_10-06-04.471","message":"serving /home/lena/projects/wikilinks/client/rules.txt to 127.0.0.1"}
+{"time":"2025-02-18_10-06-10.728","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_10-06-10.729","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_10-06-10.838","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-06-10.838","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-06-10.840","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_10-06-10.841","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_10-06-10.841","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_10-06-10.841","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_10-06-10.988","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_10-06-10.989","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_10-06-11.095","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-06-11.096","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_10-06-11.096","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-06-11.097","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_10-06-11.097","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_10-06-11.098","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_10-06-23.395","message":"127.0.0.1 requested file index.html"}
+{"time":"2025-02-18_10-06-23.395","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
+{"time":"2025-02-18_10-06-23.502","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-06-23.502","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-06-23.503","message":"127.0.0.1 requested file lobby.js"}
+{"time":"2025-02-18_10-06-23.504","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
+{"time":"2025-02-18_10-06-23.616","message":"127.0.0.1 requested file rules.txt"}
+{"time":"2025-02-18_10-06-23.616","message":"serving /home/lena/projects/wikilinks/client/rules.txt to 127.0.0.1"}
+{"time":"2025-02-18_10-06-24.900","message":"created 1 rooms"}
+{"time":"2025-02-18_10-06-32.921","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_10-06-32.921","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_10-06-33.042","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-06-33.042","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-06-33.046","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_10-06-33.046","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_10-06-33.048","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_10-06-33.049","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_10-06-33.191","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_10-06-33.191","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_10-06-33.306","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-06-33.307","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-06-33.308","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_10-06-33.309","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_10-06-33.351","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_10-06-33.352","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_10-11-58.222","message":"created 100 rooms"}
+{"time":"2025-02-18_10-11-58.223","message":"server running on port 9999"}
+{"time":"2025-02-18_10-11-58.223","message":"address is undefined"}
+{"time":"2025-02-18_10-12-33.019","message":"127.0.0.1 requested file index.html"}
+{"time":"2025-02-18_10-12-33.022","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
+{"time":"2025-02-18_10-12-33.268","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-12-33.269","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-12-33.270","message":"127.0.0.1 requested file lobby.js"}
+{"time":"2025-02-18_10-12-33.271","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
+{"time":"2025-02-18_10-12-33.366","message":"127.0.0.1 requested file rules.txt"}
+{"time":"2025-02-18_10-12-33.367","message":"serving /home/lena/projects/wikilinks/client/rules.txt to 127.0.0.1"}
+{"time":"2025-02-18_10-12-40.334","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_10-12-40.334","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_10-12-40.452","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-12-40.456","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-12-40.462","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_10-12-40.465","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_10-12-40.466","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_10-12-40.467","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_10-12-40.725","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_10-12-40.726","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_10-12-40.779","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-12-40.780","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-12-40.784","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_10-12-40.785","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_10-12-40.785","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_10-12-40.787","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_10-12-58.853","message":"127.0.0.1 requested file index.html"}
+{"time":"2025-02-18_10-12-58.853","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
+{"time":"2025-02-18_10-12-58.971","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-12-58.972","message":"127.0.0.1 requested file lobby.js"}
+{"time":"2025-02-18_10-12-58.972","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-12-58.973","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
+{"time":"2025-02-18_10-12-59.067","message":"127.0.0.1 requested file rules.txt"}
+{"time":"2025-02-18_10-12-59.067","message":"serving /home/lena/projects/wikilinks/client/rules.txt to 127.0.0.1"}
+{"time":"2025-02-18_10-13-06.015","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_10-13-06.016","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_10-13-06.135","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-13-06.135","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-13-06.137","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_10-13-06.138","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_10-13-06.140","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_10-13-06.140","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_10-13-06.329","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_10-13-06.329","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_10-13-06.421","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-13-06.421","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-13-06.423","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_10-13-06.424","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_10-13-06.473","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_10-13-06.475","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_10-13-18.064","message":"created 1 rooms"}
+{"time":"2025-02-18_10-13-18.154","message":"127.0.0.1 requested file index.html"}
+{"time":"2025-02-18_10-13-18.155","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
+{"time":"2025-02-18_10-13-18.261","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-13-18.262","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-13-18.265","message":"127.0.0.1 requested file lobby.js"}
+{"time":"2025-02-18_10-13-18.265","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
+{"time":"2025-02-18_10-13-18.369","message":"127.0.0.1 requested file rules.txt"}
+{"time":"2025-02-18_10-13-18.370","message":"serving /home/lena/projects/wikilinks/client/rules.txt to 127.0.0.1"}
+{"time":"2025-02-18_10-15-32.175","message":"127.0.0.1 requested file index.html"}
+{"time":"2025-02-18_10-15-32.175","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
+{"time":"2025-02-18_10-15-32.376","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-15-32.377","message":"127.0.0.1 requested file lobby.js"}
+{"time":"2025-02-18_10-15-32.377","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-15-32.377","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
+{"time":"2025-02-18_10-15-32.505","message":"127.0.0.1 requested file rules.txt"}
+{"time":"2025-02-18_10-15-32.505","message":"serving /home/lena/projects/wikilinks/client/rules.txt to 127.0.0.1"}
+{"time":"2025-02-18_10-15-41.257","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_10-15-41.258","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_10-15-41.397","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-15-41.398","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-15-41.403","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_10-15-41.404","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_10-15-41.404","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_10-15-41.405","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_10-15-41.572","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_10-15-41.572","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_10-15-41.703","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-15-41.703","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_10-15-41.704","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-15-41.704","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_10-15-41.705","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_10-15-41.706","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_10-15-49.360","message":"created 1 rooms"}
+{"time":"2025-02-18_10-15-49.425","message":"127.0.0.1 requested file index.html"}
+{"time":"2025-02-18_10-15-49.426","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
+{"time":"2025-02-18_10-15-49.526","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-15-49.527","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-15-49.533","message":"127.0.0.1 requested file lobby.js"}
+{"time":"2025-02-18_10-15-49.533","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
+{"time":"2025-02-18_10-15-49.650","message":"127.0.0.1 requested file rules.txt"}
+{"time":"2025-02-18_10-15-49.650","message":"serving /home/lena/projects/wikilinks/client/rules.txt to 127.0.0.1"}
+{"time":"2025-02-18_10-15-57.067","message":"created 1 rooms"}
+{"time":"2025-02-18_10-16-00.239","message":"127.0.0.1 requested file index.html"}
+{"time":"2025-02-18_10-16-00.239","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
+{"time":"2025-02-18_10-16-00.346","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-16-00.347","message":"127.0.0.1 requested file lobby.js"}
+{"time":"2025-02-18_10-16-00.348","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-16-00.349","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
+{"time":"2025-02-18_10-16-00.514","message":"127.0.0.1 requested file rules.txt"}
+{"time":"2025-02-18_10-16-00.514","message":"serving /home/lena/projects/wikilinks/client/rules.txt to 127.0.0.1"}
+{"time":"2025-02-18_10-16-07.304","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_10-16-07.304","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_10-16-07.417","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-16-07.417","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-16-07.418","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_10-16-07.419","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_10-16-07.419","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_10-16-07.420","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_10-16-07.568","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_10-16-07.569","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_10-16-07.676","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-16-07.676","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_10-16-07.677","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-16-07.678","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_10-16-07.678","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_10-16-07.679","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_10-16-40.076","message":"127.0.0.1 requested file index.html"}
+{"time":"2025-02-18_10-16-40.076","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
+{"time":"2025-02-18_10-16-40.205","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-16-40.206","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-16-40.213","message":"127.0.0.1 requested file lobby.js"}
+{"time":"2025-02-18_10-16-40.214","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
+{"time":"2025-02-18_10-16-40.348","message":"127.0.0.1 requested file rules.txt"}
+{"time":"2025-02-18_10-16-40.349","message":"serving /home/lena/projects/wikilinks/client/rules.txt to 127.0.0.1"}
+{"time":"2025-02-18_10-16-42.531","message":"created 1 rooms"}
+{"time":"2025-02-18_10-16-42.595","message":"127.0.0.1 requested file index.html"}
+{"time":"2025-02-18_10-16-42.595","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
+{"time":"2025-02-18_10-16-42.675","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-16-42.676","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-16-42.678","message":"127.0.0.1 requested file lobby.js"}
+{"time":"2025-02-18_10-16-42.678","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
+{"time":"2025-02-18_10-16-42.903","message":"127.0.0.1 requested file rules.txt"}
+{"time":"2025-02-18_10-16-42.903","message":"serving /home/lena/projects/wikilinks/client/rules.txt to 127.0.0.1"}
+{"time":"2025-02-18_10-16-51.442","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_10-16-51.443","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_10-16-51.581","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-16-51.582","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-16-51.585","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_10-16-51.586","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_10-16-51.586","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_10-16-51.587","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_10-16-51.749","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_10-16-51.749","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_10-16-51.869","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-16-51.870","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_10-16-51.870","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-16-51.870","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_10-16-51.871","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_10-16-51.871","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_10-17-28.648","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_10-17-28.648","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_10-17-28.802","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_10-17-28.807","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_10-17-28.807","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_10-17-28.808","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_10-17-28.809","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_10-17-28.810","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_10-17-28.918","message":"127.0.0.1 requested file w.png"}
+{"time":"2025-02-18_10-17-28.925","message":"serving /home/lena/projects/wikilinks/client/w.png to 127.0.0.1"}
+{"time":"2025-02-18_10-25-59.341","message":"created 100 rooms"}
+{"time":"2025-02-18_10-25-59.341","message":"server running on port 9999"}
+{"time":"2025-02-18_10-25-59.341","message":"address is undefined"}
+{"time":"2025-02-18_10-26-44.246","message":"created 100 rooms"}
+{"time":"2025-02-18_10-26-44.247","message":"server running on port 9999"}
+{"time":"2025-02-18_10-26-44.247","message":"address is undefined"}
+{"time":"2025-02-18_10-27-59.031","message":"created 100 rooms"}
+{"time":"2025-02-18_10-27-59.031","message":"server running on port 9999"}
+{"time":"2025-02-18_10-27-59.031","message":"address is undefined"}
+{"time":"2025-02-18_11-10-27.608","message":"created 100 rooms"}
+{"time":"2025-02-18_11-10-27.608","message":"server running on port 9999"}
+{"time":"2025-02-18_11-10-27.608","message":"address is undefined"}
+{"time":"2025-02-18_11-10-33.793","message":"created 100 rooms"}
+{"time":"2025-02-18_11-10-33.793","message":"server running on port 9999"}
+{"time":"2025-02-18_11-10-33.794","message":"address is undefined"}
+{"time":"2025-02-18_11-10-47.224","message":"127.0.0.1 requested file index.html"}
+{"time":"2025-02-18_11-10-47.227","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
+{"time":"2025-02-18_11-10-47.451","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_11-10-47.453","message":"127.0.0.1 requested file lobby.js"}
+{"time":"2025-02-18_11-10-47.453","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_11-10-47.454","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
+{"time":"2025-02-18_11-11-33.565","message":"created 100 rooms"}
+{"time":"2025-02-18_11-11-33.565","message":"server running on port 9999"}
+{"time":"2025-02-18_11-11-33.565","message":"address is undefined"}
+{"time":"2025-02-18_11-11-45.745","message":"created 100 rooms"}
+{"time":"2025-02-18_11-11-45.746","message":"server running on port 9999"}
+{"time":"2025-02-18_11-11-45.746","message":"address is undefined"}
+{"time":"2025-02-18_11-16-16.708","message":"127.0.0.1 requested file index.html"}
+{"time":"2025-02-18_11-16-16.710","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
+{"time":"2025-02-18_11-16-16.861","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_11-16-16.862","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_11-16-16.863","message":"127.0.0.1 requested file lobby.js"}
+{"time":"2025-02-18_11-16-16.864","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
+{"time":"2025-02-18_11-16-17.013","message":"127.0.0.1 requested file rules.txt"}
+{"time":"2025-02-18_11-16-17.013","message":"serving /home/lena/projects/wikilinks/client/rules.txt to 127.0.0.1"}
+{"time":"2025-02-18_11-16-23.751","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_11-16-23.752","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_11-16-23.881","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_11-16-23.882","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_11-16-23.896","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_11-16-23.897","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_11-16-23.898","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_11-16-23.899","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_11-16-24.166","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_11-16-24.167","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_11-16-24.249","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_11-16-24.250","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_11-16-24.251","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_11-16-24.252","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_11-16-24.252","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_11-16-24.253","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_11-17-42.013","message":"created 100 rooms"}
+{"time":"2025-02-18_11-17-42.013","message":"server running on port 9999"}
+{"time":"2025-02-18_11-17-42.013","message":"address is undefined"}
+{"time":"2025-02-18_11-17-55.040","message":"127.0.0.1 requested file index.html"}
+{"time":"2025-02-18_11-17-55.043","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
+{"time":"2025-02-18_11-17-55.231","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_11-17-55.233","message":"127.0.0.1 requested file lobby.js"}
+{"time":"2025-02-18_11-17-55.233","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_11-17-55.234","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
+{"time":"2025-02-18_11-17-55.352","message":"127.0.0.1 requested file rules.txt"}
+{"time":"2025-02-18_11-17-55.352","message":"serving /home/lena/projects/wikilinks/client/rules.txt to 127.0.0.1"}
+{"time":"2025-02-18_11-18-02.441","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_11-18-02.442","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_11-18-02.581","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_11-18-02.581","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_11-18-02.586","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_11-18-02.587","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_11-18-02.589","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_11-18-02.590","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_11-18-02.873","message":"127.0.0.1 requested file game.html"}
+{"time":"2025-02-18_11-18-02.873","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
+{"time":"2025-02-18_11-18-02.960","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_11-18-02.961","message":"127.0.0.1 requested file gameclient.js"}
+{"time":"2025-02-18_11-18-02.961","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_11-18-02.962","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
+{"time":"2025-02-18_11-18-02.963","message":"127.0.0.1 requested file throbber.gif"}
+{"time":"2025-02-18_11-18-02.964","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
+{"time":"2025-02-18_11-19-57.096","message":"127.0.0.1 requested file index.html"}
+{"time":"2025-02-18_11-19-57.098","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
+{"time":"2025-02-18_11-19-57.528","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_11-19-57.529","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_11-19-57.530","message":"127.0.0.1 requested file lobby.js"}
+{"time":"2025-02-18_11-19-57.531","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
+{"time":"2025-02-18_11-19-57.676","message":"127.0.0.1 requested file rules.txt"}
+{"time":"2025-02-18_11-19-57.676","message":"serving /home/lena/projects/wikilinks/client/rules.txt to 127.0.0.1"}
+{"time":"2025-02-18_11-20-00.914","message":"created 1 rooms"}
+{"time":"2025-02-18_11-20-01.112","message":"127.0.0.1 requested file index.html"}
+{"time":"2025-02-18_11-20-01.114","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
+{"time":"2025-02-18_11-20-01.370","message":"127.0.0.1 requested file wikilinks-styles.css"}
+{"time":"2025-02-18_11-20-01.371","message":"127.0.0.1 requested file lobby.js"}
+{"time":"2025-02-18_11-20-01.372","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
+{"time":"2025-02-18_11-20-01.373","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
+{"time":"2025-02-18_11-20-01.565","message":"127.0.0.1 requested file rules.txt"}
+{"time":"2025-02-18_11-20-01.566","message":"serving /home/lena/projects/wikilinks/client/rules.txt to 127.0.0.1"}
+{"time":"2025-02-18_11-20-56.483","message":"created 100 rooms"}
+{"time":"2025-02-18_11-20-56.484","message":"server running on port 9999"}
+{"time":"2025-02-18_11-20-56.484","message":"address is undefined"}
+{"time":"2025-02-18_11-21-53.698","message":"created 100 rooms"}
+{"time":"2025-02-18_11-21-53.699","message":"server running on port 9999"}
+{"time":"2025-02-18_11-21-53.699","message":"address is undefined"}
+{"time":"2025-02-18_11-21-56.363","message":"created 100 rooms"}
+{"time":"2025-02-18_11-21-56.364","message":"server running on port 9999"}
+{"time":"2025-02-18_11-21-56.364","message":"address is undefined"}
+{"time":"2025-02-18_11-22-25.157","message":"created 100 rooms"}
+{"time":"2025-02-18_11-22-25.158","message":"server running on port 9999"}
+{"time":"2025-02-18_11-22-25.158","message":"address is undefined"}
