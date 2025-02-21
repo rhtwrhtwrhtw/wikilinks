@@ -109,7 +109,7 @@ class ClientConnection {
       mypath.appendChild(item);
     }
 
-    opp.textContent = "Your opponent's path: "
+    opp.textContent = "Other player's path: "
     const opponentArray = this.isHost ? this.gamestate.guestArray : this.gamestate.hostArray;
     for (let link of opponentArray) {
       const item = document.createElement('li');

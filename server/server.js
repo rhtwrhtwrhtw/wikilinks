@@ -7,7 +7,7 @@ const uuid = require('uuid').v4;
 const { WebSocketServer, WebSocket } = require('ws');
 
 const Logger = require('./logger.js')
-const { Gamestate } = require('./game.js');
+const { Gamestate } = require('./gamelogic.js');
 const { checkValidity } = require('./links.js');
 const { createRooms,
     findEmptyRoomID,
