@@ -1,5 +1,5 @@
 const uuid = require('uuid').v4;
-const { WebSocketServer, WebSocket } = require('ws');
+const { WebSocket } = require('ws');
 
 const Logger = require('./logger.js');
 
@@ -74,19 +74,14 @@ function createRooms(n = nOfRooms) {
 }
 
 function findEmptyRoomID() {
-    const cpRooms = Array.from(gameRooms);
-    let i = 0;
-    while (i < nOfRooms) {
-        if (cpRooms[0][1].isEmpty()) {
-            return cpRooms[0][0];
-        } else {
-            cpRooms.shift();
-            i++;
-        }
+    for (const [roomID, room] of gameRooms) {
+      if (room.isEmpty() && room.status === 'pending') {
+        return roomID;
+      }
     }
     logger.serverWrite('failed to fetch an empty room');
     return false;
-}
+  }
 
 function findRoomByUID(uid) {
     const copy = Array.from(gameRooms).map(arr => arr[1]);

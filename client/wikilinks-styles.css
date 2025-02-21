@@ -83,6 +83,18 @@ button:hover {
     min-height: 200px;
 }
 
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);  
+    pointer-events: all;  
+    display: none;
+  }
+
 /* Center throbber */
 #mySide img[src="throbber.gif"] {
     position: absolute;
@@ -126,6 +138,8 @@ button:hover {
     padding: 10px;
     background: #f5f5f5;
     border-radius: 4px;
+    overflow: auto;
+    font-size: 0.8em;
 }
 
 /* Popup styles */
@@ -135,6 +149,7 @@ button:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 20;
     background: white;
     padding: 20px;
     border-radius: 8px;
@@ -185,7 +200,24 @@ button:hover {
     margin-top: 1.5em;
 }
 
+#mySide h4 {
+    font-size: 1.25em;
+    margin-top: 1.5em;
+}
+
+#mySide h5 {
+    font-size: 1.2em;
+    margin-top: 1.5em;
+}
+
+#mySide h6 {
+    font-size: 1.1em;
+    margin-top: 1.5em;
+}
+
 #mySide table {
+    float: right;
+    clear: right;
     width: 100%;
     border-collapse: collapse;
     margin: 1em 0;
@@ -247,6 +279,63 @@ button:hover {
 
 #mySide li {
     margin-bottom: 0.2em;
+}
+#mySide figure {
+    float: right;
+    clear: right;
+    margin: 0.5em 0 1em 1em;
+    padding: 3px;
+    background-color: #f8f9fa;
+    border: 1px solid #eaecf0;
+    border-radius: 4px;
+    max-width: 300px;
+}
+
+#mySide figure img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+#mySide figcaption {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 13px;
+    color: #202122;
+    line-height: 1.4;
+    padding: 0 3px;
+}
+
+#mySide .thumb {
+    float: right;
+    clear: right;
+    margin: 0.5em 0 1em 1em;
+    width: auto;
+    max-width: 300px;
+}
+
+#mySide .thumbinner {
+    padding: 3px;
+    background-color: #f8f9fa;
+    border: 1px solid #eaecf0;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+#mySide .thumbcaption {
+    text-align: left;
+    line-height: 1.4;
+    padding: 3px;
+    font-size: 13px;
+    color: #202122;
+}
+
+/* Clear fix for proper text wrapping */
+#mySide:after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 /* Responsive design */

@@ -76,15 +76,6 @@ async function validateInput(who, lang, checkbox, input) {
 }
 
 async function checkValidity(message) {
-    /*looks like: 
-        {type: 'generate_link',
-           data: {
-               lang: list.value,
-               hostcheckbox: hostcheckbox.value,
-               artforhost: (hostcheckbox.value == 'random') ? '' : hosttextinput.value,
-               guestcheckbox: guestcheckbox.value,
-               artforguest: (guestcheckbox.value == 'random') ? '' : guestexttinput.value
-           }} */
     const { lang, hostcheckbox, artforhost, guestcheckbox, artforguest } = message.data;
     if (hostcheckbox === 'random' && guestcheckbox === 'random') { return true };
 

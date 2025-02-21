@@ -33,14 +33,14 @@ class Gamestate {
         }
     }
 
-    async getNext(isHost) {
+    async getNext(forWho) {
         while (true) {
             try {
                 if (!this.isReady) {
                     throw new Error("Game not initialized yet!");
                 }
 
-                const choice = isHost ? this.hostNext : this.guestNext;
+                const choice = forWho === 'host' ? this.hostNext : this.guestNext;
                 const request = `https://${this.lang}.wikipedia.org/w/api.php?action=query&format=json&prop=links&list=&titles=${encodeURIComponent(choice)}&formatversion=2&pllimit=500`;
                 const response = await fetch(request);
                 if (!response.ok) {
@@ -49,13 +49,13 @@ class Gamestate {
                 const data = await response.json();
                 const article = data.query.pages[0];
 
-                if (isHost) {
+                if (forWho === 'host') {
                     if (!this.hostArray.some(a => a.title === article.title)) {
                         this.hostArray.push(article);
                     }   
                     this.hostLink = article;
                     this.hostLink.links = await getHTMLbyName(this.hostLink.title, this.lang, this.logger);
-                } else {
+                } else if (forWho === 'guest') {
                     if (!this.guestArray.some(a => a.title === article.title)) {
                         this.guestArray.push(article);
                     }                    
@@ -197,7 +197,7 @@ function replaceLinks(html, lang) {
         if (ch(this).text()) {
             const text = ch(this).text();
             const href = ch(this).attr('href').replace(/\/wiki\//, '');
-            const replacement = `<span class="gamelink" linkto=${decodeURIComponent(href)}> ${text} </span>`;
+            const replacement = `<span class="gamelink" linkto=${decodeURIComponent(href)}>${text}</span>`;
             ch(this).replaceWith(replacement);
         }
     })

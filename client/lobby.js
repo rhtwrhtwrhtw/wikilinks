@@ -42,6 +42,7 @@ const list = document.getElementById('lang');
 const button = document.getElementById('linkbutton');
 
 function passLink() {
+    console.log('clicked')
     ws.send(JSON.stringify({
         type: 'generate_link',
         data: {
@@ -61,6 +62,7 @@ ws.onmessage = (event) => {
 
     switch (message.type) {
         case 'gamelink':
+            console.log('received')
             //generating link and the copy button
             const linkstring = document.createElement('pre');
             linkstring.textContent = message.data.link;
@@ -74,6 +76,7 @@ ws.onmessage = (event) => {
             copybutton.id = 'copybutton';
             copybutton.onclick = () => {
                 navigator.clipboard.writeText(message.data.link);
+                copybutton.style.backgroundColor = '#00008B';
             }
 
             const copybuttonRules = document.createElement('button');
@@ -85,6 +88,7 @@ ws.onmessage = (event) => {
                     message.data.link,
                     rules].join('\n');
                 navigator.clipboard.writeText(linkandrules);
+                copybuttonRules.style.backgroundColor = '#00008B';
             }
             const linktosend = document.getElementById('linktosend');
             linktosend.style.display = 'flex';

@@ -8,7 +8,7 @@ class ClientConnection {
     this.gamestate = {};
     this.currentChoice = null;
 
-    this.loadedFlag = false; 
+    this.loadedFlag = false;
 
     this.connect();
     this.readyReload();
@@ -133,15 +133,21 @@ class ClientConnection {
       if (this.currentChoice !== null) {
         ready.style.backgroundColor = '#f56969';
         this.ws.send(JSON.stringify({
-          type: this.isHost ? 'host_choice' : 'guest_choice',
-          data: this.currentChoice
+          type: 'choice',
+          data: {
+            choice: this.currentChoice,
+            sentfrom: this.isHost ? 'host' : 'guest',
+          }
         }));
         ready.removeEventListener('click', handleClickReady);
       } else {
         ready.style.background = '#ffee8c';
         this.ws.send(JSON.stringify({
-          type: this.isHost ? 'host_choice' : 'guest_choice',
-          data: this.isHost ? this.gamestate.hostArray.pop().title : this.gamestate.guestArray.pop().title
+          type: 'choice',
+          data: {
+            choice: this.isHost ? this.gamestate.hostArray.pop().title : this.gamestate.guestArray.pop().title,
+            sentfrom: this.isHost ? 'host' : 'guest',
+          }
         }));
         ready.removeEventListener('click', handleClickReady);
       }
@@ -155,8 +161,8 @@ class ClientConnection {
     deselect.addEventListener('click', () => {
       if (!this.loadedFlag) return;
       this.ws.send(JSON.stringify({
-        type: this.isHost ? 'host_clear_choice' : 'guest_clear_choice',
-        data: {}
+        type: 'clear_choice',
+        data: {sentfrom: this.isHost ? 'host' : 'guest'}
       }));
       this.currentChoice = null;
       current.textContent = null;
@@ -169,20 +175,23 @@ class ClientConnection {
     const popup = document.getElementById('areyousure');
     const giveUpYes = document.getElementById('giveUpYes');
     const giveUpNo = document.getElementById('giveUpNo');
+    const overlay = document.getElementById('overlay');
 
     giveUp.addEventListener('click', () => {
       if (!this.loadedFlag) return;
       popup.style.display = 'flex';
+      overlay.style.display = 'block';
     });
 
     giveUpNo.addEventListener('click', () => {
       popup.style.display = 'none';
+      overlay.style.display = 'none';
     })
 
     giveUpYes.addEventListener('click', () => {
       this.ws.send(JSON.stringify({
-        type: this.isHost ? 'host_gave_up' : 'guest_gave_up',
-        data: {}
+        type: 'give_up',
+        data: {sentfrom: this.isHost ? 'host' : 'guest'}
       }));
       this.backToLobby();
     });
@@ -193,30 +202,39 @@ class ClientConnection {
     const jover = document.getElementById('endscreen');
     const joverButton = document.getElementById('redirectMe');
     const joverText = document.getElementById('popuptext');
+    const overlay = document.getElementById('overlay');
 
     for (let popup of allPopups) {
       popup.style.display = 'none';
     }
 
     jover.style.display = 'flex';
+    overlay.style.display = 'block';
     joverText.textContent = message;
     joverButton.addEventListener('click', () => {
       this.backToLobby();
+      connection.send(JSON.stringify({
+        type: 'clear',
+        data: { sentfrom: this.isHost ? 'host' : 'guest' }
+      }));
     })
   }
 
   backToLobby() {
     window.location.href = '/';
+    this.connect();
   }
 
   showVictoryButtons() {
     const winscreen = document.getElementById('win');
     const nextButton = document.getElementById('nextGameYes');
     const nopeButton = document.getElementById('nextGameNo');
+    const overlay = document.getElementById('overlay');
     const connection = this.ws;
     //const hostornot = this.isHost ? 'host' : 'guest';
 
     winscreen.style.display = 'flex';
+    overlay.style.display = 'block';
     nextButton.addEventListener('click', () => {
       connection.send(JSON.stringify({
         type: 'another_one',
