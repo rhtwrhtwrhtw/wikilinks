@@ -1,13 +1,10 @@
-const params = new URLSearchParams(window.location.search);
-if (!params.has('type')) params.set('type', 'lobby');
-window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
-
 const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
 const address = window.location.host;
 ws = new WebSocket(`${wsProtocol}//${address}`);
 
 let roomID;
-let hostuid;
+let hostID;
+let guestID;
 
 let rules;
 fetch('rules.txt')
@@ -42,7 +39,6 @@ const list = document.getElementById('lang');
 const button = document.getElementById('linkbutton');
 
 function passLink() {
-    console.log('clicked')
     ws.send(JSON.stringify({
         type: 'generate_link',
         data: {
@@ -54,52 +50,59 @@ function passLink() {
         }
     }));
 }
-
 button.addEventListener('click', passLink);
+
+function displayLink(returnMessage) {
+    const linkstring = document.createElement('pre');
+    linkstring.textContent = returnMessage
+    linkstring.id = 'linkstring';
+
+    const copybutton = document.createElement('button');
+    copybutton.type = "button";
+    copybutton.textContent = "Copy";
+    copybutton.id = 'copybutton';
+    copybutton.onclick = () => {
+        navigator.clipboard.writeText(returnMessage);
+        copybutton.style.backgroundColor = '#00008B';
+    }
+
+    const copybuttonRules = document.createElement('button');
+    copybuttonRules.type = "button";
+    copybuttonRules.textContent = "Copy with rules";
+    copybuttonRules.id = 'copybuttonRules';
+    copybuttonRules.onclick = () => {
+        const linkandrules = ["You are invited to play a game!",
+            returnMessage,
+            rules].join('\n');
+        navigator.clipboard.writeText(linkandrules);
+        copybuttonRules.style.backgroundColor = '#00008B';
+    }
+    const linktosend = document.getElementById('linktosend');
+    linktosend.style.display = 'flex';
+    linktosend.innerHTML = '';
+    linktosend.appendChild(linkstring);
+    linktosend.appendChild(copybutton);
+    linktosend.appendChild(copybuttonRules);
+}
 
 ws.onmessage = (event) => {
     const message = JSON.parse(event.data);
+    console.log(message)
 
     switch (message.type) {
+        case 'IDs':
+            roomID = message.data.roomID;
+            hostID = message.data.hostID;
+            guestID = message.data.guestID;
+            break;
         case 'gamelink':
-            console.log('received')
-            //generating link and the copy button
-            const linkstring = document.createElement('pre');
-            linkstring.textContent = message.data.link;
-            linkstring.id = 'linkstring';
-            roomID = message.data.link.split('=').pop();
-            hostuid = message.data.hostuid;
-
-            const copybutton = document.createElement('button');
-            copybutton.type = "button";
-            copybutton.textContent = "Copy";
-            copybutton.id = 'copybutton';
-            copybutton.onclick = () => {
-                navigator.clipboard.writeText(message.data.link);
-                copybutton.style.backgroundColor = '#00008B';
-            }
-
-            const copybuttonRules = document.createElement('button');
-            copybuttonRules.type = "button";
-            copybuttonRules.textContent = "Copy with rules";
-            copybuttonRules.id = 'copybuttonRules';
-            copybuttonRules.onclick = () => {
-                const linkandrules = ["You are invited to play a game!",
-                    message.data.link,
-                    rules].join('\n');
-                navigator.clipboard.writeText(linkandrules);
-                copybuttonRules.style.backgroundColor = '#00008B';
-            }
-            const linktosend = document.getElementById('linktosend');
-            linktosend.style.display = 'flex';
-            linktosend.innerHTML = '';
-            linktosend.appendChild(linkstring);
-            linktosend.appendChild(copybutton);
-            linktosend.appendChild(copybuttonRules);
+            displayLink(message.data);
             break;
         case 'game_starts':
-            window.location.href = `/game.html?type=host&uid=${hostuid}&roomID=${roomID}`;
+            window.location.href = `/game.html?type=host&uid=${hostID}&roomID=${roomID}`;
             break;
+        default:
+            console.log(`received unknown message: ${message.type}`)
     }
 }
 
@@ -123,4 +126,7 @@ window.addEventListener('DOMContentLoaded', () => {
         guestcheckbox.checked = guestcheckboxState === "random";
         guestexttinput.disabled = guestcheckboxState === "random";
     }
+
+    console.log(roomID)
+    setInterval(() => console.log(roomID), 2000);
 });

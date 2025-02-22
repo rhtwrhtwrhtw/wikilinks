@@ -45,9 +45,6 @@ class ClientConnection {
           this.gamestate = message.data;
           this.displayState();
           break;
-        case 'set_uid':
-          this.playerID = message.data;
-          break;
         case 'restore_gamestate':
           this.loadedFlag = false;
           this.gamestate = message.data;

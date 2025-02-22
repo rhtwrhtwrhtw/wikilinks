@@ -1,18 +1,13 @@
-const uuid = require('uuid').v4;
 const { WebSocket } = require('ws');
+const uuid = require('uuid').v4;
 
 const Logger = require('./logger.js');
-
-const nOfRooms = 100;
-const gameRooms = new Map();
-
-const logger = new Logger();
 
 class Gameroom {
     constructor(roomID) {
         this.roomID = roomID;
-        this.hostID = null;
-        this.guestID = null;
+        this.hostID = uuid().slice(0, 8);
+        this.guestID = uuid().slice(0, 8);
 
         this.hostConnection = null;
         this.guestConnection = null;
@@ -62,49 +57,19 @@ class Gameroom {
     isEmpty() {
         return !this.hostID && !this.guestID;
     }
-}
 
-function createRooms(n = nOfRooms) {
-    for (let i = 0; i < n; i++) {
-        let roomID = uuid().slice(0, 8);
-        let room = new Gameroom(roomID);
-        gameRooms.set(roomID, room);
-    }
-    logger.serverWrite(`created ${n} rooms`);
-}
-
-function findEmptyRoomID() {
-    for (const [roomID, room] of gameRooms) {
-      if (room.isEmpty() && room.status === 'pending') {
-        return roomID;
-      }
-    }
-    logger.serverWrite('failed to fetch an empty room');
-    return false;
-  }
-
-function findRoomByUID(uid) {
-    const copy = Array.from(gameRooms).map(arr => arr[1]);
-    for (room of copy) {
-        if (uid === room.hostID || uid === room.guestID) return room;
-    }
-    logger.serverWrite(`there is not a room with uid ${uid}`);
-}
-
-async function handleGameStart(room) {
-    try {
-        await room.gamestate.init();
-    } catch (error) {
-        console.error('Failed to initialize game:', error);
-        throw error;
+    async handleGameStart() {
+        try {
+            await this.gamestate.init();
+        } catch (error) {
+            console.error('Failed to initialize game:', error);
+            throw error;
+        }
     }
 }
+
+
 
 module.exports = {
-    Gameroom,
-    createRooms, 
-    findEmptyRoomID,
-    findRoomByUID, 
-    handleGameStart,
-    gameRooms
+    Gameroom
 }

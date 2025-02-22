@@ -1,200 +1,36 @@
-{"time":"2025-02-21_10-36-46.354","message":"created 100 rooms"}
-{"time":"2025-02-21_10-36-46.355","message":"server running on port 9999"}
-{"time":"2025-02-21_10-36-46.355","message":"address is undefined"}
-{"time":"2025-02-21_10-37-58.272","message":"127.0.0.1 requested file index.html"}
-{"time":"2025-02-21_10-37-58.282","message":"serving /home/lena/projects/wikilinks/client/index.html to 127.0.0.1"}
-{"time":"2025-02-21_10-37-58.799","message":"127.0.0.1 requested file wikilinks-styles.css"}
-{"time":"2025-02-21_10-37-58.802","message":"127.0.0.1 requested file lobby.js"}
-{"time":"2025-02-21_10-37-58.802","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
-{"time":"2025-02-21_10-37-58.803","message":"serving /home/lena/projects/wikilinks/client/lobby.js to 127.0.0.1"}
-{"time":"2025-02-21_10-37-59.021","message":"127.0.0.1 requested file rules.txt"}
-{"time":"2025-02-21_10-37-59.022","message":"serving /home/lena/projects/wikilinks/client/rules.txt to 127.0.0.1"}
-{"time":"2025-02-21_10-38-04.385","message":"127.0.0.1 requested file game.html"}
-{"time":"2025-02-21_10-38-04.386","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
-{"time":"2025-02-21_10-38-04.607","message":"127.0.0.1 requested file wikilinks-styles.css"}
-{"time":"2025-02-21_10-38-04.608","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
-{"time":"2025-02-21_10-38-04.639","message":"127.0.0.1 requested file throbber.gif"}
-{"time":"2025-02-21_10-38-04.642","message":"127.0.0.1 requested file gameclient.js"}
-{"time":"2025-02-21_10-38-04.643","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
-{"time":"2025-02-21_10-38-04.646","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
-{"time":"2025-02-21_10-38-05.052","message":"127.0.0.1 requested file game.html"}
-{"time":"2025-02-21_10-38-05.053","message":"serving /home/lena/projects/wikilinks/client/game.html to 127.0.0.1"}
-{"time":"2025-02-21_10-38-05.194","message":"127.0.0.1 requested file wikilinks-styles.css"}
-{"time":"2025-02-21_10-38-05.195","message":"serving /home/lena/projects/wikilinks/client/wikilinks-styles.css to 127.0.0.1"}
-{"time":"2025-02-21_10-38-05.203","message":"127.0.0.1 requested file throbber.gif"}
-{"time":"2025-02-21_10-38-05.203","message":"127.0.0.1 requested file gameclient.js"}
-{"time":"2025-02-21_10-38-05.204","message":"serving /home/lena/projects/wikilinks/client/throbber.gif to 127.0.0.1"}
-{"time":"2025-02-21_10-38-05.205","message":"serving /home/lena/projects/wikilinks/client/gameclient.js to 127.0.0.1"}
-{"time":"2025-02-21_10-38-57.285","message":"created 100 rooms"}
-{"time":"2025-02-21_10-38-57.286","message":"server running on port 9999"}
-{"time":"2025-02-21_10-38-57.286","message":"address is undefined"}
-{"time":"2025-02-21_10-39-05.836","message":"created 100 rooms"}
-{"time":"2025-02-21_10-39-05.837","message":"server running on port 9999"}
-{"time":"2025-02-21_10-39-05.837","message":"address is undefined"}
-{"time":"2025-02-21_10-40-15.485","message":"created 100 rooms"}
-{"time":"2025-02-21_10-40-15.486","message":"server running on port 9999"}
-{"time":"2025-02-21_10-40-15.486","message":"address is undefined"}
-{"time":"2025-02-21_10-40-32.117","message":"created 100 rooms"}
-{"time":"2025-02-21_10-40-32.118","message":"server running on port 9999"}
-{"time":"2025-02-21_10-40-32.118","message":"address is undefined"}
-{"time":"2025-02-21_10-40-59.790","message":"created 100 rooms"}
-{"time":"2025-02-21_10-40-59.790","message":"server running on port 9999"}
-{"time":"2025-02-21_10-40-59.790","message":"address is undefined"}
-{"time":"2025-02-21_10-41-39.928","message":"created 100 rooms"}
-{"time":"2025-02-21_10-41-39.929","message":"server running on port 9999"}
-{"time":"2025-02-21_10-41-39.929","message":"address is undefined"}
-{"time":"2025-02-21_10-42-12.589","message":"created 100 rooms"}
-{"time":"2025-02-21_10-42-12.590","message":"server running on port 9999"}
-{"time":"2025-02-21_10-42-12.590","message":"address is undefined"}
-{"time":"2025-02-21_10-42-37.476","message":"created 100 rooms"}
-{"time":"2025-02-21_10-42-37.477","message":"server running on port 9999"}
-{"time":"2025-02-21_10-42-37.477","message":"address is undefined"}
-{"time":"2025-02-21_10-50-31.795","message":"created 100 rooms"}
-{"time":"2025-02-21_10-50-31.796","message":"server running on port 9999"}
-{"time":"2025-02-21_10-50-31.796","message":"address is undefined"}
-{"time":"2025-02-21_10-51-00.155","message":"created 100 rooms"}
-{"time":"2025-02-21_10-51-00.156","message":"server running on port 9999"}
-{"time":"2025-02-21_10-51-00.156","message":"address is undefined"}
-{"time":"2025-02-21_10-52-12.878","message":"created 100 rooms"}
-{"time":"2025-02-21_10-52-12.879","message":"server running on port 9999"}
-{"time":"2025-02-21_10-52-12.879","message":"address is undefined"}
-{"time":"2025-02-21_10-53-18.251","message":"created 100 rooms"}
-{"time":"2025-02-21_10-53-18.251","message":"server running on port 9999"}
-{"time":"2025-02-21_10-53-18.251","message":"address is undefined"}
-{"time":"2025-02-21_10-54-07.982","message":"created 100 rooms"}
-{"time":"2025-02-21_10-54-07.983","message":"server running on port 9999"}
-{"time":"2025-02-21_10-54-07.983","message":"address is undefined"}
-{"time":"2025-02-21_10-54-20.722","message":"created 100 rooms"}
-{"time":"2025-02-21_10-54-20.723","message":"server running on port 9999"}
-{"time":"2025-02-21_10-54-20.723","message":"address is undefined"}
-{"time":"2025-02-21_10-55-29.685","message":"created 100 rooms"}
-{"time":"2025-02-21_10-55-29.686","message":"server running on port 9999"}
-{"time":"2025-02-21_10-55-29.686","message":"address is undefined"}
-{"time":"2025-02-21_11-02-42.400","message":"created 100 rooms"}
-{"time":"2025-02-21_11-02-42.401","message":"server running on port 9999"}
-{"time":"2025-02-21_11-02-42.401","message":"address is undefined"}
-{"time":"2025-02-21_11-03-56.939","message":"created 100 rooms"}
-{"time":"2025-02-21_11-03-56.940","message":"server running on port 9999"}
-{"time":"2025-02-21_11-03-56.940","message":"address is undefined"}
-{"time":"2025-02-21_11-04-34.523","message":"created 100 rooms"}
-{"time":"2025-02-21_11-04-34.524","message":"server running on port 9999"}
-{"time":"2025-02-21_11-04-34.524","message":"address is undefined"}
-{"time":"2025-02-21_11-05-26.410","message":"created 100 rooms"}
-{"time":"2025-02-21_11-05-26.411","message":"server running on port 9999"}
-{"time":"2025-02-21_11-05-26.411","message":"address is undefined"}
-{"time":"2025-02-21_11-06-09.109","message":"created 100 rooms"}
-{"time":"2025-02-21_11-06-09.110","message":"server running on port 9999"}
-{"time":"2025-02-21_11-06-09.110","message":"address is undefined"}
-{"time":"2025-02-21_11-08-47.046","message":"created 100 rooms"}
-{"time":"2025-02-21_11-08-47.047","message":"server running on port 9999"}
-{"time":"2025-02-21_11-08-47.047","message":"address is undefined"}
-{"time":"2025-02-21_11-09-33.935","message":"created 100 rooms"}
-{"time":"2025-02-21_11-09-33.936","message":"server running on port 9999"}
-{"time":"2025-02-21_11-09-33.936","message":"address is undefined"}
-{"time":"2025-02-21_11-10-17.232","message":"created 100 rooms"}
-{"time":"2025-02-21_11-10-17.233","message":"server running on port 9999"}
-{"time":"2025-02-21_11-10-17.233","message":"address is undefined"}
-{"time":"2025-02-21_11-15-02.098","message":"created 100 rooms"}
-{"time":"2025-02-21_11-15-02.099","message":"server running on port 9999"}
-{"time":"2025-02-21_11-15-02.100","message":"address is undefined"}
-{"time":"2025-02-21_11-15-08.311","message":"created 100 rooms"}
-{"time":"2025-02-21_11-15-08.312","message":"server running on port 9999"}
-{"time":"2025-02-21_11-15-08.312","message":"address is undefined"}
-{"time":"2025-02-21_11-15-25.566","message":"created 100 rooms"}
-{"time":"2025-02-21_11-15-25.567","message":"server running on port 9999"}
-{"time":"2025-02-21_11-15-25.567","message":"address is undefined"}
-{"time":"2025-02-21_11-15-51.628","message":"created 100 rooms"}
-{"time":"2025-02-21_11-15-51.628","message":"server running on port 9999"}
-{"time":"2025-02-21_11-15-51.628","message":"address is undefined"}
-{"time":"2025-02-21_11-15-59.649","message":"created 100 rooms"}
-{"time":"2025-02-21_11-15-59.650","message":"server running on port 9999"}
-{"time":"2025-02-21_11-15-59.650","message":"address is undefined"}
-{"time":"2025-02-21_11-19-08.761","message":"created 100 rooms"}
-{"time":"2025-02-21_11-19-08.762","message":"server running on port 9999"}
-{"time":"2025-02-21_11-19-08.762","message":"address is undefined"}
-{"time":"2025-02-21_11-20-16.680","message":"created 100 rooms"}
-{"time":"2025-02-21_11-20-16.681","message":"server running on port 9999"}
-{"time":"2025-02-21_11-20-16.681","message":"address is undefined"}
-{"time":"2025-02-21_11-20-21.845","message":"created 100 rooms"}
-{"time":"2025-02-21_11-20-21.846","message":"server running on port 9999"}
-{"time":"2025-02-21_11-20-21.846","message":"address is undefined"}
-{"time":"2025-02-21_11-20-31.089","message":"created 100 rooms"}
-{"time":"2025-02-21_11-20-31.090","message":"server running on port 9999"}
-{"time":"2025-02-21_11-20-31.090","message":"address is undefined"}
-{"time":"2025-02-21_11-24-17.140","message":"created 100 rooms"}
-{"time":"2025-02-21_11-24-17.141","message":"server running on port 9999"}
-{"time":"2025-02-21_11-24-17.141","message":"address is undefined"}
-{"time":"2025-02-21_12-12-29.768","message":"created 100 rooms"}
-{"time":"2025-02-21_12-12-29.769","message":"server running on port 9999"}
-{"time":"2025-02-21_12-12-29.769","message":"address is undefined"}
-{"time":"2025-02-21_12-12-54.646","message":"there is no room with id a7b64ba4, GET OUT!"}
-{"time":"2025-02-21_12-13-00.031","message":"there is no room with id a7b64ba4, GET OUT!"}
-{"time":"2025-02-21_12-14-01.861","message":"created 100 rooms"}
-{"time":"2025-02-21_12-14-01.861","message":"server running on port 9999"}
-{"time":"2025-02-21_12-14-01.862","message":"address is undefined"}
-{"time":"2025-02-21_12-14-50.559","message":"created 1 rooms"}
-{"time":"2025-02-21_12-15-02.160","message":"there is no room with id undefined, GET OUT!"}
-{"time":"2025-02-21_12-24-41.762","message":"created 100 rooms"}
-{"time":"2025-02-21_12-24-41.763","message":"server running on port 9999"}
-{"time":"2025-02-21_12-24-41.763","message":"address is undefined"}
-{"time":"2025-02-21_12-24-57.878","message":"created 100 rooms"}
-{"time":"2025-02-21_12-24-57.879","message":"server running on port 9999"}
-{"time":"2025-02-21_12-24-57.879","message":"address is undefined"}
-{"time":"2025-02-21_12-27-30.440","message":"created 1 rooms"}
-{"time":"2025-02-21_12-27-30.739","message":"there is no room with id 93a5c519, GET OUT!"}
-{"time":"2025-02-21_12-34-59.867","message":"created 1 rooms"}
-{"time":"2025-02-21_12-35-26.181","message":"created 1 rooms"}
-{"time":"2025-02-21_12-35-26.532","message":"there is no room with id 7750f247, GET OUT!"}
-{"time":"2025-02-21_12-39-17.833","message":"created 100 rooms"}
-{"time":"2025-02-21_12-39-17.834","message":"server running on port 9999"}
-{"time":"2025-02-21_12-39-17.834","message":"address is undefined"}
-{"time":"2025-02-21_12-42-33.213","message":"created 100 rooms"}
-{"time":"2025-02-21_12-42-33.214","message":"server running on port 9999"}
-{"time":"2025-02-21_12-42-33.214","message":"address is undefined"}
-{"time":"2025-02-21_12-44-27.188","message":"created 100 rooms"}
-{"time":"2025-02-21_12-44-27.188","message":"server running on port 9999"}
-{"time":"2025-02-21_12-44-27.188","message":"address is undefined"}
-{"time":"2025-02-21_12-45-48.238","message":"created 100 rooms"}
-{"time":"2025-02-21_12-45-48.239","message":"server running on port 9999"}
-{"time":"2025-02-21_12-45-48.239","message":"address is undefined"}
-{"time":"2025-02-21_12-46-11.469","message":"created 100 rooms"}
-{"time":"2025-02-21_12-46-11.470","message":"server running on port 9999"}
-{"time":"2025-02-21_12-46-11.470","message":"address is undefined"}
-{"time":"2025-02-21_12-47-11.172","message":"created 100 rooms"}
-{"time":"2025-02-21_12-47-11.173","message":"server running on port 9999"}
-{"time":"2025-02-21_12-47-11.173","message":"address is undefined"}
-{"time":"2025-02-21_12-49-47.747","message":"created 100 rooms"}
-{"time":"2025-02-21_12-49-47.747","message":"server running on port 9999"}
-{"time":"2025-02-21_12-49-47.748","message":"address is undefined"}
-{"time":"2025-02-21_12-54-22.327","message":"failed to fetch an empty room"}
-{"time":"2025-02-21_12-54-22.327","message":"there is no room with id false, GET OUT!"}
-{"time":"2025-02-21_12-55-05.581","message":"created 1 rooms"}
-{"time":"2025-02-21_12-55-05.894","message":"there is no room with id b1cdfe14, GET OUT!"}
-{"time":"2025-02-21_12-55-53.605","message":"failed to fetch an empty room"}
-{"time":"2025-02-21_12-55-53.605","message":"there is no room with id false, GET OUT!"}
-{"time":"2025-02-21_12-57-13.526","message":"failed to fetch an empty room"}
-{"time":"2025-02-21_12-57-13.527","message":"there is no room with id false, GET OUT!"}
-{"time":"2025-02-21_12-57-29.592","message":"failed to fetch an empty room"}
-{"time":"2025-02-21_12-57-29.592","message":"there is no room with id false, GET OUT!"}
-{"time":"2025-02-21_12-58-08.680","message":"failed to fetch an empty room"}
-{"time":"2025-02-21_12-58-08.680","message":"there is no room with id false, GET OUT!"}
-{"time":"2025-02-21_12-58-11.259","message":"created 1 rooms"}
-{"time":"2025-02-21_12-58-11.637","message":"there is no room with id d5f85b60, GET OUT!"}
-{"time":"2025-02-21_13-35-47.697","message":"failed to fetch an empty room"}
-{"time":"2025-02-21_13-35-47.697","message":"there is no room with id false, GET OUT!"}
-{"time":"2025-02-21_13-39-55.735","message":"created 100 rooms"}
-{"time":"2025-02-21_13-39-55.736","message":"server running on port 9999"}
-{"time":"2025-02-21_13-39-55.736","message":"address is undefined"}
-{"time":"2025-02-21_14-00-05.307","message":"created 1 rooms"}
-{"time":"2025-02-21_14-00-05.473","message":"there is no room with id e50e4c60, GET OUT!"}
-{"time":"2025-02-21_14-00-59.134","message":"created 1 rooms"}
-{"time":"2025-02-21_14-30-14.476","message":"created 1 rooms"}
-{"time":"2025-02-21_14-30-14.734","message":"there is no room with id abd9d415, GET OUT!"}
-{"time":"2025-02-21_14-30-47.617","message":"file /home/lena/projects/wikilinks/client/installHook.js.map not found"}
-{"time":"2025-02-21_14-58-25.003","message":"created 1 rooms"}
-{"time":"2025-02-21_14-58-26.282","message":"created 1 rooms"}
-{"time":"2025-02-21_15-22-00.970","message":"created 1 rooms"}
-{"time":"2025-02-21_15-23-12.726","message":"created 1 rooms"}
-{"time":"2025-02-21_15-23-12.903","message":"there is no room with id 288c97c3, GET OUT!"}
-{"time":"2025-02-21_16-01-12.262","message":"created 1 rooms"}
-{"time":"2025-02-21_16-01-12.416","message":"there is no room with id 135ec1e9, GET OUT!"}
+{"time":"2025-02-22_15-02-37.853","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_15-04-32.692","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_15-05-49.035","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_15-06-20.495","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_15-08-26.368","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_15-08-57.289","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_15-10-18.458","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_15-22-41.252","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_15-23-26.178","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_15-23-31.125","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_15-24-32.516","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_15-25-04.259","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_15-26-58.357","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_15-28-50.961","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_15-29-40.762","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_15-30-50.787","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_15-38-46.770","message":"file /home/lena/projects/wikilinks/client/installHook.js.map not found"}
+{"time":"2025-02-22_15-40-08.499","message":"file /home/lena/projects/wikilinks/client/installHook.js.map not found"}
+{"time":"2025-02-22_15-42-09.221","message":"file /home/lena/projects/wikilinks/client/installHook.js.map not found"}
+{"time":"2025-02-22_15-46-14.878","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_15-49-19.732","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_15-50-12.779","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_15-55-01.397","message":"file /home/lena/projects/wikilinks/client/installHook.js.map not found"}
+{"time":"2025-02-22_15-55-49.166","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_15-56-17.074","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_15-58-16.396","message":"file /home/lena/projects/wikilinks/client/installHook.js.map not found"}
+{"time":"2025-02-22_15-58-51.244","message":"file /home/lena/projects/wikilinks/client/installHook.js.map not found"}
+{"time":"2025-02-22_16-10-42.280","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_16-11-55.207","message":"file /home/lena/projects/wikilinks/client/installHook.js.map not found"}
+{"time":"2025-02-22_16-12-00.579","message":"file /home/lena/projects/wikilinks/client/installHook.js.map not found"}
+{"time":"2025-02-22_16-12-37.123","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_16-15-39.582","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_16-15-50.083","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_16-16-06.309","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_16-16-33.447","message":"server running on port 9999, address undefined"}
+{"time":"2025-02-22_16-19-48.492","message":"server running on port 9999, address undefined"}
