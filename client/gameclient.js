@@ -2,7 +2,7 @@ class ClientConnection {
   constructor() {
     this.ws = null;
     this.roomID = null;
-    this.uid = null;
+    this.ID = null
     this.isHost = null;
 
     this.gamestate = {};
@@ -74,6 +74,9 @@ class ClientConnection {
 
 
   displayState() {
+    const overlay = document.getElementById('overlay');
+    overlay.style.display = 'none';
+
     const current = document.getElementById('current');
     const mySide = document.getElementById('mySide');
     const myList = document.getElementById('myList');
@@ -119,6 +122,10 @@ class ClientConnection {
     oppSide.appendChild(opp);
 
     this.loadedFlag = true;
+    mySide.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    })
   }
 
   readyReload() {
@@ -218,6 +225,7 @@ class ClientConnection {
   }
 
   backToLobby() {
+    sessionStorage.clear();
     window.location.href = '/';
     this.connect();
   }

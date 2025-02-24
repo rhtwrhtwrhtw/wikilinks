@@ -75,12 +75,16 @@ button:hover {
 #mySide {
     flex: 1;
     overflow-y: auto;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    overscroll-behavior-y: auto;
     background: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     position: relative;
     min-height: 200px;
+    width: min-content;
 }
 
 #overlay {

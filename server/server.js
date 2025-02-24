@@ -85,27 +85,17 @@ const rooms = new Map();
 wss.on('connection', (connection, request) => {
     const urlinstance = request.url;
     const type = url.parse(urlinstance, true).query.type;
-    let roomID;
+    let roomID = url.parse(urlinstance, true).query.roomID;
     let room;
+    
 
     switch (type) {
         default:
-            roomID = uuid().slice(0, 8);
-            room = new Gameroom(roomID);
-            rooms.set(roomID, room);
-            room.logger.write(`user ${room.hostID} has entered the lobby, preparing room ${roomID}`);
-            room.lobby = connection;
-            room.lobby.send(JSON.stringify({
-                type: 'IDs',
-                data: {
-                    roomID,
-                    hostID: room.hostID,
-                    guestID: room.guestID
-                }
-            }));
+
             break;
         case 'host':
-            console.log(room)
+            room = rooms.get(roomID);
+            
             if (room.status === 'playing') {
                 room.logger.write(`host ${room.hostID} has reconnected to room ${roomID}`);
                 room.hostConnection = connection;
@@ -117,6 +107,7 @@ wss.on('connection', (connection, request) => {
             room.hostConnection = connection;
             break;
         case 'guest':
+            room = rooms.get(roomID);
             if (room.status === 'playing') {
                 room.logger.write(`guest ${room.hostID} has reconnected to room ${roomID}`);
                 room.guestConnection = connection;
@@ -127,19 +118,41 @@ wss.on('connection', (connection, request) => {
             room.logger.write(`guest ${room.guestID} has joined room ${roomID}`);
             room.guestID = room.guestID;
             room.guestConnection = connection;
-            connection.send(JSON.stringify({ type: 'set_uid', data: room.guestID }));
             room.lobby.send(JSON.stringify({ type: 'game_starts', data: {} }));
             break;
     }
 
     connection.on('message', (message) => {
         message = JSON.parse(message.toString());
-        room.logger.write(`received message ${message.type}`);
+        room?.logger.write(`received message ${message.type}`); // need to redo ?. they are kinda stupid
 
         switch (message.type) {
+            case 'request_IDs':
+                if (message.data.roomID === null) {
+                    roomID = 'R' + uuid().slice(0, 7);
+                    room = new Gameroom(roomID);
+                    room.hostID = 'H' + uuid().slice(0, 7);
+                    room.guestID = 'G' + uuid().slice(0, 7);
+                    room.lobby = connection;
+
+                    rooms.set(roomID, room);
+
+                    connection.send(JSON.stringify({
+                        type: 'IDs',
+                        data: {
+                            roomID,
+                            hostID: room.hostID,
+                            guestID: room.guestID
+                        }
+                    }));
+                } else if (message.data.roomID) {
+                    room = rooms.get(message.data.roomID)
+                }
+                
+                break;
             case 'host_transfer':
-                if (room.status === 'claimed') {
-                    handleGameStart(room).then(
+                if (room.status !== 'playing') {
+                    room.handleGameStart().then(
                         () => {
                             room.logger.write(`game initialized, initial links:`);
                             room.logger.write(`host: ${room.gamestate.hostLink.title}`);
@@ -150,12 +163,14 @@ wss.on('connection', (connection, request) => {
                 } else {
                     room.logger.write('no transfer needed, reconnection');
                 }
+
                 break;
             case 'generate_link':
                 const link = `http://${HOSTNAME}/game.html?type=guest&uid=${room.guestID}&roomID=${roomID}`; // roomID shold be last
                 checkValidity(message).then(result => {
                     const returnMessage = (result === true) ? link : result;
                     if (result === true) {
+                        room.status = 'preparing';
                         room.gamestate = new Gamestate(message.data.lang,
                             message.data.artforhost,
                             message.data.artforguest,
@@ -212,7 +227,7 @@ wss.on('connection', (connection, request) => {
                 if (message.data.sentfrom === 'guest') room.guestWantsNext = true;
 
                 if (room.hostWantsNext && room.guestWantsNext) {
-                    handleGameStart(room).then(
+                    room.handleGameStart().then(
                         () => {
                             room.logger.write(`game reinitialized, links:`);
                             room.logger.write(`host: ${room.gamestate.hostLink.title}`);
@@ -245,8 +260,7 @@ wss.on('connection', (connection, request) => {
                 if (room.hostConnection?.readyState === WebSocket.CLOSED &&
                     room.guestConnection?.readyState === WebSocket.CLOSED) {
                     room.logger.write(`room ${roomID} is empty, cleaning up`);
-                    gameRooms.delete(roomID);
-                    createRooms(1);
+                    rooms.delete(roomID);
                 }
                 break;
             case 'guest':
@@ -254,16 +268,15 @@ wss.on('connection', (connection, request) => {
                 if (room.hostConnection?.readyState === WebSocket.CLOSED &&
                     room.guestConnection?.readyState === WebSocket.CLOSED) {
                     room.logger.write(`room ${roomID} is empty, cleaning up`);
-                    gameRooms.delete(roomID);
-                    createRooms(1);
+                    rooms.delete(roomID);
                 }
                 break;
             default:
-                if (room.guestConnection === null) {
+                if (room?.guestConnection === null) {
                     room.logger.write(`host ${room.hostID} left the lobby for room ${roomID} before starting the game`);
                     rooms.delete(roomID);
                     return;
-                } else room.logger.write(`lobby for room ${roomID} was discarded successfully`);
+                } else room?.logger.write(`lobby for room ${roomID} was discarded successfully`);
                 break;
         }
     })

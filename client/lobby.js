@@ -2,9 +2,21 @@ const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
 const address = window.location.host;
 ws = new WebSocket(`${wsProtocol}//${address}`);
 
-let roomID;
-let hostID;
-let guestID;
+let roomID = sessionStorage.getItem('roomID');
+let hostID = sessionStorage.getItem('hostID');
+let guestID = sessionStorage.getItem('guestID');
+
+ws.onopen = () => {
+    ws.send(JSON.stringify({
+        type: 'request_IDs',
+        data: {
+            roomID,
+            hostID,
+            guestID
+        }
+    }));
+}
+
 
 let rules;
 fetch('rules.txt')
@@ -85,15 +97,22 @@ function displayLink(returnMessage) {
     linktosend.appendChild(copybuttonRules);
 }
 
+function setID(id, label) {
+    if (sessionStorage.getItem(label) === null) {
+        sessionStorage.setItem(label, id);
+    }
+    return sessionStorage.getItem(label);
+}
+
 ws.onmessage = (event) => {
     const message = JSON.parse(event.data);
     console.log(message)
 
     switch (message.type) {
         case 'IDs':
-            roomID = message.data.roomID;
-            hostID = message.data.hostID;
-            guestID = message.data.guestID;
+            roomID = setID(message.data.roomID, 'roomID');
+            hostID = setID(message.data.hostID, 'hostID');
+            guestID = setID(message.data.guestID, 'guestID');
             break;
         case 'gamelink':
             displayLink(message.data);
@@ -127,6 +146,6 @@ window.addEventListener('DOMContentLoaded', () => {
         guestexttinput.disabled = guestcheckboxState === "random";
     }
 
-    console.log(roomID)
-    setInterval(() => console.log(roomID), 2000);
+    console.log(sessionStorage);
+    setTimeout(() => console.log(roomID, hostID, guestID, sessionStorage), 2000);
 });

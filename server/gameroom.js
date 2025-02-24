@@ -1,13 +1,12 @@
 const { WebSocket } = require('ws');
-const uuid = require('uuid').v4;
 
 const Logger = require('./logger.js');
 
 class Gameroom {
     constructor(roomID) {
         this.roomID = roomID;
-        this.hostID = uuid().slice(0, 8);
-        this.guestID = uuid().slice(0, 8);
+        this.hostID = null;
+        this.guestID = null;
 
         this.hostConnection = null;
         this.guestConnection = null;
