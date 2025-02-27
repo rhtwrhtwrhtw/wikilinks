@@ -2,7 +2,6 @@ class ClientConnection {
   constructor() {
     this.ws = null;
     this.roomID = null;
-    this.ID = null
     this.isHost = null;
 
     this.gamestate = {};
@@ -22,7 +21,6 @@ class ClientConnection {
     const params = new Map(connectionurl.split('?')[1].split('&').map(string => string.split('=')));
     this.isHost = params.get('type') === 'host';
     this.roomID = params.get('roomID');
-    this.uid = params.get('uid');
 
     this.ws = new WebSocket(connectionurl);
 

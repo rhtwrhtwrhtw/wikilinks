@@ -3,20 +3,13 @@ const address = window.location.host;
 ws = new WebSocket(`${wsProtocol}//${address}`);
 
 let roomID = sessionStorage.getItem('roomID');
-let hostID = sessionStorage.getItem('hostID');
-let guestID = sessionStorage.getItem('guestID');
-
+console.log(roomID)
 ws.onopen = () => {
     ws.send(JSON.stringify({
-        type: 'request_IDs',
-        data: {
-            roomID,
-            hostID,
-            guestID
-        }
+        type: 'init_ID',
+        data: roomID
     }));
 }
-
 
 let rules;
 fetch('rules.txt')
@@ -97,31 +90,29 @@ function displayLink(returnMessage) {
     linktosend.appendChild(copybuttonRules);
 }
 
-function setID(id, label) {
-    if (sessionStorage.getItem(label) === null) {
-        sessionStorage.setItem(label, id);
-    }
-    return sessionStorage.getItem(label);
-}
-
 ws.onmessage = (event) => {
+    console.log('amogus')
     const message = JSON.parse(event.data);
     console.log(message)
 
     switch (message.type) {
-        case 'IDs':
-            roomID = setID(message.data.roomID, 'roomID');
-            hostID = setID(message.data.hostID, 'hostID');
-            guestID = setID(message.data.guestID, 'guestID');
+        case 'ID':
+            if (sessionStorage.getItem('roomID') === null) {
+                roomID = message.data;
+                sessionStorage.setItem('roomID', message.data);
+            } else {
+                roomID = sessionStorage.getItem('roomID');
+            }
             break;
         case 'gamelink':
             displayLink(message.data);
             break;
         case 'game_starts':
-            window.location.href = `/game.html?type=host&uid=${hostID}&roomID=${roomID}`;
+            window.location.href = `/game.html?type=host&roomID=${roomID}`;
             break;
         default:
             console.log(`received unknown message: ${message.type}`)
+        break;
     }
 }
 
@@ -146,6 +137,5 @@ window.addEventListener('DOMContentLoaded', () => {
         guestexttinput.disabled = guestcheckboxState === "random";
     }
 
-    console.log(sessionStorage);
-    setTimeout(() => console.log(roomID, hostID, guestID, sessionStorage), 2000);
+    console.log(sessionStorage)
 });

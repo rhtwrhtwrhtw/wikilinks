@@ -11,7 +11,8 @@ const { Gameroom } = require('./gameroom.js');
 const { Gamestate } = require('./gamelogic.js');
 const { checkValidity } = require('./links.js');
 
-const logger = new Logger(); //for server logs
+const serverlog = new Logger('server.log'); 
+const lobbylog = new Logger('lobby.log');
 
 const httpserver = http.createServer((request, response) => {
     if (request.method != 'GET') {
@@ -28,16 +29,16 @@ const httpserver = http.createServer((request, response) => {
         trimLink = 'index.html';
     }
 
-    //logger.serverWrite(`${request.socket.remoteAddress} requested file ${trimLink}`);
+    //serverlog.write(`${request.socket.remoteAddress} requested file ${trimLink}`);
 
     const file = path.join(__dirname, '..', 'client', trimLink);
     fs.readFile(file, (error, content) => {
         if (error) {
-            logger.serverWrite(`file ${file} not found`);
+            serverlog.write(`file ${file} not found`);
             response.writeHead(404);
             response.end();
         } else {
-            //logger.serverWrite(`serving ${file} to ${request.socket.remoteAddress}`);
+            //serverlog.write(`serving ${file} to ${request.socket.remoteAddress}`);
             response.setHeader("X-Content-Type-Options", "nosniff");
             switch (trimLink) {
                 case 'index.html':
@@ -88,35 +89,33 @@ wss.on('connection', (connection, request) => {
     let roomID = url.parse(urlinstance, true).query.roomID;
     let room;
     
-
     switch (type) {
         default:
-
+            lobbylog.write(`connection to lobby at ${request.socket.remoteAddress}`);
             break;
         case 'host':
             room = rooms.get(roomID);
             
             if (room.status === 'playing') {
-                room.logger.write(`host ${room.hostID} has reconnected to room ${roomID}`);
+                room.logger.write(`host has reconnected to room ${roomID}`);
                 room.hostConnection = connection;
                 connection.send(JSON.stringify({ type: 'restore_gamestate', data: room.gamestate }));
                 break;
             }
 
-            room.logger.write(`host ${room.hostID} has joined room ${roomID}`);
+            room.logger.write(`host has joined room ${roomID}`);
             room.hostConnection = connection;
             break;
         case 'guest':
             room = rooms.get(roomID);
             if (room.status === 'playing') {
-                room.logger.write(`guest ${room.hostID} has reconnected to room ${roomID}`);
+                room.logger.write(`guest has reconnected to room ${roomID}`);
                 room.guestConnection = connection;
                 connection.send(JSON.stringify({ type: 'restore_gamestate', data: room.gamestate }));
                 break;
             }
 
-            room.logger.write(`guest ${room.guestID} has joined room ${roomID}`);
-            room.guestID = room.guestID;
+            room.logger.write(`guest has joined room ${roomID}`);
             room.guestConnection = connection;
             room.lobby.send(JSON.stringify({ type: 'game_starts', data: {} }));
             break;
@@ -124,28 +123,26 @@ wss.on('connection', (connection, request) => {
 
     connection.on('message', (message) => {
         message = JSON.parse(message.toString());
-        room?.logger.write(`received message ${message.type}`); // need to redo ?. they are kinda stupid
+        if (room) {
+            room.logger.write(`received message ${message.type}`);
+        } else {
+            lobbylog.write(`received message ${message.type} from ${request.socket.remoteAddress}`);
+        }
 
         switch (message.type) {
-            case 'request_IDs':
-                if (message.data.roomID === null) {
-                    roomID = 'R' + uuid().slice(0, 7);
+            case 'init_ID':
+                if (message.data === null) {
+                    roomID = uuid().slice(0, 7);
                     room = new Gameroom(roomID);
-                    room.hostID = 'H' + uuid().slice(0, 7);
-                    room.guestID = 'G' + uuid().slice(0, 7);
                     room.lobby = connection;
 
                     rooms.set(roomID, room);
 
                     connection.send(JSON.stringify({
-                        type: 'IDs',
-                        data: {
-                            roomID,
-                            hostID: room.hostID,
-                            guestID: room.guestID
-                        }
+                        type: 'ID',
+                        data: roomID
                     }));
-                } else if (message.data.roomID) {
+                } else if (message.data !== null) {
                     room = rooms.get(message.data.roomID)
                 }
                 
@@ -166,7 +163,7 @@ wss.on('connection', (connection, request) => {
 
                 break;
             case 'generate_link':
-                const link = `http://${HOSTNAME}/game.html?type=guest&uid=${room.guestID}&roomID=${roomID}`; // roomID shold be last
+                const link = `http://${HOSTNAME}/game.html?type=guest&roomID=${roomID}`; 
                 checkValidity(message).then(result => {
                     const returnMessage = (result === true) ? link : result;
                     if (result === true) {
@@ -180,6 +177,7 @@ wss.on('connection', (connection, request) => {
                         type: 'gamelink',
                         data: returnMessage
                     }));
+                    lobbylog.write(`sending link to ${request.socket.remoteAddress}`);
                 })
                 break;
             case 'choice':
@@ -246,7 +244,7 @@ wss.on('connection', (connection, request) => {
                     room.broadcast('opponent_left', {}, 'host');
                 }
             case 'clear':
-                gameRooms.delete(roomID);
+                rooms.delete(roomID);
                 createRooms(1);
             default:
                 room.logger.write(`Unknown message, type: ${message.type}`);
@@ -256,27 +254,32 @@ wss.on('connection', (connection, request) => {
     connection.on('close', () => {
         switch (type) {
             case 'host':
-                room.logger.write(`host ${room.hostID} disconnected from room ${roomID}`);
-                if (room.hostConnection?.readyState === WebSocket.CLOSED &&
-                    room.guestConnection?.readyState === WebSocket.CLOSED) {
+                room.logger.write(`host disconnected from room ${roomID}`);
+                if (room.hostConnection.readyState === WebSocket.CLOSED &&
+                    room.guestConnection.readyState === WebSocket.CLOSED) {
                     room.logger.write(`room ${roomID} is empty, cleaning up`);
                     rooms.delete(roomID);
                 }
                 break;
             case 'guest':
-                room.logger.write(`guest ${room.guestID} disconnected from room ${roomID}`);
-                if (room.hostConnection?.readyState === WebSocket.CLOSED &&
-                    room.guestConnection?.readyState === WebSocket.CLOSED) {
+                room.logger.write(`guest disconnected from room ${roomID}`);
+                if (room.hostConnection.readyState === WebSocket.CLOSED &&
+                    room.guestConnection.readyState === WebSocket.CLOSED) {
                     room.logger.write(`room ${roomID} is empty, cleaning up`);
                     rooms.delete(roomID);
                 }
                 break;
             default:
-                if (room?.guestConnection === null) {
-                    room.logger.write(`host ${room.hostID} left the lobby for room ${roomID} before starting the game`);
+                if (!room) {
+                    lobbylog.write(`${request.socket.remoteAddress} left the lobby`);
+                    return
+                }
+
+                if (room.guestConnection === null) {
+                    lobbylog.write(`host left the lobby for room ${roomID} before starting the game`);
                     rooms.delete(roomID);
                     return;
-                } else room?.logger.write(`lobby for room ${roomID} was discarded successfully`);
+                } else lobbylog.write(`lobby for room ${roomID} was discarded successfully`);
                 break;
         }
     })
@@ -287,5 +290,5 @@ wss.on('connection', (connection, request) => {
 })
 
 httpserver.listen(port, '0.0.0.0', () => {
-    logger.serverWrite(`server running on port ${port}, address ${process.env.ADDRESS}`);
+    serverlog.write(`server running on port ${port}, address ${process.env.ADDRESS}`);
 });

@@ -56,6 +56,9 @@ button {
 button:hover {
     background-color: #1976D2;
 }
+button:active {
+    background-color: #00008B;
+}
 
 #linktosend {
     margin-top: 20px;

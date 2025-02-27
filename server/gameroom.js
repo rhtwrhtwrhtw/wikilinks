@@ -5,8 +5,6 @@ const Logger = require('./logger.js');
 class Gameroom {
     constructor(roomID) {
         this.roomID = roomID;
-        this.hostID = null;
-        this.guestID = null;
 
         this.hostConnection = null;
         this.guestConnection = null;
