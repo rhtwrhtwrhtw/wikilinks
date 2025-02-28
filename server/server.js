@@ -11,7 +11,7 @@ const { Gameroom } = require('./gameroom.js');
 const { Gamestate } = require('./gamelogic.js');
 const { checkValidity } = require('./links.js');
 
-const serverlog = new Logger('server.log'); 
+const serverlog = new Logger('server.log');
 const lobbylog = new Logger('lobby.log');
 
 const httpserver = http.createServer((request, response) => {
@@ -88,14 +88,14 @@ wss.on('connection', (connection, request) => {
     const type = url.parse(urlinstance, true).query.type;
     let roomID = url.parse(urlinstance, true).query.roomID;
     let room;
-    
+
     switch (type) {
         default:
-            lobbylog.write(`connection to lobby at ${request.socket.remoteAddress}`);
+            serverlog.write(`connection to lobby at ${request.socket.remoteAddress}`);
             break;
         case 'host':
             room = rooms.get(roomID);
-            
+
             if (room.status === 'playing') {
                 room.logger.write(`host has reconnected to room ${roomID}`);
                 room.hostConnection = connection;
@@ -132,6 +132,7 @@ wss.on('connection', (connection, request) => {
         switch (message.type) {
             case 'init_ID':
                 if (message.data === null) {
+                    lobbylog.write(`connection to lobby at ${request.socket.remoteAddress}`);
                     roomID = uuid().slice(0, 7);
                     room = new Gameroom(roomID);
                     room.lobby = connection;
@@ -143,9 +144,10 @@ wss.on('connection', (connection, request) => {
                         data: roomID
                     }));
                 } else if (message.data !== null) {
-                    room = rooms.get(message.data.roomID)
+                    roomID = message.data;
+                    lobbylog.write(`reconnection to lobby for ${roomID}`)
+                    room = rooms.get(roomID);
                 }
-                
                 break;
             case 'host_transfer':
                 if (room.status !== 'playing') {
@@ -163,7 +165,7 @@ wss.on('connection', (connection, request) => {
 
                 break;
             case 'generate_link':
-                const link = `http://${HOSTNAME}/game.html?type=guest&roomID=${roomID}`; 
+                const link = `http://${HOSTNAME}/game.html?type=guest&roomID=${roomID}`;
                 checkValidity(message).then(result => {
                     const returnMessage = (result === true) ? link : result;
                     if (result === true) {
@@ -271,16 +273,20 @@ wss.on('connection', (connection, request) => {
                 break;
             default:
                 if (!room) {
-                    lobbylog.write(`${request.socket.remoteAddress} left the lobby`);
-                    return
-                }
-
-                if (room.guestConnection === null) {
-                    lobbylog.write(`host left the lobby for room ${roomID} before starting the game`);
-                    rooms.delete(roomID);
+                    lobbylog.write(`lobby abandoned with no room`)
                     return;
-                } else lobbylog.write(`lobby for room ${roomID} was discarded successfully`);
-                break;
+                }
+                switch (room.status) {
+                    case 'pending':
+                        lobbylog.write(`lobby for ${roomID} was abandoned`)
+                        break;
+                    case 'preparing':
+                        lobbylog.write(`lobby for ${roomID} was abandoned with a room prepared`)
+                        break;
+                    case 'playing':
+                        lobbylog.write(`this should not happen`);
+                        break;
+                }
         }
     })
 

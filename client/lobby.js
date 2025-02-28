@@ -3,8 +3,8 @@ const address = window.location.host;
 ws = new WebSocket(`${wsProtocol}//${address}`);
 
 let roomID = sessionStorage.getItem('roomID');
-console.log(roomID)
 ws.onopen = () => {
+    console.log(roomID)
     ws.send(JSON.stringify({
         type: 'init_ID',
         data: roomID
@@ -91,7 +91,6 @@ function displayLink(returnMessage) {
 }
 
 ws.onmessage = (event) => {
-    console.log('amogus')
     const message = JSON.parse(event.data);
     console.log(message)
 
