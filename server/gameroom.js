@@ -20,7 +20,7 @@ class Gameroom {
         this.logger.assignToRoom(roomID);
     }
 
-    broadcast(type, data = {}, toWhom = null) { //
+    broadcast(type, data = {}, toWhom = null) { 
         const message = JSON.stringify({
             type: type,
             data: data
@@ -47,14 +47,6 @@ class Gameroom {
         };
     }
 
-    isFull() {
-        return this.hostID && this.guestID;
-    }
-
-    isEmpty() {
-        return !this.hostID && !this.guestID;
-    }
-
     async handleGameStart() {
         try {
             await this.gamestate.init();
@@ -65,8 +57,33 @@ class Gameroom {
     }
 }
 
+class Dummyroom {
+    constructor(roomID) {
+        this.roomID = 'dummy' + roomID;
 
+        this.hostConnection = WebSocket.CLOSED;
+        this.guestConnection = WebSocket.CLOSED;
+        this.lobby = WebSocket.CLOSED;
+        
+        this.status = 'dummy';
+        this.gamestate = {};
+
+        this.hostWantsNext = false;
+        this.guestWantsNext = false;
+
+        this.logger = new Logger('dummies.log');
+    }
+
+    broadcast(type, data = {}, toWhom = null) { 
+        this.logger.write(`attempted to send ${type} via a dummy`);
+    }
+
+    async handleGameStart() {
+        this.logger.write(`attempted to start a game in a dummy`);
+    }
+}
 
 module.exports = {
-    Gameroom
+    Gameroom, 
+    Dummyroom
 }

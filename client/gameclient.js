@@ -8,6 +8,9 @@ class ClientConnection {
     this.currentChoice = null;
 
     this.loadedFlag = false;
+    this.oppGaveUpFlag = sessionStorage.getItem('oppGaveUp') || false;
+    this.oppLeftFlag = sessionStorage.getItem('oppLeft') || false;
+    this.winFlag = sessionStorage.getItem('win') || false;
 
     this.connect();
     this.readyReload();
@@ -33,7 +36,10 @@ class ClientConnection {
       };
     }
 
-    this.ws.onmessage = (event) => {
+    this.ws.onmessage = (event) => {if (this.oppGaveUpFlag) this.jover('Your opponent just gave up');
+      if (this.oppLeftFlag) this.jover('Your opponent just left');
+      if (this.winFlag) this.showVictoryButtons();
+  
       const message = JSON.parse(event.data);
       console.log('Got message:', message.type);
 
@@ -50,19 +56,33 @@ class ClientConnection {
           this.readyReload();
           break;
         case 'victory':
+          sessionStorage.setItem('win', true);
           this.showVictoryButtons();
           break;
-        case 'clear_button':
+        case 'start_new_game':
+          console.log('new game start')
+          this.currentChoice = null;
+          this.gamestate = {};
+          sessionStorage.removeItem('win');
+          sessionStorage.removeItem('oppGaveUp');
+          sessionStorage.removeItem('oppLeft');
           this.hideVictoryButtons();
           this.readyReload();
           break;
         case 'opponent_gave_up':
+          sessionStorage.setItem('oppGaveUp', true);
           this.jover('Your opponent just gave up');
         case 'opponent_left':
+          sessionStorage.setItem('oppLeft', true);
           this.jover('Your opponent just left');
         default:
           console.log(`Unknown message, type: ${message.type}`);
       }
+
+      if (this.oppGaveUpFlag) this.jover('Your opponent just gave up');
+      if (this.oppLeftFlag) this.jover('Your opponent just left');
+      if (this.winFlag) this.showVictoryButtons();
+
     };
 
     this.ws.onerror = (error) => {
@@ -164,7 +184,7 @@ class ClientConnection {
       if (!this.loadedFlag) return;
       this.ws.send(JSON.stringify({
         type: 'clear_choice',
-        data: {sentfrom: this.isHost ? 'host' : 'guest'}
+        data: { sentfrom: this.isHost ? 'host' : 'guest' }
       }));
       this.currentChoice = null;
       current.textContent = null;
@@ -193,7 +213,7 @@ class ClientConnection {
     giveUpYes.addEventListener('click', () => {
       this.ws.send(JSON.stringify({
         type: 'give_up',
-        data: {sentfrom: this.isHost ? 'host' : 'guest'}
+        data: { sentfrom: this.isHost ? 'host' : 'guest' }
       }));
       this.backToLobby();
     });
@@ -234,7 +254,6 @@ class ClientConnection {
     const nopeButton = document.getElementById('nextGameNo');
     const overlay = document.getElementById('overlay');
     const connection = this.ws;
-    //const hostornot = this.isHost ? 'host' : 'guest';
 
     winscreen.style.display = 'flex';
     overlay.style.display = 'block';
@@ -255,7 +274,10 @@ class ClientConnection {
 
   hideVictoryButtons() {
     const winscreen = document.getElementById('win');
+    const overlay = document.getElementById('overlay');
+
     winscreen.style.display = 'none';
+    overlay.style.display = 'none';
   }
 }
 

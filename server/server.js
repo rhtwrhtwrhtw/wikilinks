@@ -6,8 +6,8 @@ const path = require('path');
 const { WebSocketServer, WebSocket } = require('ws');
 const uuid = require('uuid').v4;
 
-const Logger = require('./logger.js')
-const { Gameroom } = require('./gameroom.js');
+const Logger = require('./logger.js');
+const { Gameroom, Dummyroom } = require('./gameroom.js');
 const { Gamestate } = require('./gamelogic.js');
 const { checkValidity } = require('./links.js');
 
@@ -82,6 +82,11 @@ const port = process.env.PORT || 9999;
 const HOSTNAME = process.env.ADDRESS || 'localhost:9999';
 
 const rooms = new Map();
+function subWithDummy(roomID) {
+    const dummy = new Dummyroom(roomID);
+    rooms.set(roomID, dummy);
+    return dummy;
+}
 
 wss.on('connection', (connection, request) => {
     const urlinstance = request.url;
@@ -92,9 +97,14 @@ wss.on('connection', (connection, request) => {
     switch (type) {
         default:
             serverlog.write(`connection to lobby at ${request.socket.remoteAddress}`);
+            //the rest of lobby conection handling is triggered by the init_ID message
             break;
         case 'host':
             room = rooms.get(roomID);
+            if (!room) {
+                console.error('room not found');
+                room = subWithDummy(roomID);
+            }
 
             if (room.status === 'playing') {
                 room.logger.write(`host has reconnected to room ${roomID}`);
@@ -108,6 +118,10 @@ wss.on('connection', (connection, request) => {
             break;
         case 'guest':
             room = rooms.get(roomID);
+            if (!room) {
+                console.error('room not found');
+                room = subWithDummy(roomID);
+            }
             if (room.status === 'playing') {
                 room.logger.write(`guest has reconnected to room ${roomID}`);
                 room.guestConnection = connection;
@@ -143,10 +157,16 @@ wss.on('connection', (connection, request) => {
                         type: 'ID',
                         data: roomID
                     }));
-                } else if (message.data !== null) {
+                } else {
                     roomID = message.data;
-                    lobbylog.write(`reconnection to lobby for ${roomID}`)
+                    lobbylog.write(`reconnection to lobby for ${roomID}`);
+
                     room = rooms.get(roomID);
+                    if (!room) {
+                        console.error('room not found');
+                        room = subWithDummy(roomID);
+                    }
+                    room.lobby = connection;
                 }
                 break;
             case 'host_transfer':
@@ -232,8 +252,8 @@ wss.on('connection', (connection, request) => {
                             room.logger.write(`game reinitialized, links:`);
                             room.logger.write(`host: ${room.gamestate.hostLink.title}`);
                             room.logger.write(`guest: ${room.gamestate.guestLink.title}`);
+                            room.broadcast('start_new_game', {});
                             room.broadcast('initial_gamestate', room.gamestate);
-                            room.broadcast('clear_button', {});
                         });
                     room.hostWantsNext = false;
                     room.guestWantsNext = false;
@@ -254,6 +274,12 @@ wss.on('connection', (connection, request) => {
     });
 
     connection.on('close', () => {
+        if (room instanceof Dummyroom) {
+            room.logger.write('closing dummy');
+            rooms.delete(roomID);
+            return;
+        }
+
         switch (type) {
             case 'host':
                 room.logger.write(`host disconnected from room ${roomID}`);
