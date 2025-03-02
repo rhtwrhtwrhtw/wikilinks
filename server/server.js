@@ -247,16 +247,15 @@ wss.on('connection', (connection, request) => {
                 if (message.data.sentfrom === 'guest') room.guestWantsNext = true;
 
                 if (room.hostWantsNext && room.guestWantsNext) {
-                    room.handleGameStart().then(
+                    room.handleGameRestart().then(
                         () => {
+                            
                             room.logger.write(`game reinitialized, links:`);
                             room.logger.write(`host: ${room.gamestate.hostLink.title}`);
                             room.logger.write(`guest: ${room.gamestate.guestLink.title}`);
                             room.broadcast('start_new_game', {});
                             room.broadcast('initial_gamestate', room.gamestate);
                         });
-                    room.hostWantsNext = false;
-                    room.guestWantsNext = false;
                 }
                 break;
             case 'left_after_win':
@@ -307,7 +306,7 @@ wss.on('connection', (connection, request) => {
                         lobbylog.write(`lobby for ${roomID} was abandoned`)
                         break;
                     case 'preparing':
-                        lobbylog.write(`lobby for ${roomID} was abandoned with a room prepared`)
+                        lobbylog.write(`lobby for ${roomID} discarded successfully`)
                         break;
                     case 'playing':
                         lobbylog.write(`this should not happen`);

@@ -33,6 +33,19 @@ class Gamestate {
         }
     }
 
+    async reInit() {
+        this.isReady = false;
+
+        this.hostLink = null;
+        this.guestLink = null;
+        this.hostArray = [];
+        this.guestArray = [];
+        this.hostNext = null;
+        this.guestNext = null;
+
+        await this.init();
+    }
+
     async getNext(forWho) {
         while (true) {
             try {
@@ -70,6 +83,16 @@ class Gamestate {
         }
     }
 }
+
+function safeDecodeURIComponent(uri) {
+    if (!uri) return uri;
+    try {
+      return decodeURIComponent(uri);
+    } catch (e) {
+      console.warn('Failed to decode URI component:', uri);
+      return uri;
+    }
+  }
 
 async function randomArticles(lang, logger, n, linkN) {
     try {
@@ -111,7 +134,7 @@ async function getAGoodOne(lang, logger, n = 8, linkN = 500) {
 }
 
 async function getByName(name, lang, logger) {
-    name = decodeURIComponent(name);
+    name = safeDecodeURIComponent(name);
     logger.write(`getByName called with: ${name}, ${lang}`);
     while (true) {
         try {
@@ -132,7 +155,7 @@ async function getByName(name, lang, logger) {
 }
 
 async function getHTMLbyName(title, lang, logger) {
-    title = decodeURIComponent(title);
+    title = safeDecodeURIComponent(title);
     logger.write(`getHTMLbyName called with ${title}`)
     while (true) {
         const request = `https://${lang}.wikipedia.org/w/api.php?action=parse&format=json&page=${title}&formatversion=2`;
@@ -145,7 +168,7 @@ async function getHTMLbyName(title, lang, logger) {
         
             let text = data.parse.text;
             text = cleanHTML(text);
-            text = replaceLinks(text, lang);
+            text = replaceLinks(text);
             text = `<h1>${title}</h1>` + text;
 
             return text;
@@ -169,7 +192,7 @@ function cleanHTML(html) {
     return result;
 }
 
-function replaceLinks(html, lang) {
+function replaceLinks(html) {
     const ch = cheerio.load(html);
     ch(`
         a[href^="/wiki/Special:"],
@@ -196,8 +219,9 @@ function replaceLinks(html, lang) {
     ch('a[href^="/wiki/"]').each(function () {
         if (ch(this).text()) {
             const text = ch(this).text();
-            const href = ch(this).attr('href').replace(/\/wiki\//, '');
-            const replacement = `<span class="gamelink" linkto=${decodeURIComponent(href)}>${text}</span>`;
+            let href = ch(this).attr('href').replace(/\/wiki\//, '');
+            href = safeDecodeURIComponent(href);
+            const replacement = `<span class="gamelink" linkto=${href}>${text}</span>`;
             ch(this).replaceWith(replacement);
         }
     })

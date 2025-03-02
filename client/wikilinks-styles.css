@@ -222,6 +222,10 @@ button:active {
     margin-top: 1.5em;
 }
 
+#mySide p {
+    margin: 1em;
+}
+
 #mySide table {
     float: right;
     clear: right;

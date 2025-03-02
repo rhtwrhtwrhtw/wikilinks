@@ -9,7 +9,7 @@ class Gameroom {
         this.hostConnection = null;
         this.guestConnection = null;
         this.lobby = null;
-        
+
         this.status = 'pending';
         this.gamestate = {};
 
@@ -20,7 +20,7 @@ class Gameroom {
         this.logger.assignToRoom(roomID);
     }
 
-    broadcast(type, data = {}, toWhom = null) { 
+    broadcast(type, data = {}, toWhom = null) {
         const message = JSON.stringify({
             type: type,
             data: data
@@ -55,6 +55,17 @@ class Gameroom {
             throw error;
         }
     }
+
+    async handleGameRestart() {
+        this.hostWantsNext = false;
+        this.guestWantsNext = false;
+        try {
+            await this.gamestate.reInit();
+        } catch (error) {
+            console.error('Failed to reinitialize game:', error);
+            throw error;
+        }
+    }
 }
 
 class Dummyroom {
@@ -64,7 +75,7 @@ class Dummyroom {
         this.hostConnection = WebSocket.CLOSED;
         this.guestConnection = WebSocket.CLOSED;
         this.lobby = WebSocket.CLOSED;
-        
+
         this.status = 'dummy';
         this.gamestate = {};
 
@@ -74,7 +85,7 @@ class Dummyroom {
         this.logger = new Logger('dummies.log');
     }
 
-    broadcast(type, data = {}, toWhom = null) { 
+    broadcast(type, data = {}, toWhom = null) {
         this.logger.write(`attempted to send ${type} via a dummy`);
     }
 
@@ -84,6 +95,6 @@ class Dummyroom {
 }
 
 module.exports = {
-    Gameroom, 
+    Gameroom,
     Dummyroom
 }
