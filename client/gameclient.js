@@ -46,10 +46,12 @@ class ClientConnection {
       switch (message.type) {
 
         case 'initial_gamestate':
+          this.currentChoice = null;
           this.gamestate = message.data;
           this.displayState();
           break;
         case 'restore_gamestate':
+          this.currentChoice = null;
           this.loadedFlag = false;
           this.gamestate = message.data;
           this.displayState();
@@ -250,12 +252,14 @@ class ClientConnection {
 
   showVictoryButtons() {
     const winscreen = document.getElementById('win');
+    const winarticle = document.getElementById('winarticle');
     const nextButton = document.getElementById('nextGameYes');
     const nopeButton = document.getElementById('nextGameNo');
     const overlay = document.getElementById('overlay');
     const connection = this.ws;
 
-    winscreen.style.display = 'flex';
+    winarticle.textContent = this.currentChoice;
+    winscreen.style.display = 'block';
     overlay.style.display = 'block';
     nextButton.addEventListener('click', () => {
       connection.send(JSON.stringify({
