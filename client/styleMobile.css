@@ -1,0 +1,99 @@
+@media only screen and (max-width: 768px) {
+    .main-wrapper {
+        width: 90%;
+        margin: 0;
+        position: relative;
+        left: 0;
+        transform: none;
+    }
+    
+    .getlink {
+        padding: 15px;
+        width: 70%;
+        box-sizing: content-box;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        margin: 5px 0;
+        box-sizing: content-box;
+    }
+    
+    select {
+        width: 100%;
+        margin: 5px 0;
+        box-sizing: border-box;
+    }
+    
+    button {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    #game {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    #mySide {
+        width: 100%;
+        min-height: 300px;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+    
+    #floating {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    #gameControls {
+        flex-direction: column;
+    }
+    
+    /* Wiki-specific adjustments */
+    #mySide table {
+        display: block;
+        overflow-x: auto;
+        float: none;
+        width: 100%;
+    }
+    
+    #mySide figure, 
+    #mySide .thumb {
+        float: none;
+        margin: 1em auto;
+        max-width: 100%;
+    }
+    
+    /* Popup adjustments */
+    .popup {
+        width: 90%;
+        max-width: 300px;
+    }
+    
+    .popup button {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+/* Additional breakpoint for very small screens */
+@media only screen and (max-width: 400px) {
+    body {
+        padding: 5px;
+    }
+    
+    h1 {
+        font-size: 1.2em;
+    }
+    
+    #mySide h1 {
+        font-size: 1.5em;
+    }
+    
+    #mySide h2 {
+        font-size: 1.3em;
+    }
+}

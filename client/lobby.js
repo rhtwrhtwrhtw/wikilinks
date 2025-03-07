@@ -82,12 +82,17 @@ function displayLink(returnMessage) {
         navigator.clipboard.writeText(linkandrules);
         copybuttonRules.style.backgroundColor = '#00008B';
     }
+
     const linktosend = document.getElementById('linktosend');
-    linktosend.style.display = 'flex';
-    linktosend.innerHTML = '';
-    linktosend.appendChild(linkstring);
-    linktosend.appendChild(copybutton);
-    linktosend.appendChild(copybuttonRules);
+    linktosend.style.display = 'none';
+
+    setTimeout(() => {
+        linktosend.style.display = 'flex';
+        linktosend.innerHTML = '';
+        linktosend.appendChild(linkstring);
+        linktosend.appendChild(copybutton);
+        linktosend.appendChild(copybuttonRules);
+    }, 300);
 }
 
 ws.onmessage = (event) => {
@@ -111,7 +116,7 @@ ws.onmessage = (event) => {
             break;
         default:
             console.log(`received unknown message: ${message.type}`)
-        break;
+            break;
     }
 }
 
