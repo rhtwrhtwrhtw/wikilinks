@@ -1,12 +1,44 @@
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: #f5f5f5;
+/*elements*/
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: 4px;
 }
 
-.main-wrapper {
+input[type="text"] {
+    width: 60%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 10px;
+}
+
+input[type="checkbox"] {
+    margin: 10px;
+    background-color: #1976D2;
+}
+
+select {
+    margin: 10px;
+    margin-left: 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    height: 30px;
+    width: 270px;
+
+}
+
+label {
+    margin: 10px;
+    margin-right: 3px;
+    padding: 3px;
+    font-size: small;
+}
+
+/*divs and their arrangement*/
+/*lobby*/
+.wrapper-lobby {
     width: 800px;
     margin: 0;
     position: absolute;
@@ -19,94 +51,53 @@ body {
     align-items: center;
 }
 
-h1 {
-    color: #333;
-    margin-bottom: 20px;
-    max-width: fit-content;
-}
-
-#rules {
-    max-width: fit-content;
-}
-
 .getlink {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     background: white;
-    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     width: 600px;
 }
 
-#inputs {
-    margin: 20px 0;
-}
-
-#inputs div {
-    margin: 10px 0;
-}
-
-input[type="text"] {
-    width: 80%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-right: 10px;
-}
-
-select {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-left: 10px;
-}
-
-button {
-    background-color: #2196F3;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    margin-left: 5px;
-}
-
-button:hover {
-    background-color: #1976D2;
-}
-button:active {
-    background-color: #00008B;
-}
-
 #linktosend {
+    background-color: rgba(139, 205, 252, 0.466);
+    width: 600px;
     margin-top: 20px;
-    padding: 10px;
-    background: #e3f2fd;
-    border-radius: 4px;
+
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
     display: none;
+    flex-direction: column;
+    align-items: left;
 }
 
+#linkstring {
+    font-size: small;
+    font-style: italic;
+}
+
+/*divs and their arrangement*/
+/*game*/
 #game {
     display: flex;
     gap: 20px;
     height: 100vh;
 }
 
-#mySide {
-    flex: 1;
-    overflow-y: auto;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    overscroll-behavior-y: auto;
-    background: white;
+#sideboard {
+    flex-shrink: 0;
+    width: 300px;
     padding: 20px;
+    background: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: relative;
-    min-height: 200px;
-    width: min-content;
 }
 
+/* overlay and popups*/
 #overlay {
     position: fixed;
     top: 0;
@@ -120,53 +111,6 @@ button:active {
   }
 
 
-#mySide img[src="throbber.gif"] {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-#floating {
-    width: 300px;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-#gameControls {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-#gameControls button {
-    flex: 1;
-}
-
-#current {
-    padding: 10px;
-    background: #e3f2fd;
-    border-radius: 4px;
-    margin-bottom: 20px;
-}
-
-#lists {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-#myList, #oppSide {
-    padding: 10px;
-    background: #f5f5f5;
-    border-radius: 4px;
-    overflow: auto;
-    font-size: 0.8em;
-}
-
-/* Popup styles */
 .popup {
     display: none;
     position: fixed;
@@ -179,12 +123,11 @@ button:active {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     text-align: center;
+
+    flex-direction: column;
+    align-items: center;
 }
 
-.popup p {
-    margin-bottom: 20px;
-}
-
-.popup button {
-    margin: 0 10px;
-}
+.popup.active {
+    display: flex; 
+  }

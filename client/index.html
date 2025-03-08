@@ -9,26 +9,29 @@
 
 <head>
     <title>WikiLinks Game</title>
+    <link rel="stylesheet" href="globalStyles.css">
     <link rel="stylesheet" href="stylePC.css">
-    <link rel="stylesheet" href="stylePC.css">
+    <link rel="stylesheet" href="styleMobile.css">
     <link rel="stylesheet" href="wikistyling.css">
 
 </head>
 
 <body>
-    <div class="main-wrapper">
+    <div class="wrapper-lobby">
         <h1>Wikilinks</h1>
         <p id="rules"></p>
         <div class="getlink">
-            <label for="lang">Language:</label>
-            <select name="lang" id="lang">
-                <option value="en" lang="en" selected="selected">English</option><!-- English -->
-                <option value="simple" lang="en">Simple English</option>
-                <option value="es" lang="es">Español</option>
-                <option value="ru" lang="ru">Русский</option><!-- Russkiy -->
-                <option value="kk" lang="kk">Қазақша / Qazaqşa / قازاقشا</option>
-                <option value="de" lang="de">Deutsch</option>
-            </select>
+            <div class="wrapper-language">
+                <label for="lang">Language:</label>
+                <select name="lang" id="lang">
+                    <option value="en" lang="en" selected="selected">English</option><!-- English -->
+                    <option value="simple" lang="en">Simple English</option>
+                    <option value="es" lang="es">Español</option>
+                    <option value="ru" lang="ru">Русский</option><!-- Russkiy -->
+                    <option value="kk" lang="kk">Қазақша / Qazaqşa / قازاقشا</option>
+                    <option value="de" lang="de">Deutsch</option>
+                </select>
+            </div>
             <div id="inputs">
                 <div id="hostinput">
                     <input type="text" id="artforhost" placeholder="Wikipedia article for the host"

@@ -58,7 +58,7 @@ function passLink() {
 button.addEventListener('click', passLink);
 
 function displayLink(returnMessage) {
-    const linkstring = document.createElement('pre');
+    const linkstring = document.createElement('p');
     linkstring.textContent = returnMessage
     linkstring.id = 'linkstring';
 

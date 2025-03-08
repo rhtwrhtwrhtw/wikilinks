@@ -9,8 +9,9 @@
 
 <head>
     <title>WikiLinks Game</title>
+    <link rel="stylesheet" href="globalStyles.css">
     <link rel="stylesheet" href="stylePC.css">
-    <link rel="stylesheet" href="stylePC.css">
+    <link rel="stylesheet" href="styleMobile.css">
     <link rel="stylesheet" href="wikistyling.css">
 </head>
 
@@ -20,7 +21,7 @@
         <div id="mySide">
             <img src="throbber.gif" alt="loading">
         </div>
-        <div id="floating">
+        <div id="sideboard">
             <div id="gameControls">
                 <button id="deselect">Deselect</button>
                 <button id="nextMoveButton">Ready</button>
@@ -38,17 +39,24 @@
         <p>You won! You and the other player have met on: </p>
         <p id="winarticle"></p>
         <p>Would you like to play with the same settings again?</p>
-        <button id="nextGameYes">Yes</button>
-        <button id="nextGameNo">No</button>
+        <div class="button-wrapper">
+            <button id="nextGameYes">Yes</button>
+            <button id="nextGameNo">No</button>
+        </div>
+
     </div>
     <div class="popup" id="areyousure">
         <p>Are you sure you want to give up?</p>
-        <button id="giveUpYes">Yes</button>
-        <button id="giveUpNo">No</button>
+        <div class="button-wrapper">
+            <button id="giveUpYes">Yes</button>
+            <button id="giveUpNo">No</button>
+        </div>
     </div>
     <div class="popup" id="endscreen">
         <p id="popuptext"></p>
-        <button id="redirectMe">Ok</button>
+        <div class="button-wrapper">
+            <button id="redirectMe">Ok</button>
+        </div>
     </div>
 
 </body>

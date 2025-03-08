@@ -50,6 +50,7 @@ const httpserver = http.createServer((request, response) => {
                 case 'lobby.js':
                     response.writeHead(200, { "Content-type": "application/javascript" });
                     break;
+                case 'globalStyles.css':
                 case 'stylePC.css':
                 case 'styleMobile.css':
                 case 'wikistyling.css':
