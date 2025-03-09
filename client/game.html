@@ -9,7 +9,6 @@
 
 <head>
     <title>WikiLinks Game</title>
-    <link rel="stylesheet" href="globalStyles.css">
     <link rel="stylesheet" href="stylePC.css">
     <link rel="stylesheet" href="styleMobile.css">
     <link rel="stylesheet" href="wikistyling.css">
@@ -22,12 +21,16 @@
             <img src="throbber.gif" alt="loading">
         </div>
         <div id="sideboard">
+            <div id="current"></div>
+
             <div id="gameControls">
-                <button id="deselect">Deselect</button>
-                <button id="nextMoveButton">Ready</button>
+                <button id="deselect">Clear Selected</button>
+                <button id="nextMoveButton">Next Turn</button>
                 <button id="giveUp">Give Up</button>
             </div>
-            <div id="current"></div>
+
+            <div id="oppSidePop"></div>
+            
             <div id="lists">
                 <div id="myList"></div>
                 <div id="oppSide"></div>

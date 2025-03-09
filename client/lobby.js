@@ -15,7 +15,6 @@ let rules;
 fetch('rules.txt')
     .then(response => response.text())
     .then(data => {
-        document.getElementById('rules').textContent = data;
         rules = data;
     })
 

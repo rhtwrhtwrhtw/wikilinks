@@ -1,175 +1,324 @@
 .gamelink {
     color:#007bff;
-  }
-  
+}
+/* Wikipedia-like styling for Wikilinks game */
 #mySide {
-    font-family: "Linux Libertine", "Georgia", "Times", serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Lato, Helvetica, Arial, sans-serif;
     line-height: 1.6;
     color: #202122;
-}
-
-#mySide h1, #mySide h2, #mySide h3, #mySide h4, #mySide h5, #mySide h6 {
-    font-family: "Georgia", "Times", serif;
-    font-weight: normal;
-    color: #202122;
-    margin: 0.5em 0;
-}
-
-#mySide h1 {
-    font-size: 2em;
-    border-bottom: 2px solid #a2a9b1;
-    padding-bottom: 0.3em;
-}
-
-#mySide h2 {
-    font-size: 1.75em;
-    border-bottom: 1px solid #a2a9b1;
-    padding-bottom: 0.3em;
-}
-
-#mySide h3 {
-    font-size: 1.5em;
-    margin-top: 1.5em;
-}
-
-#mySide h4 {
-    font-size: 1.25em;
-    margin-top: 1.5em;
-}
-
-#mySide h5 {
-    font-size: 1.2em;
-    margin-top: 1.5em;
-}
-
-#mySide h6 {
-    font-size: 1.1em;
-    margin-top: 1.5em;
-}
-
-#mySide p {
-    margin: 1em;
-}
-
-#mySide table {
-    float: right;
-    clear: right;
+    font-size: 14px;
+    background-color: #ffffff;
+    padding: 1em;
     width: 100%;
-    border-collapse: collapse;
-    margin: 1em 0;
-    background-color: #fff;
-}
-
-#mySide th {
-    padding: 6px 10px;
-    background-color: #f8f9fa;
-    color: #333;
-    font-weight: bold;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
+  
+  /* Make sure all content respects container boundaries */
+  #mySide * {
+    max-width: 100%;
+    box-sizing: border-box;
+    word-wrap: break-word; /* Ensure text wraps */
+  }
+  
+  /* Headings */
+  #mySide h1, #mySide h2, #mySide h3, #mySide h4, #mySide h5, #mySide h6 {
+    font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+    font-weight: normal;
+    color: #000;
+    margin: 1em 0 0.5em 0;
+    border-bottom: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+    width: 100%; /* Ensure headings don't overflow */
+  }
+  
+  #mySide h1 {
+    font-size: 1.8em;
+    border-bottom: 1px solid #a2a9b1;
+    padding-bottom: 0.25em;
+    margin-top: 0;
+  }
+  
+  #mySide h2 {
+    font-size: 1.5em;
+    border-bottom: 1px solid #a2a9b1;
+    padding-bottom: 0.25em;
+  }
+  
+  #mySide h3 {
+    font-size: 1.2em;
+  }
+  
+  #mySide h4 {
+    font-size: 1.1em;
+  }
+  
+  #mySide h5, #mySide h6 {
+    font-size: 1em;
+  }
+  
+  /* Paragraphs and text */
+  #mySide p {
+    margin: 0.5em 0 1em 0;
     text-align: left;
-    vertical-align: top;
-    border: 1px solid #a2a9b1;
-    font-size: 13px;
-}
-
-#mySide td {
-    padding: 6px 10px;
-    border: 1px solid #a2a9b1;
-    vertical-align: top;
-    font-size: 13px;
-}
-
-#mySide tr:nth-child(odd) {
-    background-color: #f9f9f9;
-}
-
-#mySide tr:hover {
-    background-color: #f1f1f1;
-}
-
-#mySide a {
-    color: #0066cc;
+  }
+  
+  /* Links */
+  #mySide a {
+    color: #0645ad;
     text-decoration: none;
-}
-
-#mySide a:hover {
+  }
+  
+  #mySide a:visited {
+    color: #0b0080;
+  }
+  
+  #mySide a:hover {
     text-decoration: underline;
-}
-
-#mySide img:not([src="throbber.gif"]) {
-    max-width: 100%;
-    height: auto;
-}
-
-#mySide blockquote {
-    padding: 10px 20px;
+  }
+  
+  #mySide a.new {
+    color: #ba0000;
+  }
+  
+  #mySide a.new:visited {
+    color: #a55858;
+  }
+  
+  /* Game links specific styling */
+  .gamelink {
+    color: #0645ad;
+    cursor: pointer;
+  }
+  
+  .gamelink:hover {
+    text-decoration: underline;
+  }
+  
+  /* Tables */
+  #mySide table {
     margin: 1em 0;
-    border-left: 4px solid #a2a9b1;
-    background-color: #f9f9f9;
-    font-style: italic;
-}
-
-#mySide ul, #mySide ol {
-    margin: 1em 0;
-    padding-left: 20px;
-}
-
-#mySide li {
-    margin-bottom: 0.2em;
-}
-#mySide figure {
-    float: right;
-    clear: right;
-    margin: 0.5em 0 1em 1em;
-    padding: 3px;
+    border-collapse: collapse;
+    border: 1px solid #a2a9b1;
     background-color: #f8f9fa;
-    border: 1px solid #eaecf0;
-    border-radius: 4px;
-    max-width: 300px;
-}
-
-#mySide figure img {
+    font-size: 13px;
+    width: 100%;
     display: block;
-    max-width: 100%;
-    height: auto;
-    margin: 0 auto;
-}
-
-#mySide figcaption {
-    margin-top: 8px;
-    text-align: center;
-    font-size: 13px;
-    color: #202122;
-    line-height: 1.4;
-    padding: 0 3px;
-}
-
-#mySide .thumb {
-    float: right;
+    overflow-x: auto; /* Allow horizontal scrolling for tables */
+  }
+  
+  #mySide table.infobox {
+    float: right; /* Float infoboxes right by default */
     clear: right;
     margin: 0.5em 0 1em 1em;
+    max-width: 22em;
     width: auto;
-    max-width: 300px;
-}
-
-#mySide .thumbinner {
+    border: 1px solid #a2a9b1;
+    background-color: #f8f9fa;
+  }
+  
+  #mySide th {
+    background-color: #eaecf0;
+    text-align: center;
+    padding: 0.2em 0.4em;
+    border: 1px solid #a2a9b1;
+    font-weight: bold;
+  }
+  
+  #mySide td {
+    padding: 0.2em 0.4em;
+    border: 1px solid #a2a9b1;
+    vertical-align: top;
+  }
+  
+  /* Lists */
+  #mySide ul, #mySide ol {
+    margin: 0.3em 0 0.3em 1.6em;
+    padding: 0;
+  }
+  
+  #mySide li {
+    margin-bottom: 0.1em;
+  }
+  
+  /* Images and figures - Float all to the right by default for PC */
+  #mySide figure, #mySide .thumb {
+    float: right; /* Default to right floating for all figures */
+    clear: right;
+    background-color: #f8f9fa;
+    margin: 0.5em 0 1em 1em; /* Proper spacing for right-floated images */
+    padding: 3px;
+    border: 1px solid #c8ccd1;
+    font-size: 13px;
+    text-align: center;
+    max-width: 300px; /* Default max width for PC */
+    box-sizing: border-box;
+  }
+  
+  #mySide figcaption, #mySide .thumbcaption {
+    text-align: left;
+    padding: 3px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #222;
+  }
+  
+  #mySide img:not([src="throbber.gif"]) {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+  }
+  
+  /* Standard image container class */
+  #mySide .thumbinner {
+    border: 1px solid #c8ccd1;
     padding: 3px;
     background-color: #f8f9fa;
-    border: 1px solid #eaecf0;
-    border-radius: 4px;
-    font-size: 13px;
-}
-
-#mySide .thumbcaption {
-    text-align: left;
-    line-height: 1.4;
-    padding: 3px;
-    font-size: 13px;
-    color: #202122;
-}
-
-/* Clear fix for proper text wrapping */
-#mySide:after {
+    font-size: 94%;
+    text-align: center;
+    overflow: hidden;
+    min-width: 100px;
+  }
+  
+  /* Blockquotes and indentation */
+  #mySide blockquote {
+    margin: 1em 0 1em 1.6em;
+    padding: 0 1em;
+    border-left: 2px solid #c8ccd1;
+    color: #54595d;
+  }
+  
+  /* References */
+  #mySide .references {
+    font-size: 90%;
+  }
+  
+  #mySide sup {
+    vertical-align: super;
+    font-size: smaller;
+    line-height: 1;
+  }
+  
+  #mySide .reference {
+    font-size: 12px;
+    vertical-align: super;
+    line-height: 0;
+  }
+  
+  /* Tables of contents */
+  #mySide .toc {
+    display: table;
+    border: 1px solid #a2a9b1;
+    background-color: #f8f9fa;
+    padding: 7px;
+    font-size: 95%;
+    margin: 1em 0;
+    width: auto;
+  }
+  
+  #mySide .toc h2 {
+    display: inline;
+    border: none;
+    padding: 0;
+    font-size: 100%;
+    font-weight: bold;
+  }
+  
+  /* Hatnotes and disambiguation */
+  #mySide .hatnote {
+    font-style: italic;
+    padding-left: 1.6em;
+    margin-bottom: 0.5em;
+    color: #54595d;
+  }
+  
+  /* Math formulae */
+  #mySide .mwe-math-element {
+    display: block;
+    margin: 1em 0;
+    overflow-x: auto;
+  }
+  
+  /* Citations needed */
+  #mySide .citation-needed {
+    color: #ba0000;
+    font-size: 85%;
+    vertical-align: super;
+    cursor: help;
+  }
+  
+  /* Categories */
+  #mySide .catlinks {
+    border: 1px solid #a2a9b1;
+    background-color: #f8f9fa;
+    padding: 5px;
+    margin-top: 1em;
+    clear: both;
+  }
+  
+  /* Specific styles for the loading indicator */
+  #mySide img[src="throbber.gif"] {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Clear fix for floated elements */
+  #mySide::after {
     content: "";
     display: table;
     clear: both;
-}
+  }
+  
+  /* Mobile-specific fixes */
+  @media (max-width: 768px) {
+    #mySide {
+      padding: 0.5em;
+      overflow-wrap: break-word;
+    }
+    
+    /* Force all content to fit within viewport */
+    #wikicontent {
+      width: 100%;
+      max-width: 100vw;
+    }
+    
+    /* Adjust figure and image display for mobile */
+    #mySide figure, #mySide .thumb {
+      float: none;
+      margin: 1em auto;
+      max-width: 100%;
+      width: auto;
+      display: block;
+    }
+    
+    /* Remove floating for infoboxes on mobile */
+    #mySide table.infobox {
+      float: none;
+      margin: 1em auto;
+      max-width: 100%;
+      width: auto;
+    }
+    
+    /* Adjust table display for mobile */
+    #mySide table {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    
+    /* Handle pre tags and code blocks */
+    #mySide pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+    
+    /* Make sure images don't cause horizontal scrolling */
+    #mySide .thumbinner {
+      max-width: 100%;
+    }
+  }

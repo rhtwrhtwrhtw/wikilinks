@@ -1,3 +1,35 @@
+/*global*/
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: #efefef;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+p {
+    text-align: center;
+    color: #333;
+}
+
+button {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #1976D2;
+}
+button:active {
+    background-color: #0000aa;
+}
+
 /*elements*/
 button {
     margin: 10px;
@@ -36,13 +68,17 @@ label {
     font-size: small;
 }
 
+.getlink, #linktosend, #sideboard, #mySide, .popup {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); 
+  }
+
 /*divs and their arrangement*/
 /*lobby*/
 .wrapper-lobby {
     width: 800px;
     margin: 0;
     position: absolute;
-   
+
     left: 50%;
     transform: translate(-50%, 0);
 
@@ -55,10 +91,8 @@ label {
     display: flex;
     flex-direction: column;
     align-items: left;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     width: 600px;
 }
 
@@ -68,7 +102,6 @@ label {
     margin-top: 20px;
 
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 
     display: none;
     flex-direction: column;
@@ -89,12 +122,85 @@ label {
 }
 
 #sideboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
     flex-shrink: 0;
     width: 300px;
     padding: 20px;
     background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#current {
+    width: 100%;
+    min-height: 40px;
+    padding: 10px;
+    background: #e3f2fd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+
+    text-align: center;
+    vertical-align: middle;
+}
+
+#gameControls {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+#gameControls button {
+    flex: 1;
+    width: 85px;
+    min-height: 36px;
+    text-align: center;
+    vertical-align: center;
+}
+
+#lists {
+    margin-top: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+}
+
+#oppSidePop{
+    display: none;
+}
+
+#myList, #oppSide {
+    width: 95%;
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    overflow: auto;
+    font-size: 0.8em;
+}
+
+#mySide {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    overscroll-behavior-y: auto;
+
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    min-height: 200px;
+    width: min-content;
+}
+
+#mySide img[src="throbber.gif"] {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /* overlay and popups*/
@@ -105,10 +211,10 @@ label {
     width: 100%;
     height: 100%;
     z-index: 10;
-    background-color: rgba(0, 0, 0, 0.5);  
-    pointer-events: all;  
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: all;
     display: none;
-  }
+}
 
 
 .popup {
@@ -121,7 +227,6 @@ label {
     background: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     text-align: center;
 
     flex-direction: column;
@@ -129,5 +234,5 @@ label {
 }
 
 .popup.active {
-    display: flex; 
-  }
+    display: flex;
+}

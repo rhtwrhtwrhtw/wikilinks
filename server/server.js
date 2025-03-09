@@ -106,6 +106,10 @@ wss.on('connection', (connection, request) => {
             if (!room) {
                 console.error('room not found');
                 room = subWithDummy(roomID);
+                connection.send(JSON.stringify({
+                    type: 'opponent_left',
+                    data: {}
+                }));
             }
 
             if (room.status === 'playing') {
@@ -123,6 +127,10 @@ wss.on('connection', (connection, request) => {
             if (!room) {
                 console.error('room not found');
                 room = subWithDummy(roomID);
+                connection.send(JSON.stringify({
+                    type: 'opponent_left',
+                    data: {}
+                }));
             }
             if (room.status === 'playing') {
                 room.logger.write(`guest has reconnected to room ${roomID}`);

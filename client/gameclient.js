@@ -101,9 +101,11 @@ class ClientConnection {
     const mySide = document.getElementById('mySide');
     const myList = document.getElementById('myList');
     const oppSide = document.getElementById('oppSide');
+    const oppSidePop = document.getElementById('oppSidePop');
     mySide.innerHTML = '';
     myList.innerHTML = '';
     oppSide.innerHTML = '';
+    oppSidePop.innerHTML = '';
     current.textContent = '';
 
     const list = document.createElement('div');
@@ -120,6 +122,7 @@ class ClientConnection {
         this.currentChoice = link.getAttribute('linkto');
       })
     }
+    list.id = '#wikicontent';
 
     mypath.textContent = "Your path: "
     const myArray = this.isHost ? this.gamestate.hostArray : this.gamestate.guestArray;
@@ -137,9 +140,15 @@ class ClientConnection {
       opp.appendChild(item);
     }
 
+    oppSidePop.textContent = 'Other player is on:   ';
+    const oneitem = document.createElement('div');
+    oneitem.innerHTML = '<br>' + opponentArray.pop().title;
+    
+
     mySide.appendChild(list);
     myList.appendChild(mypath);
     oppSide.appendChild(opp);
+    oppSidePop.appendChild(oneitem);
 
     this.loadedFlag = true;
     mySide.scrollTo({
